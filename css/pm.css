@@ -1,0 +1,452 @@
+#info{
+	overflow:auto;
+	-webkit-overflow-scrolling: touch;
+	-webkit-user-select: auto;
+}
+
+#reportDiv{
+	border-width: thin;
+	border-color:black;
+	border-style:solid;
+	padding: auto;
+	margin-bottom: auto;
+}
+#touchpad{
+	margin-top:20px;
+	text-align: center;
+	border-width: thin;
+	border-color: black;
+	border-style:solid;
+	width: 100%;
+	height: 150px;
+	padding: auto;
+}
+#acts{
+	text-align: center;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.images.ui-content {
+    text-align: center;
+}
+
+* {
+	/* backface visibility removes flickering when transitioning on iOS */
+    -webkit-backface-visibility: hidden;
+	/* turn off the annoying highlight on a tap (we provide our own visual feedback) */
+    -webkit-tap-highlight-color: transparent;
+	/* prevent the user from highlighting any text */
+	/*font-family: 'Linden Hill', serif;*/
+	font-family: Lato;
+
+}
+
+#clock {
+	height: 40%;
+}
+
+.image-checkbox-container input[type="checkbox"]{
+    display: none;
+}
+
+.image-checkbox-container img{
+    border: 0;
+    margin: 4px;
+}
+
+#checkMark {
+	height:500px;
+	width:500px;
+	display: none;
+}
+
+
+
+#progress-bar{
+	width: 50%;
+	text-align: center;
+}
+
+p {
+	opacity: 0.9;
+}
+
+figure {
+	display: inline-block;
+}
+
+figcaption {
+	text-align: center;
+	font-size: 18pt;
+	font-family: 'Linden Hill', serif;
+}
+#gamestories {
+	padding-top: 50px;
+}
+div.ui-page{
+	text-align: center;
+	background-color: white;
+	min-height: 100%;
+	height: 100%;
+}
+
+div.ui-content{
+	background-color: #383838;
+	color: white;
+	min-height: 100%;
+	height: 100%;
+	font-size: 17pt;
+	opacity: 0.97;
+}
+
+.non-half {
+	padding-top: 5%;
+}
+/*play memory game button in banklist */
+#banklist a {
+	width: 50%;
+	margin-left: 20%;
+	margin-right: 20%;
+}
+
+div.ui-content:not(.non-half) {
+	padding-left: 20%;
+	padding-right: 20%;
+}
+.ui-header .ui-title, .ui-footer .ui-title {
+	font-size: 24px;
+}
+body, html {
+	height: 100%;
+}
+.progress{
+	height:100px;
+}
+/*
+#game-text {
+	padding-left: 10%;
+	padding-right: 10%;
+}*/
+
+.buttondiv {
+	/*padding-left: 15%;
+	width: 70%;*/
+}
+
+.clue {
+	height: 300px;
+}
+.clueDiv{
+	font-size: 10px;
+}
+
+.pair {
+	height: 220px;
+}
+
+.pairdiv {
+	border-style: solid;
+	padding-top: 224px;
+}
+
+.pairdiv>figure {
+	margin:0px;
+
+}
+
+.twoPairs {
+	margin-top: 30px;
+}
+
+.halfbuttonDiv {
+	width: 70%;
+	padding-left: 15%;
+	float: left;
+}
+.halfbuttonDiv>.right{
+	width: 45%;
+	padding-right: 3%;
+	float: right;
+}
+/*
+.checkMarkDiv {
+	height:500px;
+	width:500px;
+	display: none;
+}
+*/
+#addStoryForm img{
+	width:100px;
+
+}
+
+
+.pair2 {
+	height: 100px;
+}
+
+.pairdiv2 {
+	border-style: solid;
+	padding-top: 104px;
+	font-size: 10pt;
+}
+
+.pairdiv2>figure {
+	margin:0px;
+
+}
+
+.ui-navbar {
+	height: 95px;
+	background-color: white;
+}
+
+.ui-navbar li .ui-btn {
+	font-size: 25px;
+	text-align: center;
+	background-color: white;
+}
+
+
+.ui-header .ui-navbar .ui-btn {
+	background-color: white;
+	
+}
+.ui-header {
+	background-color: black;
+	
+}
+.ui-header .ui-navbar .ui-btn:not(.logo) {
+	padding-top: 10%;
+	opacity:0.8;
+	font-family: Lato;
+}
+/*
+.ui-header .ui-navbar .ui-btn:not(.logo):hover {
+	opacity: 0.6;
+	text-decoration: underline;
+}
+
+.ui-header .ui-navbar .ui-btn:not(.logo):hover {
+	opacity: 0.6;
+	text-decoration: underline;
+}
+
+*/
+.ui-navbar ul li:not(.logo):hover {
+	opacity: 0.6;
+}
+.ui-navbar li .ui-block-b:hover:not() {
+	opacity: 0.7;
+}
+.ui-header .logo .ui-link .ui-btn {
+
+	padding-top: 0px;
+}
+.logo {
+	padding:0px 0px 0px 0px;
+	margin:0px 0px 0px 0px;
+}
+.logo img {
+	padding:0px 0px 0px 0px;
+	width:25%;
+	height: 25%;
+	margin:0px 0px 0px 0px;
+}
+
+#home .ui-content{
+	padding-top: 3%;
+}
+
+.ui-btn {
+	font-family: Lato;
+}
+
+#gamepage > div.ui-content, #forgetPage > div.ui-content {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+div#bank .ui-page{
+	min-height: 100%;
+	height:auto;
+	height: 100%;
+	background-color: #181818;
+}
+
+.click{
+	background-color: #181818 !important;
+	color: #ffffff !important;
+	opacity: .85 !important;
+}
+
+.menu .ui-btn:not(.logo){
+	height: 45px;
+	border: 0 0 0 0px;
+}
+
+#dialog {
+	position: absolute;
+	display: none;
+	width: 100%;
+	color:white;
+}
+
+
+/* story bank list view */
+#bankStories li, .rehearsalBoard li {
+	display: inline-block;
+	list-style-type: none;
+    border: 5px solid white;
+    background: white;
+    opacity:1;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    /*-webkit-transform: rotate(-2deg);
+    -moz-transform: rotate(-2deg);
+    */
+    -moz-box-shadow: 10px 10px 5px #666;
+    -webkit-box-shadow: 10px 10px 5px #666;
+    box-shadow: 10px 10px 5px #666;
+    vertical-align: middle;
+    -wekkit-transition: -webkit-transform .2s ease-out;
+    -moz-transition: -moz-transform .2s ease-out;
+    transition: transform .2s ease-out;
+}
+
+#bankStories li.initializedStory:hover, .rehearsalBoard li:hover {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    position: relative;
+    margin: auto;
+    z-index: 5;
+    vertical-align: middle;
+    text-align: center;
+    height: 60%;
+    /*-moz-box-shadow: 10px 10px 5px #666;
+    -webkit-box-shadow: 10px 10px 5px #666;
+    box-shadow: 10px 10px 5px #666;
+    */
+}
+
+.storyText {
+	color:black;
+}
+.dateText {
+	color:black;
+	font-size: 13px;
+}
+.scoreText {
+	color:black;
+	font-size: 13px;
+}
+
+/* set randomness text box css */
+#textCounter {
+	font-size: 14px;
+	text-align: right;
+	text-shadow: none;
+}
+
+#charCounter, #uniqueCharCounter {
+	color: green;
+	font-size: 16px;
+	font-family: 'ABeeZee', sans-serif;
+}
+/* when not logged in button should not be functioniny */
+
+#bankStories li.unInitializedStory  {
+	opacity:0.7;
+}
+
+#bankStories li.unInitializedStory p button {
+	font-family: Lato;
+}
+/* place holder css */
+::-webkit-input-placeholder { font-family: Lato; }
+::-moz-placeholder { font-family: Lato; } /* firefox 19+ */
+:-ms-input-placeholder { font-family: Lato; } /* ie */
+input:-moz-placeholder { font-family: Lato; }
+
+
+
+/* story bank list view */
+#groupStories li, .rehearsalBoard li {
+	display: inline-block;
+	list-style-type: none;
+    border: 5px solid white;
+    background: white;
+    opacity:1;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    /*-webkit-transform: rotate(-2deg);
+    -moz-transform: rotate(-2deg);
+    */
+    -moz-box-shadow: 10px 10px 5px #666;
+    -webkit-box-shadow: 10px 10px 5px #666;
+    box-shadow: 10px 10px 5px #666;
+    vertical-align: middle;
+    -wekkit-transition: -webkit-transform .2s ease-out;
+    -moz-transition: -moz-transform .2s ease-out;
+    transition: transform .2s ease-out;
+}
+
+#groupStories li.initializedStory:hover, .rehearsalBoard li:hover {
+    -webkit-transform: scale(1.2);
+    -moz-transform: scale(1.2);
+    position: relative;
+    margin: auto;
+    z-index: 5;
+    vertical-align: middle;
+    text-align: center;
+    height: 60%;
+    /*-moz-box-shadow: 10px 10px 5px #666;
+    -webkit-box-shadow: 10px 10px 5px #666;
+    box-shadow: 10px 10px 5px #666;
+    */
+}
+#groupStories li.unInitializedStory  {
+	opacity:0.7;
+}
+
+#groupStories li.unInitializedStory p button {
+	font-family: Lato;
+}
+
+
+/* Slider CSS */
+input#slider {
+	display: none;
+}
+
+.ui-slider {
+	display: inline-block;
+	width: 60%;
+	vertical-align: middle
+}
+
+div#sliderDiv {
+	height: 20%;
+	padding-top: 5%;
+}
+
+div.ui-slider {
+	padding-right: 5%;
+}
+
+img.action {
+	height:60px;
+	width:60px;
+	position:absolute;
+	left:10px;
+}
+span.pairdiv.overlayContainer {
+	position:relative;
+}
+
+#recover div.ui-content {
+	padding-top: 0px;
+}

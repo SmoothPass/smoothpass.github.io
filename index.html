@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Password Manager</title>
+		<!-- src dropbox jquery kendo-->
+		<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
+		<script src="https://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+		<script src="https://www.dropbox.com/static/api/dropbox-datastores-1.0-latest.js"></script>
+		<script type="text/javascript" src='module/kendo/kendo.all.min.js'></script>
+
+		<!--<script src="tutorial.js"></script>-->
+		<!<script type="text/javascript" src='module/sha2.js'></script>
+		
+		<!-- bCrypt -->
+		<script src="module/jBcrypt/isaac.js" type="text/javascript"></script>
+		<script src="module/jBcrypt/bCrypt.js" type="text/javascript"></script>
+		
+		<!-- OWN -->
+		<script src='js/appConstants.js'></script>
+		<script src="js/memoryGame.js"></script>
+		<script src='js/recoveryMechanism.js'></script>
+		<script src='js/setFamily.js'></script>
+		<script src='js/accountPage.js'></script>
+		<script src='js/programVariables.js'></script>
+		<script src='js/rehearsalModule.js'></script>
+		<script src='js/storyMode.js'></script>
+
+		<!-- style sheets kendo jquery own -->
+		<link rel='stylesheet' href='module/kendo/kendo.common.min.css'/>
+		<link rel='stylesheet' href='module/kendo/kendo.rtl.min.css'/>
+		<link rel='stylesheet' href='module/kendo/kendo.default.min.css'/>
+		<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css" />
+		<link rel='stylesheet' href='css/pm.css'/>
+		<link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css' />
+		<link href='https://fonts.googleapis.com/css?family=Linden+Hill' rel='stylesheet' type='text/css' />
+		<link href='https://fonts.googleapis.com/css?family=Chelsea+Market' rel='stylesheet' type='text/css' />
+		<link href='https://fonts.googleapis.com/css?family=Rock+Salt' rel='stylesheet' type='text/css' />
+		<link href='https://fonts.googleapis.com/css?family=ABeeZee' rel='stylesheet' type='text/css'>
+		<!-- phone gap stuff meta?-->
+		<!--<meta charset="utf-8"/>-->
+		<!--<meta name="viewport" content="width=device-width, initial-scale=1.0 maximum-scale=1.0 minimum-scale=1.0 user-scalable=0"/> 
+		<meta name="apple-mobile-web-app-capable" content="yes" />-->
+	</head>
+	<body>
+		<div data-role='page' data-title="board" id="board">
+			<div data-role="header">
+				<div data-role='navbar'>
+					<ul class='menu'>
+						<li><a class='logo' href='#' class='click'><img src="box_logo.jpg" alt="logo"/></a></li>
+						<li><a href='#bank' id='board-bank'>STORY BANK</a></li>
+						<li><a href='#accounts' id='board-accounts'>ACCOUNTS</a></li>
+						<li><a href='#game' id='board-game' >GAME</a></li>
+					</ul>
+				</div>
+			</div>
+			<div data-role="content">
+				<div id='board-msg'>
+					<div>Urgent Reherals</div>
+					<hr>
+					<div>Rehersals </div>
+				</div>
+			</div>
+		</div>
+		<!-- # of Accounts & Security-Usability Scale Page -->
+		<div data-role='page' data-title='userSelect' id='userSelect'>
+			<div data-role="header">
+				<div data-role='navbar'>
+					<ul class='menu'>
+						<li><a class='logo' href='#board'><img src="box_logo.jpg" alt="logo"/></a></li>
+						<li><a href='#bank' id='bank-bank'>STORY BANK</a></li>
+						<li><a href='#accounts' id='bank-accounts'>ACCOUNTS</a></li>
+						<li><a href='#game' id='bank-game' >GAME</a></li>
+					</ul>
+				</div>
+			</div>
+			<div data-role='content'>
+
+				<p>How many passwords do you have?</p>
+				<select id='numAccountOption'>
+					<option value="14">0-14</option>
+					<option value="30">15-30</option>
+					<option value="45">31-45</option>
+					<option value="80">46-80</option>
+					<option value="81">>80</option>
+				</select>
+				<div id='sliderDiv'>
+					<span>
+						<!--<label for="slider">Usability:</label>-->
+						<span>Usability<input type="range" name="slider" id="slider" value="50" min="0" max="100" step="50"/>Security</span>
+					</span>
+				</div>
+			<button id='pickModeButton' type='submit' value='submit' name='submit' tabindex="2" onclick='storyMode.gatherInfo()'>Start</button>
+
+			</div>
+		</div>
+		<!-- 43-Story-Mode Randomness -->
+		<div data-role="page" data-title="mode43" id="mode43">
+			<div data-role="header">
+				<div data-role='navbar'>
+					<ul class='menu'>
+						<li><a class='logo' href='#board'><img src="box_logo.jpg" alt="logo"/></a></li>
+						<li><a href='#bank' id='bank-bank'>STORY BANK</a></li>
+						<li><a href='#accounts' id='bank-accounts'>ACCOUNTS</a></li>
+						<li><a href='#game' id='bank-game' >GAME</a></li>
+					</ul>
+				</div>
+			</div>
+			<div data-role='content'>
+				<p>Please enter at least 30 random characters (at least 20 unique characters) to provide a seed for the pseudorandom generator.</p>
+				<p><textarea id='randomnessTextBoxStoryMode' cols='100' rows='80' tabindex="1"> </textarea></p>
+				<p id='textCounterStoryMode'><span id='charCounterStoryMode'>0</span> characters and <span id='uniqueCharCounterStoryMode'>0</span> unique characters</p>
+				<button id='submitRandomStoryMode' type='submit' value='submit' name='submit' disabled='true' tabindex="2" onclick='storyMode.populateBank()'>Generate Randomness & Initialize the Story Bank</button>
+			</div>
+		</div>
+		<!-- BANK PAGE -->
+		<div data-role="page" data-title="bank" id="bank">
+			<div data-role="header">
+				<div data-role='navbar'>
+					<ul class='menu'>
+						<li><a class='logo' href='#board'><img src="box_logo.jpg" alt="logo"/></a></li>
+						<li><a href='#bank' class='click' id='bank-bank'>STORY BANK</a></li>
+						<li><a href='#accounts' id='bank-accounts'>ACCOUNTS</a></li>
+						<li><a href='#game' id='bank-game' >GAME</a></li>
+					</ul>
+				</div>
+			</div>
+			<div data-role='content' id='banklist' class='non-half'>
+				<p>Please play the memory game to add stories to story bank</p>
+				<a data-role='button' href='#game'>Play</a> 
+			</div>
+		</div>
+		
+		<div data-role="page" data-title="home" id="home">
+			<div data-role="header">
+				<div data-role='navbar'>
+					<ul class='menu' id='home-navbar'>
+						<li class='ui-disabled'><a class='logo'  href='#board'><img src="box_logo.jpg" alt="logo"/></a></li>
+						<li class='ui-disabled'><a href='#bank' id='home-bank' class='ui-disabled'>STORY BANK</a></li>
+						<li class='ui-disabled'><a href='#accounts' id='home-accounts' class='ui-disabled'>ACCOUNTS</a></li>
+						<li class='ui-disabled'><a href='#game' id='home-game' class='ui-disabled'>GAME</a></li>
+
+					</ul>
+				</div>
+			</div>
+			<div data-role="content">
+			</div>
+		</div>
+
+		<!-- GAME PAGE-->
+		<div data-role="page" data-title="game" id="game">
+			<div data-role="header">
+				<div data-role='navbar'>
+					<ul class='menu'>
+						<li><a class='logo' href='#board'><img src="box_logo.jpg" alt="logo"/></a></li>
+						<li><a href='#bank' id='game-bank'>STORY BANK</a></li>
+						<li><a href='#accounts' id='game-accounts'>ACCOUNTS</a></li>
+						<li><a href='#game' class='click' id='game-game' >GAME</a></li>
+					</ul>
+				</div>
+			</div>
+			<div data-role="content">
+				<div data-role='content' id='gamebeginning' class='non-half'>
+					<p>How many stories can you memorize?</p>
+					<p id='game-text'> Instructions: You will see 10 person-action-object stories in this game. Spend 10 seconds visualizing each story in your head, and try to make it as vivid as possible by thinking of details. For example, if you see the story President Bush is flipping a leaf. When you are picturing it in your head, is the leaf big or small? Is he laughing or frowning? What color is the leaf? What kind of gestures is he making? </p>
+					<div class='buttondiv'>
+						<a class='halfbutton' data-role='button' onclick='randomnessGenerator()' >Start</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- GAME RELATED PAGES -->
+		
+		<!-- GAME IN PROGRESS -->
+		<div data-role='page' data-title='gamepage' id='gamepage'>
+			<div data-role='header'><h1>Memory Game</h1></div>
+			<div data-role='content'>
+				<div id='progressDiv'>
+					Progress: <progress id='progress-bar' value="0.01"></progress>
+					<span id='progress-val'> 0%</span>
+				</div>
+			<div class='checkMarkDiv'>
+				<img src='images/check.png' id='checkMark'/>
+			</div>
+			<div id='gamestories'></div>
+			</div>
+		</div>
+		<div data-role='page' data-title='addStories' id='addStories'>
+			<div data-role='header'><h1>Select Stories to Add</h1></div>
+			<div data-role='content'>
+				<form method='GET' id='addStoryForm'></form>
+			</div>
+		</div>
+		<div data-role='page' data-title='forgetPage' id='forgetPage'>
+			<div data-role='header'><h1>Memory Game Hint</h1></div>
+			<div data-role='content'>
+				<div id='hintSpace'></div>
+				<a data-role='button' onclick='memoryGame.backtoGame()'>Back to Game</a>
+			</div>
+		</div>
+		<div data-role='page' data-title='Randomness Generator' id='generateRandomness'>
+			<div data-role='header'><h1>Seed Generator</h1></div>
+			<div data-role='content'>
+				<h2></h2>
+				<p>Please enter at least 30 random characters (at least 20 unique characters) to provide a seed for the pseudorandom generator.</p>
+				<p><textarea id='randomnessTextBox' cols='100' rows='80' tabindex="1"> </textarea></p>
+				<p id='textCounter'><span id='charCounter'>0</span> characters and <span id='uniqueCharCounter'>0</span> unique characters</p>
+				<button id='submitRandom' type='submit' value='submit' name='submit' disabled='true' tabindex="2" onclick='startGame()'>Generate Randomness & Start the Game</button>
+			</div>
+		</div>
+
+		<!-- Recovery Page -->
+		<div data-role="page" data-title="recover" id="recover">
+			<div data-role='header' data-position=fixed>
+				<a href='#bank' data-icon='back'>Back</a>
+				<h1>Story Recovery</h1>
+			</div>
+			<div data-role="content" class='non-half' id="recoveryPageDiv">
+				<p>Please input at least five stories. &nbsp; However, only the first five will be used.</p>
+				<div id="groupStories">
+				</div>
+				<button id='submitRecovery' type='submit' value='submit' name='submit' tabindex="2" onclick='recoveryMechanism.startRecovery()'>Recover!</button>
+			</div>
+		</div>
+
+		<!-- ACCOUNT PAGE -->
+		<div data-role="page" data-title="accounts" id="accounts">
+			<div data-role="header">
+				<div data-role='navbar'>
+					<ul class='menu'>
+						<li><a class='logo' href='#board'><img src="box_logo.jpg" alt="logo"/></a></li>
+						<li><a href='#bank' id='accounts-bank'>STORY BANK</a></li>
+						<li><a href='#accounts' class='click' id='accounts-accounts'>ACCOUNTS</a></li>
+						<li><a href='#game' id='accounts-game' >GAME</a></li>
+					</ul>
+				</div>
+			</div>
+			<div data-role="content">
+				<div data-role='fieldcontain'>
+					<form action='#' id='accountsList'>
+						<div>
+							<input type='text' name='accountName' id='accountName' value='' placeholder='Enter Website' autofocus/> 
+						</div><!--
+						<fieldset data-role="controlgroup">
+							<input type="checkbox" name="checkbox-2" id="checkbox-2" class="custom" />
+							<label for="checkbox-2">use my own photos</label>
+        				</fieldset>-->
+        				<input type="submit" name="submit" value="Add" id='submitbutton'></input>
+					</form>
+				</div>
+				<ul id='list' data-role='listview' data-inset='true'></ul>
+			</div>
+		</div>
+	</body>
+</html>
