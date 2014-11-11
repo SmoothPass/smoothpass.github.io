@@ -34,7 +34,7 @@ programVariables.initialize = function (){
 		if (programVariables.generalRecord.length === 0) {
 			//if security Level has not been set go to that page and store information generated 
 			//change to usability-security scale page
-			window.location = "https://aerinzhang.github.io/43story.html#userSelect";
+			window.location = "https://smoothpass.github.io/index.html#userSelect";
 
 		} else if (programVariables.generalRecord.length === 1) {
 			programVariables.generalRecord = programVariables.generalRecord[0];
@@ -47,7 +47,7 @@ programVariables.initialize = function (){
 					record.get('groupHashesList').toArray());
 			storyMode.setGroupSaltList(record.get('groupSaltList').toArray());
 			//change to storyBank page
-			window.location = "https://aerinzhang.github.io/43story.html#board";
+			window.location = "https://smoothpass.github.io/index.html#board";
 		} else {
 			//should never get here since generalTable should only have one entry
 			alert('something is wrong please contact our developer');
