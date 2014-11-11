@@ -286,6 +286,10 @@ var recoveryMechanism = (function() {
 					placeholder='doing what' autofocus='autofocus' \
 					tabindex='1'/></span></form></span></li>"
 			head += listHtml;
+			memoryGame.getVerbComboBoxWrapper('game-password'+i.toString());
+			memoryGame.getObjectComboBoxWrapper('game-password-b'+i.toString());
+			console.log('tried to load comboBox');
+
 		}
 		head += '</ul>';
 		$('#groupStories').html(head);

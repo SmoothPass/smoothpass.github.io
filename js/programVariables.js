@@ -49,7 +49,6 @@ programVariables.initialize = function (){
 			storyMode.setGroupSaltList(record.get('groupSaltList').toArray());
 			//change to storyBank page
 			if (!$.mobile.activePage.is("#board")){
-				console.log('change made not to double load page');
 				$.mobile.changePage($("#board"));
 			}
 			//window.location = "https://smoothpass.github.io/index.html#board";
