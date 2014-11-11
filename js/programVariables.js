@@ -48,7 +48,10 @@ programVariables.initialize = function (){
 					record.get('groupHashesList').toArray());
 			storyMode.setGroupSaltList(record.get('groupSaltList').toArray());
 			//change to storyBank page
-			$.mobile.changePage($("#board"));
+			if (!$.mobile.activePage.is("#board")){
+				console.log('change made not to double load page');
+				$.mobile.changePage($("#board"));
+			}
 			//window.location = "https://smoothpass.github.io/index.html#board";
 		} else {
 			//should never get here since generalTable should only have one entry
