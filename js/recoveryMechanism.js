@@ -298,7 +298,7 @@ var recoveryMechanism = (function() {
 		for (i=0; i<storyList.length; i++) {
 			memoryGame.getVerbComboBoxWrapper('game-password'+i.toString());
 			memoryGame.getObjectComboBoxWrapper('game-password-b'+i.toString());
-			console.log('tried to load comboBox new!');
+			console.log('tried to load comboBox new!!!');
 		}
 		return;
 	}
