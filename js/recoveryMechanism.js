@@ -193,7 +193,7 @@ var recoveryMechanism = (function() {
 
 	function gatherUserInput () {
 		//index is the position of the missing story in group
-		var inputId, userInput, stroyGuess, groupGuess;
+		var inputId, inputObj, inputAct, userInput, stroyGuess, groupGuess;
 		var inputCount = 0;
 		var inputFirstHalf = '';
 		var inputSecondHalf = '';
@@ -202,8 +202,10 @@ var recoveryMechanism = (function() {
 		inputIndicesList = [];
 
 		for (var i=0; i<length; i++) {
-			inputId = '#game-password'+ i.toString();
-			userInput = $(inputId).val();
+			inputId = i.toString();
+			inputAct = $('#action-password' + inputId).val();
+			inputObj = $('#object-password' + inputId).val();
+			userInput = inputAct + inputObj;
 			if ( (userInput != '') && (missingStoryIndex!=i) ) {
 				inputIndicesList.push(i);
 				inputCount++;
@@ -287,11 +289,11 @@ var recoveryMechanism = (function() {
 					<span data-role='fieldcontain'><form action='#'>\
 					<span class='boxWidget'><input type='text' \
 					autocorrect='off' name='password' \
-					id='game-password" + i + "' value='' \
+					id='action-password" + i + "' value='' \
 					placeholder='doing' autofocus='autofocus' \
 					tabindex='" + (2*i+1) + "'/><input type='text' \
 					autocorrect='off' name='password' \
-					id='game-password-b" + i + "' value='' \
+					id='object-password" + i + "' value='' \
 					placeholder='what' autofocus='autofocus' \
 					tabindex='" + (2*i+2) + "'/></span></form></span></li>"
 			head += listHtml;
@@ -300,12 +302,12 @@ var recoveryMechanism = (function() {
 		$('#groupStories').html(head);
 		document.getElementById('submitRecovery').tabIndex=(2*i+1).toString();
 		for (i=0; i<storyList.length; i++) {
-			memoryGame.getVerbComboBoxWrapper('game-password'+i.toString());
-			memoryGame.getObjectComboBoxWrapper('game-password-b'+i.toString());
+			memoryGame.getVerbComboBoxWrapper('action-password'+i.toString());
+			memoryGame.getObjectComboBoxWrapper('object-password'+i.toString());
 			console.log('tried to load comboBox new!!!');
 		}
 		document.getElementById('currentItem').style.opacity = 0.5;
-		$('#game-password0').focus();
+		$('#action-password0').focus();
 		return;
 	}
 
