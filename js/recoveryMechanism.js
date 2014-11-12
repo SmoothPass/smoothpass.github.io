@@ -263,15 +263,20 @@ var recoveryMechanism = (function() {
 
 		//initialize private values in case of first-time use;
 		initializePrivateValues();
-
+		var current = ''
 		var head = '<ul data-role="listview" data-inset="true">';
 		//??? refer back
 		for (var i=0; i<storyList.length; i++){
 			story = storyList[i];
 			person = story[PERSON_INDEX_PUB];
-			scene = story[SCENE_INDEX_PUB];		
+			scene = story[SCENE_INDEX_PUB];	
+			if (storyIndex === i) {
+				//adding element for story trying to recover
+				current = "id='currentItem'";
+			}
 			var listHtml = "\
-					<li class='boarditems'><span class='pairdiv'><figure>\
+					<li class='boarditems'" + current + 
+					"><span class='pairdiv'><figure>\
 					<img class=pair src='images/person/" + person + ".jpg' />\
 					<figcaption><p class='storyText'>" + 
 					person.split('_').join(' ') + "</p></figcaption></figure>\
@@ -299,7 +304,8 @@ var recoveryMechanism = (function() {
 			memoryGame.getObjectComboBoxWrapper('game-password-b'+i.toString());
 			console.log('tried to load comboBox new!!!');
 		}
-		$('game-password0').focus();
+		document.getElementById('currentItem').style.opacity = 0.5;
+		$('#game-password0').focus();
 		return;
 	}
 
