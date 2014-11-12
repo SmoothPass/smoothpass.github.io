@@ -158,14 +158,18 @@ var accountPage = (function() {
 						<figure><img class=pair src=images/person/{0}.jpg />\
 						<figcaption>{1}</figcaption></figure><figure>\
 						<img class=pair src=images/scene/{2}.jpg />\
-						<figcaption>{3}</figcaption></figure></span>";
+						<figcaption>{3}</figcaption></figure>\
+						<img class='pair action' scr=images/takeAction.png>\
+						</span>";
 			} else {
 				var liold = "\
 						&nbsp&nbsp<span class='pairdiv'><figure>\
 						<img class=pair src=images/person/{0}.jpg />\
 						<figcaption>{1}</figcaption></figure><figure>\
 						<img class=pair src=images/scene/{2}.jpg /><figcaption>\
-						{3}</figcaption></figure></span></div>";
+						{3}</figcaption></figure>\
+						<img class='pair object' scr=images/takeObject.png>\
+						</span></div>";
 			}
 			var li = String.format(liold, list[i][PERSON_INDEX], 
 					list[i][PERSON_INDEX].split('_').join(' '),

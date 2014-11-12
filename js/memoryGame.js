@@ -140,7 +140,7 @@ var memoryGame = (function () {
 		if (checkStoryRight(inputAct, inputObj, action, object)) {
 
 			//last check?
-			if (checkIndex == 1){//numStories) {
+			if (checkIndex == numStories) {
 				var buttons = "\
 						<p><button onclick='sameGameStart()'>\
 						Play Again</button></p>\
