@@ -310,7 +310,6 @@ var recoveryMechanism = (function() {
 		for (i=0; i<storyList.length; i++) {
 			memoryGame.getVerbComboBoxWrapper('action-password'+i.toString());
 			memoryGame.getObjectComboBoxWrapper('object-password'+i.toString());
-			console.log('tried to load comboBox new!!!');
 		}
 		document.getElementById('currentItem').style.opacity = 0.5;
 		$('#action-password0').focus();
