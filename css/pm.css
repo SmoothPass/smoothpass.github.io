@@ -148,6 +148,7 @@ body, html {
 .pairdiv {
 	border-style: solid;
 	padding-top: 224px;
+	position: relative;
 }
 
 .pairdiv>figure {

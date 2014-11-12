@@ -159,7 +159,7 @@ var accountPage = (function() {
 						<figcaption>{1}</figcaption></figure><figure>\
 						<img class=pair src=images/scene/{2}.jpg />\
 						<figcaption>{3}</figcaption></figure>\
-						<img class='pair action' scr=images/takeAction.png>\
+						<img class='pair action' src=images/takeAction.png>\
 						</span>";
 			} else {
 				var liold = "\
@@ -168,7 +168,7 @@ var accountPage = (function() {
 						<figcaption>{1}</figcaption></figure><figure>\
 						<img class=pair src=images/scene/{2}.jpg /><figcaption>\
 						{3}</figcaption></figure>\
-						<img class='pair object' scr=images/takeObject.png>\
+						<img class='pair object' src=images/takeObject.png>\
 						</span></div>";
 			}
 			var li = String.format(liold, list[i][PERSON_INDEX], 
