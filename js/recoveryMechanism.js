@@ -240,6 +240,12 @@ var recoveryMechanism = (function() {
 	function initializePrivateValues () {
 		recoveryResult = null;
 		hashResults = [];
+		$("#recoveryPageDiv").html(
+				"<p>Please input at least five stories. &nbsp; However, \
+				only the first five will be used.</p><div id='groupStories'>\
+				</div><button id='submitRecovery' type='submit' value='submit' \
+				name='submit' onclick='recoveryMechanism.startRecovery()'>\
+				Recover!</button></div>");
 	}
 
 	//CONTROLLER PUBLIC METHOD
