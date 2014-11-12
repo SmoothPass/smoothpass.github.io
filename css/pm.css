@@ -454,3 +454,7 @@ span.pairdiv.overlayContainer {
 span.k-widget.k-combobox.k-header {
 	width:200px;
 }
+
+#recoveryResultDiv {
+	padding-top: 20%;
+}

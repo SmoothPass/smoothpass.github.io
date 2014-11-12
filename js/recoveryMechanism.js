@@ -322,7 +322,7 @@ var recoveryMechanism = (function() {
 		var person = story[PERSON_INDEX_PUB]; 
 		var scene = story[SCENE_INDEX_PUB];
 		var html = "\
-				<div class=clueDiv><figure><img class=clue \
+				<div id='recoveryResultDiv'><figure><img class=clue \
 				src=images/person/{0}.jpg /><figcaption>{1}</figcaption>\
 				</figure>is <figure><img class=clue src=images/action/{2}1.jpg \
 				/><figcaption>{3}</figcaption></figure>{8}<figure>\
