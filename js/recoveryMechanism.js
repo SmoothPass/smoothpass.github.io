@@ -284,17 +284,16 @@ var recoveryMechanism = (function() {
 					autocorrect='off' name='password' \
 					id='game-password" + i + "' value='' \
 					placeholder='doing' autofocus='autofocus' \
-					tabindex='" + 2*i + "'/><input type='text' \
+					tabindex='" + (2*i+1) + "'/><input type='text' \
 					autocorrect='off' name='password' \
 					id='game-password-b" + i + "' value='' \
 					placeholder='what' autofocus='autofocus' \
-					tabindex='" + (2*i+1) + "'/></span></form></span></li>"
+					tabindex='" + (2*i+2) + "'/></span></form></span></li>"
 			head += listHtml;
 		}
-
 		head += '</ul>';
 		$('#groupStories').html(head);
-
+		$('#submitRecovery').tabindex = 2*i+3
 		for (i=0; i<storyList.length; i++) {
 			memoryGame.getVerbComboBoxWrapper('game-password'+i.toString());
 			memoryGame.getObjectComboBoxWrapper('game-password-b'+i.toString());
