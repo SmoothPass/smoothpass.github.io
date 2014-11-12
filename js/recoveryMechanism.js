@@ -293,12 +293,13 @@ var recoveryMechanism = (function() {
 		}
 		head += '</ul>';
 		$('#groupStories').html(head);
-		$('#submitRecovery').tabindex = 2*i+3
+		document.getElementById('submitRecovery').tabIndex=(2*i+1).toString();
 		for (i=0; i<storyList.length; i++) {
 			memoryGame.getVerbComboBoxWrapper('game-password'+i.toString());
 			memoryGame.getObjectComboBoxWrapper('game-password-b'+i.toString());
 			console.log('tried to load comboBox new!!!');
 		}
+		$('game-password0').focus();
 		return;
 	}
 
