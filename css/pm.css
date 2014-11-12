@@ -143,6 +143,7 @@ body, html {
 
 .pair {
 	height: 220px;
+	width: 160px;
 }
 
 .pairdiv {
@@ -458,4 +459,20 @@ span.k-widget.k-combobox.k-header {
 
 #recoveryResultDiv {
 	padding-top: 10%;
+}
+
+img.pair.object {
+	height: 60px;
+	position: absolute;
+	width: 60px;
+	left: 130px;
+	top: 170px;
+}
+
+img.action {
+	height: 60px;
+	width: 60px;
+	position: absolute;
+	left: 130px;
+	top: 170px;
 }
