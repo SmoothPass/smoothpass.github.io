@@ -230,7 +230,7 @@ var recoveryMechanism = (function() {
 		for (var i=0; i<appConstants.getActionsList().length; i++) {
 			guessAct = appConstants.getActionsList()[i];
 			for (var j=0; j<appConstants.getObjectsList().length; j++) {
-				guessObj = appConstants.getObjectsList()[i];
+				guessObj = appConstants.getObjectsList()[j];
 				storyGuess = appConstants.getStrActIndex(guessAct) + 
 						appConstants.getStrObjIndex(guessObj);
 				groupGuess = inputFirstHalf + storyGuess + inputSecondHalf;
