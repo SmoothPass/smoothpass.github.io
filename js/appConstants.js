@@ -35,7 +35,7 @@ var appConstants = (function () {
 			'tying', 'washing', 'wrapping', 'zooming'
 		]; //#50
 	var actionIndices = [];
-	for (int i=0; i<actions.length; i++) {
+	for (var i=0; i<actions.length; i++) {
 		actionIndices[actions[i]] = i;
 	}
 	var objects = [
@@ -49,7 +49,7 @@ var appConstants = (function () {
 			'tricycle', 'violin'
 		]; //#51
 	var objectIndices = [];	
-	for (int i=0; i<objects.length; i++) {
+	for (var i=0; i<objects.length; i++) {
 		objectIndices[objects[i]] = i;
 	}
 	var scenes = [ 
@@ -79,10 +79,10 @@ var appConstants = (function () {
 	module.getScenesList = function () {
 		return scenes;
 	}
-	module.getObjectIndexInString= function (obj) {
+	module.getStrObjIndex= function (obj) {
 		return "o" + objectIndices[obj].toString();
 	}
-	module.getActionIndexInString = function (act) {
+	module.getStrActIndex = function (act) {
 		return "a" + actionIndices[act].toString();
 	}
 	return module;
