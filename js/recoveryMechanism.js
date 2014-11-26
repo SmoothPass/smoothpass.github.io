@@ -98,8 +98,9 @@ var recoveryMechanism = (function() {
 					console.log('found');
 					//generate recovery result page
 					//temp = pwGuess.split('ing');
-					action = parseInt(pwGuess.slice(1, 3));
-					object = parseInt(pwGuess.slice(4, 6));
+					temp = pwGuess.split("a")[1].split("o");
+					action = parseInt(temp[0]);
+					object = parseInt(temp[1]);
 					createRecoveryResultPage(action, object);
 				}
 			}
@@ -227,7 +228,7 @@ var recoveryMechanism = (function() {
 		}
 		//loop through all possible actions and objects combined with known ones
 		for (var i=0; i<appConstants.getActionsList().length; i++) {
-			guessAct = appConstants.getObjectsList()[i];
+			guessAct = appConstants.getActionsList()[i];
 			for (var j=0; j<appConstants.getObjectsList().length; j++) {
 				guessObj = appConstants.getObjectsList()[i];
 				storyGuess = appConstants.getStrActIndex(guessAct) + 
