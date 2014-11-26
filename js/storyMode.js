@@ -93,10 +93,10 @@ var storyMode = ( function () {
 				limitsList.push(10);
 			} else {
 				//last element in the list
-				if (length % 10 === 0) {
+				if (storyNumber % 10 === 0) {
 					limitsList.push(10);
 				} else {
-					limitsList.push(length % 10)
+					limitsList.push(storyNumber % 10)
 				}
 			}
 		}
