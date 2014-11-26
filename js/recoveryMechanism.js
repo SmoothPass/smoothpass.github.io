@@ -286,7 +286,7 @@ var recoveryMechanism = (function() {
 			scene = story[SCENE_INDEX_PUB];	
 			console.log("storyIndex is " + storyIndex.toString());
 			console.log("gpIndex is " + gpIndex.toString());
-			if (storyIndex === i) {
+			if (storyIndex % 10 === i) {
 				//adding element for story trying to recover
 				current = "id='currentItem'";
 			}
