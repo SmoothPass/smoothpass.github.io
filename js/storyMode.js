@@ -369,7 +369,7 @@ var storyMode = ( function () {
 								<p style='margin:0px; margin-top:2%'><button \
 								onclick='storyMode.selectBankStory(" + i + ")' \
 								style='text-align:center;font-family=Lato;'>\
-								Add This Story</button></p>";
+								Generate This Story</button></p>";
 						pair = "<li class='"  + className + "'><span \
 								class='pairdiv'><figure><img class=pair \
 								src=images/person/{0}.jpg /><figcaption><p \
