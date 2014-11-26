@@ -414,6 +414,9 @@ $(document).ready( function() {
 	$('#accountsList').submit(accountPage.submit);
 	programVariables.client.authenticate();
 
+	$('#randomnessTextBox').keyup(function() {
+    	storyMode.limits($(this), '');
+    });
 	if (programVariables.client.isAuthenticated()) {
 		programVariables.initialize();
 	}
