@@ -94,13 +94,12 @@ var recoveryMechanism = (function() {
 				if ( (inputIndicesList.indexOf(index) < 0) && 
 					(missingStoryIndex == index) ) {
 					recoveryResult = pwGuess;
-					alert('found!');
 					console.log(pwGuess);
 					console.log('found');
 					//generate recovery result page
-					temp = pwGuess.split('ing');
-					action = temp[0] + 'ing';
-					object = temp[1];
+					//temp = pwGuess.split('ing');
+					action = parseInt(pwGuess.slice(1, 3));
+					object = parseInt(pwGuess.slice(4, 6));
 					createRecoveryResultPage(action, object);
 				}
 			}
@@ -179,7 +178,11 @@ var recoveryMechanism = (function() {
 			for (var i=0; i<allCombinations.length; i++) {
 				groupStr = ((allCombinations[i]).map( 
 						function (l) {
-							return l[ACTION_INDEX_PRI] + l[OBJECT_INDEX_PRI];
+							var act = l[ACTION_INDEX_PRI];
+							var obj = l[OBJECT_INDEX_PRI];
+							var action = appConstants.getStrActIndex(act);
+							var object = appConstants.getStrObjIndex(obj);
+							return action + object;
 						})).join('');
 				setIndicesString = indicesCombinations[i].join('');
 				//compute hash for one set of six stories
@@ -194,6 +197,7 @@ var recoveryMechanism = (function() {
 	function gatherUserInput () {
 		//index is the position of the missing story in group
 		var inputId, inputObj, inputAct, userInput, stroyGuess, groupGuess;
+		var guessAct, guessObj;
 		var inputCount = 0;
 		var inputFirstHalf = '';
 		var inputSecondHalf = '';
@@ -205,7 +209,8 @@ var recoveryMechanism = (function() {
 			inputId = i.toString();
 			inputAct = $('#action-password' + inputId).val();
 			inputObj = $('#object-password' + inputId).val();
-			userInput = inputAct + inputObj;
+			userInput = appConstants.getStrActIndex(inputAct) + 
+					appConstants.getStrObjIndex(inputObj);
 			if ( (userInput != '') && (missingStoryIndex!=i) ) {
 				inputIndicesList.push(i);
 				inputCount++;
@@ -220,12 +225,13 @@ var recoveryMechanism = (function() {
 			alert('Cannot Recover Missing Story without Five Known Ones!');
 			return;
 		}
-
 		//loop through all possible actions and objects combined with known ones
 		for (var i=0; i<appConstants.getActionsList().length; i++) {
+			guessAct = appConstants.getObjectsList()[i];
 			for (var j=0; j<appConstants.getObjectsList().length; j++) {
-				storyGuess = appConstants.getActionsList()[i] + 
-						appConstants.getObjectsList()[j];
+				guessObj = appConstants.getObjectsList()[i];
+				storyGuess = appConstants.getStrActIndex(guessAct) + 
+						appConstants.getStrObjIndex(guessObj);
 				groupGuess = inputFirstHalf + storyGuess + inputSecondHalf;
 
 				//no way to short-circuit since bCrypt uses a callback fn

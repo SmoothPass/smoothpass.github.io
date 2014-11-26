@@ -34,7 +34,10 @@ var appConstants = (function () {
 			'swinging', 'taping', 'tattooing', 'throwing', 'tickling','tugging',
 			'tying', 'washing', 'wrapping', 'zooming'
 		]; //#50
-
+	var actionIndices = [];
+	for (int i=0; i<actions.length; i++) {
+		actionIndices[actions[i]] = i;
+	}
 	var objects = [
 			'ant', 'boot', 'bunny', 'bus', 'calf', 'chandelier', 'cow', 
 			'cupcake', 'daisy', 'dandelion', 'dice', 'dome', 'dove', 'hammer', 
@@ -45,7 +48,10 @@ var appConstants = (function () {
 			'sumo', 'teacup', 'teepee', 'tiger', 'toaster', 'toilet', 
 			'tricycle', 'violin'
 		]; //#51
-
+	var objectIndices = [];	
+	for (int i=0; i<objects.length; i++) {
+		objectIndices[objects[i]] = i;
+	}
 	var scenes = [ 
 			'airport', 'aquarium', 'baseball_field', 'basketball_court', 
 			'bakery', 'Big_Ben', 'bridge', 'Capitol_Hill', 'castle', 'cliff',
@@ -73,6 +79,11 @@ var appConstants = (function () {
 	module.getScenesList = function () {
 		return scenes;
 	}
-
+	module.getObjectIndexInString= function (obj) {
+		return "o" + objectIndices[obj].toString();
+	}
+	module.getActionIndexInString = function (act) {
+		return "a" + actionIndices[act].toString();
+	}
 	return module;
 }());
