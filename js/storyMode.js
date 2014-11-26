@@ -14,7 +14,7 @@ var storyMode = ( function () {
 	var limitListLength;
 	var groupSaltList;
 	var groupHashesList;
-
+	var selectedStoryIndex;
 	//TEMP!
 	var records = [];
 
@@ -102,12 +102,18 @@ var storyMode = ( function () {
 		}
 		return limitsList;
 	}
-
 	function selectBankStory (index) {
+		$.mobile.changePage('#generateRandomness');
+		selectedStoryIndex = index;
+	}
+
+	function startGame() {
 		var group, startFrom;
 		var curLimit = 0;
 		var limitsList = groupList;
+		var index = selectedStoryIndex;
 		var records = programVariables.storyBankTable.query();
+
 
 		for ( var i=0; i<limitsList.length; i++ ) {
 			curLimit += limitsList[i];
@@ -313,6 +319,10 @@ var storyMode = ( function () {
 
 	module.limits = function (obj, suffix) {
 		limits(obj, suffix);
+	}
+
+	module.startGame = function () {
+		startGame();
 	}
 	//VIEW
 	function updateStoryBankList () {
