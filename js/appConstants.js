@@ -35,7 +35,6 @@ var appConstants = (function () {
 			'tying', 'washing', 'wrapping', 'zooming'
 		]; //#50
 	var actionIndices = [];
-	actionIndices[""] = "";
 	for (var i=0; i<actions.length; i++) {
 		actionIndices[actions[i]] = i;
 	}
@@ -50,7 +49,6 @@ var appConstants = (function () {
 			'tricycle', 'violin'
 		]; //#51
 	var objectIndices = [];	
-	objectIndices[""] = "";
 	for (var i=0; i<objects.length; i++) {
 		objectIndices[objects[i]] = i;
 	}
@@ -82,9 +80,11 @@ var appConstants = (function () {
 		return scenes;
 	}
 	module.getStrObjIndex = function (obj) {
+		if (obj === "") return ""
 		return "o" + (objectIndices[obj].toString());
 	}
 	module.getStrActIndex = function (act) {
+		if (act === "") return ""
 		return "a" + (actionIndices[act].toString());
 	}
 	return module;
