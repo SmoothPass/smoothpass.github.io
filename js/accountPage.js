@@ -10,14 +10,14 @@ var accountPage = (function() {
 	}
 
 	function getAccountPwdRule() {
+		//Each Account has a rule list 
+		//[maxLength, upper, lower, specialChar, number]
 		var length = $("#pwdLength").val();
-		var specialCharBool = $("#pwdSpecialChar").is(":checked");
-		var upperCaseBool = $("#pwdUpper").is(":checked");
-		var lowerCaseBool = $("#pwdLower").is(":checked");
+		var speCharBool = $("#pwdSpecialChar").is(":checked");
+		var upperBool = $("#pwdUpper").is(":checked");
+		var lowerBool = $("#pwdLower").is(":checked");
 		var numberBool = $("#pwdNumber").is(":checked");
-		console.log(length);
-		console.log(specialCharBool);
-		console.log(upperCaseBool);
+		return [length, upperBool, lowerBool, speCharBool, numberBool];
 	}
 
 	function submitFunction (e) {
