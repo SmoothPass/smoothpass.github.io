@@ -179,6 +179,7 @@ var accountPage = (function() {
 	 		field += "checked='checked' ";
 	 	}
 	 	field += "/>Number</label></fieldset>";
+	 	console.log(slider+ field);
 	 	return slider + field;
 	}
 
