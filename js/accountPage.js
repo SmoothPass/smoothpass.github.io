@@ -214,7 +214,7 @@ var accountPage = (function() {
 	}
 
 	//VIEW
-	function renderEachAccountElements (time, accountName, list, index) {
+	function renderEachAccountElements (time, accountName, list, index, rules) {
 		//check duplicates?
 
 		//create html for each page
@@ -246,10 +246,9 @@ var accountPage = (function() {
 		
 			html += li;
 		}
-		rulesHTML = generateRuleHTML()
-		html += "</div>
-				 <br>
-				 <input type='text' autocorrect='off' name='password'\
+		rulesHTML = generateRuleHTML(rules, accountName);
+		html += "</div><br>" + rulesHTML + 
+				 "<input type='text' autocorrect='off' name='password'\
 				 id='"+accountName+"-password' value='' \
 				 placeholder='Type in your password' \
 				 autofocus='autofocus'/>\<a href=# \
@@ -284,7 +283,7 @@ var accountPage = (function() {
 				var ruleList = account.get('rules');
 				var time = record.get('lastRehearsal').toString();
 				var pageHtml = renderEachAccountElements(time, accountName, 
-						list, accountIndexForChecking);
+						list, accountIndexForChecking, ruleList);
 
 				var newPage = $("\
 						<div data-role='page' data-title='" + accountName + 
