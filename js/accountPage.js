@@ -12,8 +12,7 @@ var accountPage = (function() {
 	function getAccountPwdRule() {
 		//Each Account has a rule list 
 		//[maxLength, upper, lower, specialChar, number]
-		var length = $("#pwdLength").val();
-		console.log(typeof(length));
+		var length = parseInt($("#pwdLength").val());
 		var speCharBool = $("#pwdSpecialChar").is(":checked");
 		var upperBool = $("#pwdUpper").is(":checked");
 		var lowerBool = $("#pwdLower").is(":checked");
@@ -49,8 +48,9 @@ var accountPage = (function() {
 				//Put in Dropbox! Need Another Module!!!! FIX LATER
 				//calculate cue (person-scene pairs from the story list)
 				var storyList = calculateCuePairsFromIndices(cueList);
-				programVariables.insertAccount(
-						account, storyList, storyMode.getAccountIndex() );
+				var ruleList = getAccountPwdRule();
+				programVariables.insertAccount(account, 
+						storyList, storyMode.getAccountIndex(), ruleList);
 
 				//?storyMode.accountIndex += 1;
 				updateStoryRefCount(account, cueList);
