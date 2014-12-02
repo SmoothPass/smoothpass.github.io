@@ -143,44 +143,60 @@ var accountPage = (function() {
 
 	}
 	function generateRuleHTML(ruleList, account) {
-		//ruleList[0] -> length
+		var stringList = [ "<div class='accountSlideBar'><label>\
+							<input type='range' min='6' max='100' id='", 
+							acconut, "PwdLength' value='16' step='1'/>\
+							Max Length &nbsp &nbsp</label></div>"];
 
-		var slider = "<div class='accountSlideBar'><label><input type='range'\
-					min='6' max='100' id='" + account + "PwdLength' value='16' \
-					step='1'/>Max Length &nbsp &nbsp</label></div>";
-		var field = "<fieldset class='accountField' data-type='horizontal'\
-					data-role='controlgroup'><label class='pwdUpperLabel' \
-					data-type='horizontal'><input type='checkbox' name='upper' \
-					id='" + account + "PwdUpper' value='Uppercase' ";
+		//ruleList[0] -> length
+		var fieldUpperList = [
+				"<fieldset class='accountField' data-type='horizontal' \
+				data-role='controlgroup'><label class='pwdUpperLabel' \
+				data-type='horizontal'><input type='checkbox' name='upper' \
+				id='", account, "PwdUpper' value='Uppercase' "]
+
 		//ruleList[1] -> upperCaseBool
 		if (ruleList[1]) {
-			field += "checked='checked'";
+			fieldUpperList.push("checked='checked'");
 		}
-	 	field += ("/>Uppercase</label><label class='pwdLowerLabel' \
-	 			  data-type='horizontal'><input type='checkbox' name='lower'\
-	 			  id='"+account+"PwdLower' value='Lowercase' ");
+
+
+				.join();
+		var fieldLowerList = [
+				"/>Uppercase</label><label class='pwdLowerLabel' \
+				data-type='horizontal'><input type='checkbox' name='lower'\
+	 			id='", account, "PwdLower' value='Lowercase' "];
+
 	 	//ruleList[2] -> lowerCaseBool
 	 	if (ruleList[2]) {
-	 		field += "checked='checked' ";
-	 	}
-	 	field += ("/>Lowercase</label><label class='pwdSpecialLabel' \
-	 			  data-type='horizontal'><input type='checkbox' name='special'\
-	 			  id='"+account+"PwdSpecialChar' value='Special Character'");
-	 	//ruleList[3] -> specialChar
-	 	if (ruleList[3]) {
-	 		field += "checked='checked' ";
+	 		fieldLowerList.push("checked='checked' ")
 	 	}
 
-	 	field += ("/>Special Chars</label><label class='pwdNumberLabel' \
-	 			  data-type='horizontal'><input type='checkbox' name='number' \
-	 			  id='" + account + "PwdNumber' value='Number' ");
+	 	var fieldSpecialCharList = [
+	 			"/>Lowercase</label><label class='pwdSpecialLabel' \
+	 			 data-type='horizontal'><input type='checkbox' name='special'\
+	 			 id='", account, "PwdSpecialChar' value='Special Character'"];
+
+	 	//ruleList[3] -> specialChar
+	 	if (ruleList[3]) {
+	 		fieldSpecialCharList.push("checked='checked'");
 	 	}
+
+	 	var fieldNumberList = [
+	 			"/>Special Chars</label><label class='pwdNumberLabel' \
+	 			 data-type='horizontal'><input type='checkbox' name='number' \
+	 			 id='", account, "PwdNumber' value='Number' "];
+
 	 	if (ruleList[4]) {
-	 		field += "checked='checked' ";
+	 		fieldNumberList.push("checked='checked' ");
 	 	}
-	 	field += "/>Number</label></fieldset>";
-	 	console.log(slider+ field);
-	 	return slider + field;
+
+	 	var finalString = [ stringList.join(), fieldUpperList.join(),
+	 						fieldLowerList.join(), fieldSpecialCharList.join(),
+	 						fieldNumberList.join(), 
+	 						"/>Number</label></fieldset>" ];
+	 	console.log(finalString.join());
+	 	return finalString.join();
 	}
 
 	//CONTROLLER
