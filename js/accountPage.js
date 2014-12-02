@@ -159,9 +159,6 @@ var accountPage = (function() {
 		if (ruleList[1]) {
 			fieldUpperList.push("checked='checked'");
 		}
-
-
-				.join();
 		var fieldLowerList = [
 				"/>Uppercase</label><label class='pwdLowerLabel' \
 				data-type='horizontal'><input type='checkbox' name='lower'\
