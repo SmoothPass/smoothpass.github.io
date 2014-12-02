@@ -13,6 +13,7 @@ var accountPage = (function() {
 		//Each Account has a rule list 
 		//[maxLength, upper, lower, specialChar, number]
 		var length = $("#pwdLength").val();
+		console.log(typeof(length));
 		var speCharBool = $("#pwdSpecialChar").is(":checked");
 		var upperBool = $("#pwdUpper").is(":checked");
 		var lowerBool = $("#pwdLower").is(":checked");
