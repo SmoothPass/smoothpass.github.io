@@ -13,10 +13,13 @@ var accountPage = (function() {
 		var length = $("#pwdLength").val();
 		var specialCharBool = $("#pwdSpecialChar").checked;
 		var upperCaseBool = $("#pwdUpper").checked;
+		var lowerCaseBool = $("#pwdLower").checked;
+		var numberBool = $("#pwdNumber").checked;
+
 		console.log(specialCharBool);
 		console.log(upperCaseBool);
 	}
-	
+
 	function submitFunction (e) {
 		if ( ((e.keyCode === 13) || (e.keyCode == undefined)) 
 				&& ($("#entry:focus")) ) {
@@ -143,7 +146,9 @@ var accountPage = (function() {
 		submitFunction(e);
 		return;
 	}
-
+	module.getAccountPwdRule = function () {
+		getAccountPwdRule();
+	}
 	module.updateAccountList = function () {
 		updateAccountListWrapper();
 		return;
