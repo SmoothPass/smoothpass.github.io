@@ -481,3 +481,7 @@ img.action {
 	left: 130px;
 	top: 170px;
 }
+
+fieldset.accountField{
+	width:700px;
+}
