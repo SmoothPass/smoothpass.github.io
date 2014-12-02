@@ -281,7 +281,7 @@ var accountPage = (function() {
 				var accountName = account.get('account');
 				var accountIndexForChecking = account.get('accountIndex');
 				var ruleList = account.get('rules');
-				var time = record.get('lastRehearsal').toString();
+				var time = account.get('lastRehearsal').toString();
 				var pageHtml = renderEachAccountElements(time, accountName, 
 						list, accountIndexForChecking, ruleList);
 
