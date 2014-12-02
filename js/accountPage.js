@@ -9,6 +9,14 @@ var accountPage = (function() {
 		return true;
 	}
 
+	function getAccountPwdRule() {
+		var length = $("#pwdLength").val();
+		var specialCharBool = $("#pwdSpecialChar").checked;
+		var upperCaseBool = $("#pwdUpper").checked;
+		console.log(specialCharBool);
+		console.log(upperCaseBool);
+	}
+	
 	function submitFunction (e) {
 		if ( ((e.keyCode === 13) || (e.keyCode == undefined)) 
 				&& ($("#entry:focus")) ) {
