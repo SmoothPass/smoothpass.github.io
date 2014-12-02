@@ -11,11 +11,11 @@ var accountPage = (function() {
 
 	function getAccountPwdRule() {
 		var length = $("#pwdLength").val();
-		var specialCharBool = $("#pwdSpecialChar").checked;
-		var upperCaseBool = $("#pwdUpper").checked;
-		var lowerCaseBool = $("#pwdLower").checked;
-		var numberBool = $("#pwdNumber").checked;
-
+		var specialCharBool = $("#pwdSpecialChar").is(":checked");
+		var upperCaseBool = $("#pwdUpper").is(":checked");
+		var lowerCaseBool = $("#pwdLower").is(":checked");
+		var numberBool = $("#pwdNumber").is(":checked");
+		console.log(length);
 		console.log(specialCharBool);
 		console.log(upperCaseBool);
 	}
