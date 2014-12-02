@@ -142,6 +142,46 @@ var accountPage = (function() {
 		$.mobile.changePage($("#accounts"));
 
 	}
+	function generateRuleHTML(ruleList, account) {
+		//ruleList[0] -> length
+
+		var slider = "<div class='accountSlideBar'><label><input type='range'\
+					min='6' max='100' id='" + account + "PwdLength' value='16' \
+					step='1'/>Max Length &nbsp &nbsp</label></div>";
+		var field = "<fieldset class='accountField' data-type='horizontal'\
+					data-role='controlgroup'><label class='pwdUpperLabel' \
+					data-type='horizontal'><input type='checkbox' name='upper' \
+					id='" + account + "PwdUpper' value='Uppercase' ";
+		//ruleList[1] -> upperCaseBool
+		if (ruleList[1]) {
+			field += "checked='checked'";
+		}
+	 	field += ("/>Uppercase</label><label class='pwdLowerLabel' \
+	 			  data-type='horizontal'><input type='checkbox' name='lower'\
+	 			  id='"+account+"PwdLower' value='Lowercase' ");
+	 	//ruleList[2] -> lowerCaseBool
+	 	if (ruleList[2]) {
+	 		field += "checked='checked' ";
+	 	}
+	 	field += ("/>Lowercase</label><label class='pwdSpecialLabel' \
+	 			  data-type='horizontal'><input type='checkbox' name='special'\
+	 			  id='"+account+"PwdSpecialChar' value='Special Character'");
+	 	//ruleList[3] -> specialChar
+	 	if (ruleList[3]) {
+	 		field += "checked='checked' ";
+	 	}
+
+	 	field += ("/>Special Chars</label><label class='pwdNumberLabel' \
+	 			  data-type='horizontal'><input type='checkbox' name='number' \
+	 			  id='" + account + "PwdNumber' value='Number' ");
+	 	}
+	 	if (ruleList[4]) {
+	 		field += "checked='checked' ";
+	 	}
+	 	field += "/>Number</label></fieldset>";
+	 	return slider + field;
+	}
+
 	//CONTROLLER
 	module.submit = function (e) {
 		submitFunction(e);
@@ -192,8 +232,10 @@ var accountPage = (function() {
 		
 			html += li;
 		}
-
-		html += "</div><br><input type='text' autocorrect='off' name='password'\
+		rulesHTML = generateRuleHTML()
+		html += "</div>
+				 <br>
+				 <input type='text' autocorrect='off' name='password'\
 				 id='"+accountName+"-password' value='' \
 				 placeholder='Type in your password' \
 				 autofocus='autofocus'/>\<a href=# \
@@ -225,8 +267,8 @@ var accountPage = (function() {
 				var list = parseStringToNestedArrays(account.get('storyList'));
 				var accountName = account.get('account');
 				var accountIndexForChecking = account.get('accountIndex');
-				var time = '0PM';
-				//var time = record.get('lastRehearsal').toString();
+				var ruleList = account.get('rules');
+				var time = record.get('lastRehearsal').toString();
 				var pageHtml = renderEachAccountElements(time, accountName, 
 						list, accountIndexForChecking);
 
