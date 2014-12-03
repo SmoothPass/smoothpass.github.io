@@ -19,6 +19,15 @@ var accountPage = (function() {
 		var numberBool = $("#pwdNumber").is(":checked");
 		return [length, upperBool, lowerBool, speCharBool, numberBool];
 	}
+	function resetPwdRule() {
+		//set pwd rule fresh for a new account
+		$("#pwdLength").attr("value", "16");
+		$("#pwdUpper").removeAttr("checked");
+		$("#pwdLower").attr("checked", "checked");
+		$("#pwdNumber").removeAttr("checked");
+		$("#pwdSpecialChar").removeAttr("checked");	
+		return;	
+	}
 
 	function submitFunction (e) {
 		if ( ((e.keyCode === 13) || (e.keyCode == undefined)) 
