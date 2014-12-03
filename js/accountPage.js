@@ -30,9 +30,10 @@ var accountPage = (function() {
 		$("#pwdNumber").prop("checked", false);
 		$("#pwdSpecialChar").prop("checked", false);
 		$("#pwdLength").slider('refresh');
-		
+
 		for (var i=0; i++; i<fieldSet.length) {
 			attribute = fieldSet[i];
+			console.log('oh ');
 			attribute.checkboxradio('refresh');
 		}
 		return;	
