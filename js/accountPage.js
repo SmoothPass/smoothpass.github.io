@@ -186,8 +186,6 @@ var accountPage = (function() {
 	 			id='", account, "PwdLower' value='Lowercase' "];
 
 	 	//ruleList[2] -> lowerCaseBool
-	 	console.log(ruleList[2]);
-	 	console.log(typeof(ruleList[2]));
 	 	if (ruleList[2]) {
 	 		fieldLowerList.push("checked='checked' ")
 	 	}
