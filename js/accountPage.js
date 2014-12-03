@@ -21,11 +21,11 @@ var accountPage = (function() {
 	}
 	function resetPwdRule() {
 		//set pwd rule fresh for a new account
-		$("#pwdLength").attr("value", "16");
-		$("#pwdUpper").removeAttr("checked");
-		$("#pwdLower").attr("checked", "checked");
-		$("#pwdNumber").removeAttr("checked");
-		$("#pwdSpecialChar").removeAttr("checked");	
+		$("#pwdLength").prop("value", "16");
+		$("#pwdUpper").removeProp("checked");
+		$("#pwdLower").prop("checked", "checked");
+		$("#pwdNumber").removeProp("checked");
+		$("#pwdSpecialChar").removeProp("checked");	
 		return;	
 	}
 
