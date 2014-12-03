@@ -20,13 +20,21 @@ var accountPage = (function() {
 		return [length, upperBool, lowerBool, speCharBool, numberBool];
 	}
 	function resetPwdRule() {
+		var attribute;
 		//set pwd rule fresh for a new account
+		var fieldSet = [ $("#pwdUpper"), $("#pwdLower"),
+						 $("#pwdNumber"), $("#pwdSpecialChar")];
 		$("#pwdLength").prop("value", "16");
 		$("#pwdUpper").prop("checked", false);
 		$("#pwdLower").prop("checked", true);
 		$("#pwdNumber").prop("checked", false);
 		$("#pwdSpecialChar").prop("checked", false);
-		location.reload();
+		$("#pwdLength").slider('refresh');
+		
+		for (var i=0; i++; i<fieldSet.length) {
+			attribute = fieldSet[i];
+			attribute.checkboxradio('refresh');
+		}
 		return;	
 	}
 
