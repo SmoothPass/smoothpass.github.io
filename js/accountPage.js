@@ -22,10 +22,10 @@ var accountPage = (function() {
 	function resetPwdRule() {
 		//set pwd rule fresh for a new account
 		$("#pwdLength").prop("value", "16");
-		$("#pwdUpper").removeProp("checked");
-		$("#pwdLower").prop("checked", "checked");
-		$("#pwdNumber").removeProp("checked");
-		$("#pwdSpecialChar").removeProp("checked");	
+		$("#pwdUpper").attr("checked", false);
+		$("#pwdLower").attr("checked", true);
+		$("#pwdNumber").attr("checked", false);
+		$("#pwdSpecialChar").attr("checked", false);	
 		return;	
 	}
 
