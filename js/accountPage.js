@@ -283,7 +283,7 @@ var accountPage = (function() {
 				var list = parseStringToNestedArrays(account.get('storyList'));
 				var accountName = account.get('account');
 				var accountIndexForChecking = account.get('accountIndex');
-				var ruleList = account.get('rules');
+				var ruleList = account.get('rules').toArray();
 				var time = account.get('lastRehearsal').toString();
 				var pageHtml = renderEachAccountElements(time, accountName, 
 						list, accountIndexForChecking, ruleList);
