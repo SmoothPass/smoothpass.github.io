@@ -25,7 +25,8 @@ var accountPage = (function() {
 		$("#pwdUpper").prop("checked", false);
 		$("#pwdLower").prop("checked", true);
 		$("#pwdNumber").prop("checked", false);
-		$("#pwdSpecialChar").prop("checked", false);	
+		$("#pwdSpecialChar").prop("checked", false);
+		location.reload();
 		return;	
 	}
 
