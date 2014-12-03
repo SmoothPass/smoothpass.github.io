@@ -145,8 +145,8 @@ var accountPage = (function() {
 	function generateRuleHTML(ruleList, account) {
 		var stringList = [ "<div class='accountSlideBar'><label>\
 							<input type='range' min='6' max='100' id='", 
-							account, "PwdLength' value='16' step='1'/>\
-							Max Length &nbsp &nbsp</label></div>"];
+							account, "PwdLength' value='", ruleList[0], 
+							"' step='1'/>Max Length &nbsp &nbsp</label></div>"];
 
 		//ruleList[0] -> length
 		var fieldUpperList = [
