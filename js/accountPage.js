@@ -9,14 +9,14 @@ var accountPage = (function() {
 		return true;
 	}
 
-	function getAccountPwdRule() {
+	function getAccountPwdRule(prefix) {
 		//Each Account has a rule list 
 		//[maxLength, upper, lower, specialChar, number]
-		var length = parseInt($("#pwdLength").val());
-		var speCharBool = $("#pwdSpecialChar").is(":checked");
-		var upperBool = $("#pwdUpper").is(":checked");
-		var lowerBool = $("#pwdLower").is(":checked");
-		var numberBool = $("#pwdNumber").is(":checked");
+		var length = parseInt($("#pwdLength" + prefix).val());
+		var speCharBool = $("#pwdSpecialChar" + prefix).is(":checked");
+		var upperBool = $("#pwdUpper" + prefix).is(":checked");
+		var lowerBool = $("#pwdLower" + prefix).is(":checked");
+		var numberBool = $("#pwdNumber" + prefix).is(":checked");
 		return [length, upperBool, lowerBool, speCharBool, numberBool];
 	}
 	function resetPwdRule() {
@@ -66,7 +66,7 @@ var accountPage = (function() {
 				//Put in Dropbox! Need Another Module!!!! FIX LATER
 				//calculate cue (person-scene pairs from the story list)
 				var storyList = calculateCuePairsFromIndices(cueList);
-				var ruleList = getAccountPwdRule();
+				var ruleList = getAccountPwdRule('');
 				programVariables.insertAccount(account, 
 						storyList, storyMode.getAccountIndex(), ruleList);
 
@@ -111,7 +111,7 @@ var accountPage = (function() {
 
 	function checkPassword (web, index) {
 		//update rehearsal time
-		var date, record, story, storyList;
+		var date, record, story, storyList, newRuleList;
 		var answer = $('#' + web + 'Page').find('#' + web+'-password').val(); 
 		if (answer != '') {
 			//update reherasal time of each story as well as the account
@@ -122,6 +122,9 @@ var accountPage = (function() {
 					//find the account record & set the time
 					record.set('lastRehearsal', new Date());
 					storyList = record.get('storyList');
+					//update RuleList for account incase changed
+					newRuleList = getAccountPwdRule(web);
+					record.set("rules", newRuleList);
 				}
 			}
 			storyList = parseStringToNestedArrays(storyList);
@@ -160,7 +163,6 @@ var accountPage = (function() {
 			}
 		}
 		$.mobile.changePage($("#accounts"));
-
 	}
 	function generateRuleHTML(ruleList, account) {
 		var stringList = [ "<div class='accountSlideBar'><label>\
@@ -220,9 +222,6 @@ var accountPage = (function() {
 	module.submit = function (e) {
 		submitFunction(e);
 		return;
-	}
-	module.getAccountPwdRule = function () {
-		getAccountPwdRule();
 	}
 	module.updateAccountList = function () {
 		updateAccountListWrapper();
@@ -340,7 +339,7 @@ var accountPage = (function() {
 					}
 				}
 			}
-			//update the account page
+			//update the account page 
 		} else {
 			//alert('play the game to unlock more stories!');
 		}
