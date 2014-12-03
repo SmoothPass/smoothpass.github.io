@@ -68,6 +68,8 @@ var accountPage = (function() {
 		} else {
 			alert('Warning: Account entered is not valid');
 		}
+		//reset Password Rules for later accounts added
+		resetPwdRule();
 		return false
 	}
 
