@@ -192,6 +192,7 @@ var accountPage = (function() {
 	 						fieldLowerList.join(), fieldSpecialCharList.join(),
 	 						fieldNumberList.join(), 
 	 						"/>Number</label></fieldset>" ];
+	 	console.log(finalString);
 	 	console.log(finalString.join());
 	 	return finalString.join();
 	}
