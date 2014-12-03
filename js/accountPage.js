@@ -267,7 +267,6 @@ var accountPage = (function() {
 		
 			html += li;
 		}
-		console.log(rules);
 		rulesHTML = generateRuleHTML(rules, accountName);
 		html += "</div><br>" + rulesHTML + 
 				 "<input type='text' autocorrect='off' name='password'\
