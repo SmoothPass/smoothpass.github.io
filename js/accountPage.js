@@ -188,13 +188,14 @@ var accountPage = (function() {
 	 		fieldNumberList.push("checked='checked' ");
 	 	}
 
-	 	var finalString = [ stringList.join(), fieldUpperList.join(),
-	 						fieldLowerList.join(), fieldSpecialCharList.join(),
-	 						fieldNumberList.join(), 
+	 	var finalString = [ stringList.join(''), fieldUpperList.join(''),
+	 						fieldLowerList.join(''), 
+	 						fieldSpecialCharList.join(''),
+	 						fieldNumberList.join(''), 
 	 						"/>Number</label></fieldset>" ];
 	 	console.log(finalString);
-	 	console.log(finalString.join());
-	 	return finalString.join();
+	 	console.log(finalString.join(''));
+	 	return finalString.join('');
 	}
 
 	//CONTROLLER
