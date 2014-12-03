@@ -69,7 +69,6 @@ var accountPage = (function() {
 			alert('Warning: Account entered is not valid');
 		}
 		//reset Password Rules for later accounts added
-		resetPwdRule();
 		return false
 	}
 
@@ -212,6 +211,7 @@ var accountPage = (function() {
 	//CONTROLLER
 	module.submit = function (e) {
 		submitFunction(e);
+		resetPwdRule();
 		return;
 	}
 	module.getAccountPwdRule = function () {
