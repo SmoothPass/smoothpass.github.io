@@ -24,7 +24,7 @@ var accountPage = (function() {
 		//set pwd rule fresh for a new account
 		var fieldSet = [ $("#pwdUpper"), $("#pwdLower"),
 						 $("#pwdNumber"), $("#pwdSpecialChar")];
-		$("#pwdLength").prop("value", "16");
+		$("#pwdLength").prop("value", "100");
 		$("#pwdUpper").prop("checked", false);
 		$("#pwdLower").prop("checked", true);
 		$("#pwdNumber").prop("checked", false);
