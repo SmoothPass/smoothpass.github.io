@@ -95,13 +95,11 @@ var recoveryMechanism = (function() {
 				if ( (inputIndicesList.indexOf(index) < 0) && 
 					(missingStoryIndex == index) ) {
 					recoveryResult = pwGuess;
-					console.log(pwGuess);
-					console.log('found');
 					//generate recovery result page
 					//temp = pwGuess.split('ing');
 					temp = pwGuess.split("a")[1].split("o");
-					action = parseInt(temp[0]);
-					object = parseInt(temp[1]);
+					action = appConstants.getActionsList()[parseInt(temp[0])];
+					object = appConstants.getObjectsList()[parseInt(temp[1])];
 					createRecoveryResultPage(action, object);
 				}
 			}
