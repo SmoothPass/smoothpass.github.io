@@ -45,6 +45,7 @@ var recoveryMechanism = (function() {
 		//true if hashResult is found in allHashes; false otherwise
 		var temp, group, hashPlusGroup, storedHash;
 		//grab stored hashes from dropBox for given group
+
 		var storedHashes = makeHashStringIntoList(
 				storyMode.getGroupHashesList()[groupIndex]);
 
@@ -274,7 +275,7 @@ var recoveryMechanism = (function() {
 	function displayRecoveryInputPage (storyList, gpIndex, storyIndex) {
 		var person, scene, story;
 		groupIndex = gpIndex;
-		missingStoryIndex = storyIndex;
+		missingStoryIndex = storyIndex%10;
 
 		//initialize private values in case of first-time use;
 		initializePrivateValues();
