@@ -521,3 +521,8 @@ fieldset.accountField{
 .ui-slider-track > div.sliderTickmarks:last-of-type{
      border-right: 0;
 }
+
+fieldset.accountField.ui-controlgroup.ui-controlgroup-horizontal.ui-corner-all {
+	padding-top: 5%;
+	padding-left: 10%;
+}
