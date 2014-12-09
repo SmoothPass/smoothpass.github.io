@@ -420,4 +420,13 @@ $(document).ready( function() {
 	if (programVariables.client.isAuthenticated()) {
 		programVariables.initialize();
 	}
+
+	$(document).on("pagecreate", "#accounts", function() {
+		var ticks  = '<div class="sliderTickmarks "><span>0%</span></div>';
+		ticks += '<div class="sliderTickmarks "><span>25%</span></div>';
+        ticks += '<div class="sliderTickmarks "><span>50%</span></div>';
+        ticks += '<div class="sliderTickmarks "><span>75%</span></div>';
+        ticks += '<div class="sliderTickmarks "><span>100%</span></div>';
+    	$("#mainSliderBar .ui-slider-track").prepend(ticks);
+	})
 });
