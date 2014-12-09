@@ -495,9 +495,12 @@ fieldset.accountField{
     -webkit-box-sizing: border-box; 
     box-sizing: border-box;
     height: 100%;
-    width: 25%;    
+    width: 10.5%;    
     float: left;
     border-right: 1px solid #888;
+}
+.singleSpan {
+	width: 4.5%;
 }
 .sliderTickmarks span{
     position: relative;
@@ -506,6 +509,7 @@ fieldset.accountField{
     margin-left: -10px;
     font-size: 12px;
     font-weight: normal;
+    color: white;
 }
 .ui-slider-track > div.sliderTickmarks:first-child{
     border-right: 0;

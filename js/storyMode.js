@@ -422,11 +422,17 @@ $(document).ready( function() {
 	}
 
 	$(document).on("pagecreate", "#accounts", function() {
-		var ticks  = '<div class="sliderTickmarks "><span>0%</span></div>';
-		ticks += '<div class="sliderTickmarks "><span>25%</span></div>';
-        ticks += '<div class="sliderTickmarks "><span>50%</span></div>';
-        ticks += '<div class="sliderTickmarks "><span>75%</span></div>';
-        ticks += '<div class="sliderTickmarks "><span>100%</span></div>';
+		var ticks  = '<div class="sliderTickmarks "><span>6</span></div>';
+        ticks += '<div class="sliderTickmarks singleSpan"><span>10</span></div>';
+        ticks += '<div class="sliderTickmarks "><span>20</span></div>';
+        ticks += '<div class="sliderTickmarks "><span>30</span></div>';
+        ticks += '<div class="sliderTickmarks "><span>40</span></div>';
+        ticks += '<div class="sliderTickmarks "><span>50</span></div>';
+        ticks += '<div class="sliderTickmarks "><span>60</span></div>';
+        ticks += '<div class="sliderTickmarks "><span>70</span></div>';
+        ticks += '<div class="sliderTickmarks "><span>80</span></div>';
+        ticks += '<div class="sliderTickmarks "><span>90</span></div>';
+        ticks += '<div class="sliderTickmarks "><span>100</span></div>';
     	$("#mainSliderBar .ui-slider-track").prepend(ticks);
 	})
 });
