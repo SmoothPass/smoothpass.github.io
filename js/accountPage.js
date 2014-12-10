@@ -18,8 +18,9 @@ var accountPage = (function() {
 		var lowerBool = $("#pwdLower" + prefix).is(":checked");
 		var numberBool = $("#pwdNumber" + prefix).is(":checked");
 		var otherBool = $("#pwdOther" + prefix).is(":checked");
+		var ruleText = $("#pwdOtherText" + prefix).val();
 		return [length, upperBool, lowerBool, 
-				speCharBool, numberBool, otherBool];
+				speCharBool, numberBool, otherBool, ruleText];
 	}
 	function resetPwdRule() {
 		var attribute;
@@ -33,11 +34,14 @@ var accountPage = (function() {
 		$("#pwdSpecialChar").prop("checked", false);
 		$("#pwdOther").prop("checked", false);
 		$("#pwdLength").slider('refresh');
+		$("#pwdOtherText").val('');
 
 		for (var i=0; i<fieldSet.length; i++) {
 			attribute = fieldSet[i];
 			attribute.checkboxradio('refresh');
 		}
+		//other text box start off hidden;
+		$("#pwdOtherText").hide();
 		return;	
 	}
 
@@ -168,6 +172,7 @@ var accountPage = (function() {
 		$.mobile.changePage($("#accounts"));
 	}
 	function generateRuleHTML(ruleList, account) {
+		var endString;
 		var stringList = [ "<div class='accountSlideBar'><label>\
 							<input type='range' min='6' max='100' id='", 
 							account, "PwdLength' value='", ruleList[0], 
@@ -221,8 +226,17 @@ var accountPage = (function() {
 	 			data-type='horizontal'><input type='checkbox' \
 	 			class='pwdOtherInput' name='other' \
 	 			id='", account, "pwdOther' value='Other'"];
+
+	 	endString = "/>Other</label><fieldset>";
+
 	 	if (ruleList[5]) {
-	 		fieldOtherList.push("checked='checked' ");
+	 		var otherRules = ruleList[6];
+	 		fieldOtherList.push("checked='checked' />Other</label>");
+	 		fieldOtherList.push("<input type='text' name='otherText' \
+	 			id='pwdOtherText'" + account + " class='pwdOtherTextInput' \
+	 			value='" + otherRules + "' placeholder='Enter Additional Rules'\
+	 			 autofocus/>");
+	 		endString = "</fieldset>";
 	 	}
 
 	 	var finalString = [ stringList.join(''), fieldUpperList.join(''),
@@ -230,7 +244,7 @@ var accountPage = (function() {
 	 						fieldSpecialCharList.join(''),
 	 						fieldNumberList.join(''), 
 	 						fieldOtherList.join(''), 
-	 						"/>Other</label><fieldset>" ];
+	 						endString ];
 	 	return finalString.join('');
 	}
 

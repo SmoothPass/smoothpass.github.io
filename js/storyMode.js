@@ -426,10 +426,10 @@ $(document).ready( function() {
 		programVariables.initialize();
 	}
 	//$( "input[type=checkbox]" ).on( "click", countChecked );
-	$(".pwdOtherText").hide();
+	$(".pwdOtherTextInput").hide();
 	$(".pwdOtherInput").change(function() {
     //if(this.checked) {
-    	$(this).parent().next('div').children().closest('.pwdOtherText').toggle('slow');
+    	$(this).parent().next('div').children().closest('.pwdOtherTextInput').toggle('slow');
     //}
 	});
 
