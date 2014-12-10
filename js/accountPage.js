@@ -266,14 +266,15 @@ var accountPage = (function() {
 			html += li;
 		}
 		rulesHTML = generateRuleHTML(rules, accountName);
-		html += "</div><br>" + rulesHTML + 
+		html += "</div><br>" +  
 				 "<input type='text' autocorrect='off' name='password'\
 				 id='"+accountName+"-password' value='' \
 				 placeholder='Type in your password' \
 				 autofocus='autofocus'/>\<a href=# \
 				 data-role='button' data-rel='popup' \
 				 onclick='accountPage.checkPassword(\""  + accountName + 
-				 		"\", " + index + ")' > Rehearse Account</a>";
+				 		"\", " + index + ")' > Rehearse Account</a>" + 
+				 rulesHTML;
 
 		return html;
 	}
