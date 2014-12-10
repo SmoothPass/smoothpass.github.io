@@ -100,7 +100,7 @@ var storyMode = ( function () {
 				}
 			}
 		}
-		
+
 		console.log(limitsList);
 		return limitsList;
 	}
@@ -235,6 +235,7 @@ var storyMode = ( function () {
 			}
 		}
 		$.mobile.changePage('#mode43');
+		console.log(storyNumber);
 		limitListLength = calculateListLength(storyNumber);
 		groupList = generateStoryGroup(storyNumber);
 		programVariables.insertRecord(securityLevel, groupList,
