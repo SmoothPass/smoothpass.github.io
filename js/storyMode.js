@@ -408,7 +408,7 @@ var storyMode = ( function () {
 }());
 
 function countChecked() {
-	  var n = $( "input:checked" ).name;
+	  var  = $( "input:checked" );
 	  console.log(n);
 }
 
