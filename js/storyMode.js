@@ -83,9 +83,9 @@ var storyMode = ( function () {
 		return result;
 	}
 
-	function generateStoryGroup () {
+	function generateStoryGroup (numberOfStories) {
 		var limitsList = [];
-		var length = calculateListLength(storyNumber);
+		var length = calculateListLength(numberOfStories);
 
 		for (var i=0; i<length; i++) {
 			if (i != length-1) {
@@ -100,6 +100,7 @@ var storyMode = ( function () {
 				}
 			}
 		}
+		console.log(limitsList);
 		return limitsList;
 	}
 	function selectBankStory (index) {
@@ -234,7 +235,7 @@ var storyMode = ( function () {
 		}
 		$.mobile.changePage('#mode43');
 		limitListLength = calculateListLength(storyNumber);
-		groupList = generateStoryGroup();
+		groupList = generateStoryGroup(storyNumber);
 		programVariables.insertRecord(securityLevel, groupList,
 				createGroupHashesList(), createSaltList() );
 	}
