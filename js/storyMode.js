@@ -192,8 +192,8 @@ var storyMode = ( function () {
 	}
 
 	function gatherInfo () {
-		var securityNum = $('#slider').val();
-		var numberOfAccounts = $('#numAccountOption').val();
+		var securityNum = parseInt($('#slider').val());
+		var numberOfAccounts = parseInt($('#numAccountOption').val());
 		if (securityNum === 50) {
 			securityLevel = 'Medium';
 			if (numberOfAccounts === 14) {
