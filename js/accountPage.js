@@ -392,7 +392,11 @@ var accountPage = (function() {
 		}
 		updateListBool = false;
 		//refocus password field 
-		$(accountName+"-password").focus();
+		var pwdAccountText = $("#" + accountName+"-password");
+		pwdAccountText.focus();
+		var temp = pwdAccountText.val(); //store the value of the element
+		pwdAccountText.val(''); //clear the value of the element
+		pwdAccountText.val(temp);
 	}
 	return module;
 }());
