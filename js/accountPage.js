@@ -330,13 +330,14 @@ var accountPage = (function() {
 		var accounts = programVariables.accountTable.query();
 		var accountIndex = programVariables.accountIndex;
 		var stories = storyMode.getStoryBank();
+		var accountName = '';
 
 		if (stories.length >= 0) {
 			for (var i=0; i < accounts.length; i++) {
 				var account = accounts[i];
 				var temp = account.get('storyList');
 				var list = parseStringToNestedArrays(account.get('storyList'));
-				var accountName = account.get('account');
+				accountName = account.get('account');
 				var accountIndexForChecking = account.get('accountIndex');
 				var ruleList = account.get('rules').toArray();
 				var time = account.get('lastRehearsal').toString();
@@ -390,6 +391,8 @@ var accountPage = (function() {
 			$.mobile.changePage(newPage);
 		}
 		updateListBool = false;
+		//refocus password field 
+		$(accountName+"-password").focus();
 	}
 	return module;
 }());
