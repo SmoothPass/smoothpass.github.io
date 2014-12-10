@@ -35,6 +35,8 @@ programVariables.initialize = function (){
 			//if security Level has not been set go to that page and store information generated 
 			//change to usability-security scale page
 			$.mobile.changePage($("#userSelect"))
+			//initialize account index to be 0
+			storyMode.setAccountIndex(0);
 			//window.location = "https://smoothpass.github.io/index.html#userSelect";
 
 		} else if (programVariables.generalRecord.length === 1) {
