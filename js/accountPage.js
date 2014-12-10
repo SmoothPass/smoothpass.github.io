@@ -17,18 +17,21 @@ var accountPage = (function() {
 		var upperBool = $("#pwdUpper" + prefix).is(":checked");
 		var lowerBool = $("#pwdLower" + prefix).is(":checked");
 		var numberBool = $("#pwdNumber" + prefix).is(":checked");
-		return [length, upperBool, lowerBool, speCharBool, numberBool];
+		var otherBool = $("#pwdOther" + prefix).is(":checked");
+		return [length, upperBool, lowerBool, 
+				speCharBool, numberBool, otherBool];
 	}
 	function resetPwdRule() {
 		var attribute;
 		//set pwd rule fresh for a new account
 		var fieldSet = [ $("#pwdUpper"), $("#pwdLower"),
-						 $("#pwdNumber"), $("#pwdSpecialChar")];
+						 $("#pwdNumber"), $("#pwdSpecialChar"), $("#pwdOther")];
 		$("#pwdLength").prop("value", "100");
 		$("#pwdUpper").prop("checked", false);
 		$("#pwdLower").prop("checked", true);
 		$("#pwdNumber").prop("checked", false);
 		$("#pwdSpecialChar").prop("checked", false);
+		$("#pwdOther").prop("checked", false);
 		$("#pwdLength").slider('refresh');
 
 		for (var i=0; i<fieldSet.length; i++) {
@@ -210,11 +213,19 @@ var accountPage = (function() {
 	 		fieldNumberList.push("checked='checked' ");
 	 	}
 
+	 	var fieldOtherList = ["/>Number</label><label class='pwdOtherLabel' \
+	 			data-type='horizontal'><input type='checkbox' name='other' \
+	 			id='", account, "pwdOther' value='Other'"];
+	 	if (ruleList[5]) {
+	 		fieldOtherList.push("checked='checked' ");
+	 	}
+
 	 	var finalString = [ stringList.join(''), fieldUpperList.join(''),
 	 						fieldLowerList.join(''), 
 	 						fieldSpecialCharList.join(''),
 	 						fieldNumberList.join(''), 
-	 						"/>Number</label></fieldset>" ];
+	 						fieldOtherList.join(''), 
+	 						"/>Other</label><fieldset>" ];
 	 	return finalString.join('');
 	}
 
