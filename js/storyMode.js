@@ -426,7 +426,13 @@ $(document).ready( function() {
 		programVariables.initialize();
 	}
 	$( "input[type=checkbox]" ).on( "click", countChecked );
-
+	
+	$(".pwdOtherInput").change(function() {
+    //if(this.checked) {
+       	$(this).closest(".pwdOtherText").toggle();
+    //}
+	});
+	
 	$(document).on("pagecreate", "#accounts", function() {
 		var ticks  = '<div class="sliderTickmarks "><span>6</span></div>';
         ticks += '<div class="sliderTickmarks singleSpan"><span>10</span></div>';
