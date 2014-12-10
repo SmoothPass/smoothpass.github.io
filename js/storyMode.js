@@ -407,6 +407,11 @@ var storyMode = ( function () {
 	return module;
 }());
 
+function countChecked() {
+	  var n = $( "input:checked" ).name;
+	  console.log(n);
+}
+
 $(document).ready( function() {
 	$('#randomnessTextBoxStoryMode').keyup( function() {
 		storyMode.limits($(this), 'StoryMode');
@@ -420,6 +425,7 @@ $(document).ready( function() {
 	if (programVariables.client.isAuthenticated()) {
 		programVariables.initialize();
 	}
+	$( "input[type=checkbox]" ).on( "click", countChecked );
 
 	$(document).on("pagecreate", "#accounts", function() {
 		var ticks  = '<div class="sliderTickmarks "><span>6</span></div>';
