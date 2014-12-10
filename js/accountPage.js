@@ -173,6 +173,7 @@ var accountPage = (function() {
 	}
 	function generateRuleHTML(ruleList, account) {
 		var endString;
+		var prependStringList = [];
 		var stringList = [ "<div class='accountSlideBar'><label>\
 							<input type='range' min='6' max='100' id='", 
 							account, "PwdLength' value='", ruleList[0], 
@@ -189,6 +190,7 @@ var accountPage = (function() {
 		//ruleList[1] -> upperCaseBool
 		if (ruleList[1]) {
 			fieldUpperList.push("checked='checked'");
+			prependStringList.push("X");
 		}
 		var fieldLowerList = [
 				"/>Uppercase</label><label class='pwdLowerLabel' \
@@ -210,6 +212,7 @@ var accountPage = (function() {
 	 	//ruleList[3] -> specialChar
 	 	if (ruleList[3]) {
 	 		fieldSpecialCharList.push("checked='checked'");
+	 		prependStringList.push("&");
 	 	}
 
 	 	var fieldNumberList = [
@@ -220,6 +223,8 @@ var accountPage = (function() {
 
 	 	if (ruleList[4]) {
 	 		fieldNumberList.push("checked='checked' ");
+	 		prependStringList.push("7");
+
 	 	}
 
 	 	var fieldOtherList = ["/>Number</label><label class='pwdOtherLabel' \
@@ -245,7 +250,7 @@ var accountPage = (function() {
 	 						fieldNumberList.join(''), 
 	 						fieldOtherList.join(''), 
 	 						endString ];
-	 	return finalString.join('');
+	 	return [finalString.join(''), prependStringList.join()];
 	}
 
 	//CONTROLLER
@@ -265,7 +270,7 @@ var accountPage = (function() {
 	//VIEW
 	function renderEachAccountElements (time, accountName, list, index, rules) {
 		//check duplicates?
-
+		var prependString;
 		//create html for each page
 		var html = "<div id='" + accountName + "Stories'>";
 		for (var i=0; i < list.length; i ++) {
@@ -295,10 +300,13 @@ var accountPage = (function() {
 		
 			html += li;
 		}
-		rulesHTML = generateRuleHTML(rules, accountName);
+		resultList = generateRuleHTML(rules, accountName);
+		rulesHTML = resultList[0];
+		prependString = resultList[1];
+
 		html += "</div><br>" +  
 				 "<input type='text' autocorrect='off' name='password'\
-				 id='"+accountName+"-password' value='' \
+				 id='"+accountName+"-password' value='" + prependString + "' \
 				 placeholder='Type in your password' \
 				 autofocus='autofocus'/>\<a href=# \
 				 data-role='button' data-rel='popup' \
