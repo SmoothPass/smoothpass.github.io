@@ -240,7 +240,7 @@ var accountPage = (function() {
 	 		fieldOtherList.push("<input type='text' name='otherText' \
 	 			id='pwdOtherText'" + account + " class='pwdOtherTextInput' \
 	 			value='" + otherRules + "' placeholder='Enter Additional Rules'\
-	 			 autofocus/>");
+	 			 />");
 	 		endString = "</fieldset>";
 	 	}
 
@@ -250,7 +250,7 @@ var accountPage = (function() {
 	 						fieldNumberList.join(''), 
 	 						fieldOtherList.join(''), 
 	 						endString ];
-	 	return [finalString.join(''), prependStringList.join()];
+	 	return [finalString.join(''), prependStringList.join('')];
 	}
 
 	//CONTROLLER
