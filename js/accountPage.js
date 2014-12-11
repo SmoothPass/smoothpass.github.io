@@ -44,7 +44,16 @@ var accountPage = (function() {
 		$("#pwdOtherText").hide();
 		return;	
 	}
-
+	function processCueList(cueList) {
+		var j;
+		var result = [];
+		for (var i=0; i<cueList.length; i++) {
+			j = Math.floor(cueList[i]/2);
+			result.push(j+1);	
+		}
+		return result;
+	}
+	
 	function submitFunction (e) {
 		if ( ((e.keyCode === 13) || (e.keyCode == undefined)) 
 				&& ($("#entry:focus")) ) {
@@ -72,7 +81,13 @@ var accountPage = (function() {
 
 				//Put in Dropbox! Need Another Module!!!! FIX LATER
 				//calculate cue (person-scene pairs from the story list)
-				var storyList = calculateCuePairsFromIndices(cueList);
+
+				//process cueList to reflect the action object separte cue 
+				//meaning [1,2,3,4,5,6] 1 meaning 1st story's action 
+				//2 meaning 1st story's object
+				var newCueList = processCueList(cueList);
+
+				var storyList = calculateCuePairsFromIndices(newCueList);
 				var ruleList = getAccountPwdRule('');
 				programVariables.insertAccount(account, 
 						storyList, storyMode.getAccountIndex(), ruleList);
