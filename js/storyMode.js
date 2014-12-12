@@ -240,6 +240,8 @@ var storyMode = ( function () {
 		groupList = generateStoryGroup(storyNumber);
 		programVariables.insertRecord(securityLevel, groupList,
 				createGroupHashesList(), createSaltList() );
+		programVariables.generalRecord = 
+				programVariables.storyModeGeneralTable.query()[0];
 	}
 	
 	//CONTROLLER 
