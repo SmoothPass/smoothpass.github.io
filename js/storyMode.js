@@ -327,8 +327,7 @@ var storyMode = ( function () {
 	}
 
 	module.startGame = function () {
-		
-		();
+		startGame();
 	}
 	//VIEW
 	function updateStoryBankList () {
