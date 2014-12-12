@@ -48,12 +48,12 @@ var accountPage = (function() {
 		var j;
 		var result = [];
 		for (var i=0; i<cueList.length; i++) {
-			j = Math.floor(cueList[i]/2);
-			result.push(j+1);	
+			j = Math.ceil(cueList[i]/2);
+			result.push(j);	
 		}
 		return result;
 	}
-	
+
 	function submitFunction (e) {
 		if ( ((e.keyCode === 13) || (e.keyCode == undefined)) 
 				&& ($("#entry:focus")) ) {
