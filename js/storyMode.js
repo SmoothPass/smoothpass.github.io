@@ -327,7 +327,8 @@ var storyMode = ( function () {
 	}
 
 	module.startGame = function () {
-		startGame();
+		
+		();
 	}
 	//VIEW
 	function updateStoryBankList () {
@@ -437,6 +438,10 @@ $(document).ready( function() {
     	$(this).parent().next('div').children().closest('.pwdOtherTextInput').toggle('slow');
     //}
 	});
+
+	if ($("#accountName").is(":focus")) {
+		$("#accountSubmitFeedback").html('');
+	}
 
 	$(document).on("pagecreate", "#accounts", function() {
 		var ticks  = '<div class="sliderTickmarks "><span>6</span></div>';
