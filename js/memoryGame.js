@@ -6,6 +6,7 @@ var memoryGame = (function () {
 	var SCENE_INDEX = 3;
 	var SCENE_INDEX_PARTIAL = 1;
 	var INITIAL_STORY_INDEX = 0;
+	var gameRestart = false;
 	var fullGameList;
 	var storyIndex;
 	var checkIndex;
@@ -50,13 +51,15 @@ var memoryGame = (function () {
 		recoveryMechanism.computeHashesForGroup(result, currentGroupIndex);
 		return result;
 	}
-
-	function startGame (gameList, groupIndex) {
+	function initializeGameVariables() {
 		storyIndex = 0;
 		checkIndex = 0;
 		sequenceIndex = 0;
 		gameScore = 0;
 		progress = 0;
+	}
+	function startGame (gameList, groupIndex) {
+		initializeGameVariables();
 		currentGroupIndex = groupIndex;
 		numStories = gameList.length;
 		fullGameList = generateFullGameList(gameList);
@@ -64,6 +67,13 @@ var memoryGame = (function () {
 		//clear seed generator input
 		$("#randomnessTextBox").val('');
 	}	
+
+	function sameGameStart() {
+		//without generating hash again;
+		gameRestart = true;
+		initializeGameVariables();
+		generateNextSequence();
+	}
 
 	function generateNextSequence () {
 		event.preventDefault();
@@ -144,7 +154,7 @@ var memoryGame = (function () {
 			//last check?
 			if (checkIndex == numStories) {
 				var buttons = "\
-						<p><button onclick='sameGameStart()'>\
+						<p><button onclick='memoryGame.sameGameStart()'>\
 						Play Again</button></p>\
 						<p><button onclick='memoryGame.gameFinished()'>\
 						I Got All!</button></p>";
@@ -154,16 +164,16 @@ var memoryGame = (function () {
 
 				//STORE HASHES INTO GENERAL RECORD
 				//score hashes for this group into generalRecord
-				var programRecord = 
-						programVariables.storyModeGeneralTable.query()[0];
-				var flattened = flattenGroupHashList(
-						recoveryMechanism.getHashResults());
-				storyMode.getGroupHashesList()[currentGroupIndex] = flattened;
-				programRecord.get('groupHashesList').set(currentGroupIndex, 
-						flattened);
-				//CLEAR DATA
-				fullGameList = [];
-				//?hashes result clear
+				//only storing if not gameRestartBool
+				if (!gameRestart) {
+					var programRecord = programVariables.generalRecord;
+					var flattened = flattenGroupHashList(
+							recoveryMechanism.getHashResults());
+					storyMode.getGroupHashesList()[currentGroupIndex] = flattened;
+					programRecord.get('groupHashesList').set(currentGroupIndex, 
+							flattened);
+					//?hashes result clear
+				}
 			} else {
 				$('#gamestories').find('#game-password').val('');
 				var curPerson = fullGameList[checkIndex][PERSON_INDEX];
@@ -215,7 +225,10 @@ var memoryGame = (function () {
 	}
 
 	//CONTROLLER
+	module.sameGameStart = function () {
+		sameGameStart();
 
+	} 
 	module.backtoGame = function () {
 		$.mobile.changePage('#gamepage');
 		setTimeout('', 1000);
@@ -239,6 +252,8 @@ var memoryGame = (function () {
 	}
 
 	module.gameFinished = function () {
+		//CLEAR DATA
+		fullGameList = [];
 		//later change to what page? rehearsal page?
 		$.mobile.changePage("#bank");
 	}

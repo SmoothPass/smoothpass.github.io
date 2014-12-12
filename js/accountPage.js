@@ -6,6 +6,12 @@ var accountPage = (function() {
 
 	function isWebsite (web) {
 	//check empty/same account entered
+		if (web == '') {
+			//display cannot be empty message
+			$("#accountSubmitFeedback").html("Account Cannot Be Empty!");
+			return false;
+		}
+		$("#accountSubmitFeedback").html('');
 		return true;
 	}
 
