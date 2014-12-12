@@ -437,11 +437,9 @@ $(document).ready( function() {
     	$(this).parent().next('div').children().closest('.pwdOtherTextInput').toggle('slow');
     //}
 	});
-
-	if ($("#accountName").is(":focus")) {
-		$("#accountSubmitFeedback").html('');
-	}
-
+	document.getElementById("accountName").addEventListener("focus", 
+		function() {$("#accountSubmitFeedback").html('');});
+	
 	$(document).on("pagecreate", "#accounts", function() {
 		var ticks  = '<div class="sliderTickmarks "><span>6</span></div>';
         ticks += '<div class="sliderTickmarks singleSpan"><span>10</span></div>';
