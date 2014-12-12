@@ -61,6 +61,8 @@ var memoryGame = (function () {
 		numStories = gameList.length;
 		fullGameList = generateFullGameList(gameList);
 		generateNextSequence();
+		//clear seed generator input
+		$("#randomnessTextBox").val('');
 	}	
 
 	function generateNextSequence () {
