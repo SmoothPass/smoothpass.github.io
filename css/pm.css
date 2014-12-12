@@ -526,3 +526,9 @@ fieldset.accountField.ui-controlgroup.ui-controlgroup-horizontal.ui-corner-all {
 	padding-top: 5%;
 	padding-left: 10%;
 }
+
+#accountSubmitFeedback {
+	color:#69AADA;
+	text-shadow: 0.5px 0px #ff0000;
+
+}

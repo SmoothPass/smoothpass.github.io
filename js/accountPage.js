@@ -8,7 +8,7 @@ var accountPage = (function() {
 	//check empty/same account entered
 		if (web == '') {
 			//display cannot be empty message
-			$("#accountSubmitFeedback").html("Account Cannot Be Empty!");
+			$("#accountSubmitFeedback").html("<p>Account Cannot Be Empty!</p>");
 			return false;
 		}
 		$("#accountSubmitFeedback").html('');
