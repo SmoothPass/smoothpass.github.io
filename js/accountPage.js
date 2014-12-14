@@ -4,7 +4,18 @@ var accountPage = (function() {
 	var SCENE_INDEX = 1;
 	var updateListBool = true;
 
-	function isWebsite (web) {
+	function calculateMaxUnlockedStoryIndex() {
+		var generalRecord = storyMode.generalRecord;
+		var groupSaltList = generalRecord.get("groupSaltList");
+		var groupList = generalRecord.get("groupList");
+		var totalIndex = 0;
+		for (var i=0; i<groupList.length; i++) {
+			totalIndex += (if groupSaltList[i] == '') ? 0 : groupList[i]; 
+		}
+		return totalIndex;
+	}
+	
+	function isWebsite (web, cueList) {
 	//check empty/same account entered
 		if (web == '') {
 			//display cannot be empty message
@@ -12,7 +23,13 @@ var accountPage = (function() {
 			return false;
 		}
 		$("#accountSubmitFeedback").html('');
-		return true;
+		//check if all stories are unlocked
+
+		//get the largest in the cueList
+		var maxIndex = cueList[cueList.length - 1];
+		var maxStoryUnlocked = calculateMaxUnlockedStoryIndex();
+
+		return maxIndex <= maxStoryUnlocked;
 	}
 
 	function getAccountPwdRule(prefix) {
@@ -69,29 +86,27 @@ var accountPage = (function() {
 			var account = $('#accountName').val();
 			$('#accountName').val('');
 
+			//get the next set of story
+			var level = "setFamily." + 
+						storyMode.getSecurityLevel().toLowerCase();
+			var args = "(" + storyMode.getAccountIndex() + ")";
+			var functionName = level.concat(("SecurityIthAccount" + args));
+			var cueList = eval(functionName);
+			//process cueList to reflect the action object separte cue 
+			//meaning [1,2,3,4,5,6] 1 meaning 1st story's action 
+			//2 meaning 1st story's object
+			var newCueList = processCueList(cueList);
+
 			//if pass validation of website input
-			if ( isWebsite(account) ) {
+			if ( isWebsite(account, newCueList) ) {
 				var eString = 'list'+ storyMode.getAccountIndex();
 				var buttonID = '#' + accountID;
 				var listID = '#' + eString;
 
 				$('.images').css('text-align','center');
 
-				//generate next story of four 
-				//make sure the 4?6?8-story combination is unique
-				var level = "setFamily." + 
-						storyMode.getSecurityLevel().toLowerCase();
-				var args = "(" + storyMode.getAccountIndex() + ")";
-				var functionName = level.concat(("SecurityIthAccount" + args));
-				var cueList = eval(functionName);
-
 				//Put in Dropbox! Need Another Module!!!! FIX LATER
 				//calculate cue (person-scene pairs from the story list)
-
-				//process cueList to reflect the action object separte cue 
-				//meaning [1,2,3,4,5,6] 1 meaning 1st story's action 
-				//2 meaning 1st story's object
-				var newCueList = processCueList(cueList);
 
 				var storyList = calculateCuePairsFromIndices(newCueList);
 				var ruleList = getAccountPwdRule('');
