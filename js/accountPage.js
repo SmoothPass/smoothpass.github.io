@@ -10,11 +10,11 @@ var accountPage = (function() {
 		var groupList = generalRecord.get("groupList");
 		var totalIndex = 0;
 		for (var i=0; i<groupList.length; i++) {
-			totalIndex += (if groupSaltList[i] == '') ? 0 : groupList[i]; 
+			totalIndex += (groupSaltList[i] == '') ? 0 : groupList[i]; 
 		}
 		return totalIndex;
 	}
-	
+
 	function isWebsite (web, cueList) {
 	//check empty/same account entered
 		if (web == '') {
