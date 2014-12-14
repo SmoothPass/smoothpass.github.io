@@ -5,7 +5,7 @@ var accountPage = (function() {
 	var updateListBool = true;
 
 	function calculateMaxUnlockedStoryIndex() {
-		var generalRecord = storyMode.generalRecord;
+		var generalRecord = programVariables.generalRecord;
 		var groupSaltList = generalRecord.get("groupSaltList");
 		var groupList = generalRecord.get("groupList");
 		var totalIndex = 0;
@@ -28,8 +28,12 @@ var accountPage = (function() {
 		//get the largest in the cueList
 		var maxIndex = cueList[cueList.length - 1];
 		var maxStoryUnlocked = calculateMaxUnlockedStoryIndex();
-
-		return maxIndex <= maxStoryUnlocked;
+		if (maxIndex > maxStoryUnlocked) {
+			$("#accountSubmitFeedback").html('<p>\
+					Need to Unlock More Stories!</p>');
+			return false;
+		}
+		return true;
 	}
 
 	function getAccountPwdRule(prefix) {
