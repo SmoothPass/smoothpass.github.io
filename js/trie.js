@@ -7,7 +7,7 @@ Trie.prototype.put = function (name, value) {
 
 	var node = this, 
 		nameLength = name.length,
-		i = 0;
+		i = 0,
 		currentLetter;
 
 	for (i = 0; i < nameLength; i++) {
