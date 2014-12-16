@@ -316,22 +316,22 @@ var accountPage = (function() {
 		for (var i=0; i < list.length; i ++) {
 			if (i % 2 == 0) {
 				var liold = "\
-						<div class='twoPairs table'><span class='pairdiv'>\
+						<div class='twoPairs table'><item class='pairdiv'>\
 						<figure><img class=pair src=images/person/{0}.jpg />\
 						<figcaption>{1}</figcaption></figure><figure>\
 						<img class=pair src=images/scene/{2}.jpg />\
 						<figcaption>{3}</figcaption></figure>\
 						<img class='pair action' src=images/takeAction.png>\
-						</span>";
+						</item>";
 			} else {
 				var liold = "\
-						&nbsp&nbsp<span class='pairdiv'><figure>\
+						&nbsp&nbsp<item class='pairdiv'><figure>\
 						<img class=pair src=images/person/{0}.jpg />\
 						<figcaption>{1}</figcaption></figure><figure>\
 						<img class=pair src=images/scene/{2}.jpg /><figcaption>\
 						{3}</figcaption></figure>\
 						<img class='pair object' src=images/takeObject.png>\
-						</span></div>";
+						</item></div>";
 			}
 			var li = String.format(liold, list[i][PERSON_INDEX], 
 					list[i][PERSON_INDEX].split('_').join(' '),
