@@ -66,7 +66,19 @@ var appConstants = (function () {
 			'wharf', 'windmills', 'zoo'
 		]; //51
 
+	var trie = new Trie();
+
+	for (var i=0; i<actions.length; i++) {
+		trie.put(actions[i], 'a'+i.toString());
+	}
+
+	for (i=0; i<objects.length; i++) {
+		trie.put(objects[i], 'o'+i.toString());
+	}
 	//CONTROLLER
+	module.getTrie = function () {
+		return trie;
+	} 
 	module.getPeopleList = function () {
 		return people;
 	}
