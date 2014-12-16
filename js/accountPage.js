@@ -312,11 +312,11 @@ var accountPage = (function() {
 		//check duplicates?
 		var prependString;
 		//create html for each page
-		var html = "<div id='" + accountName + "Stories' class='horizontal'>";
+		var html = "<div id='" + accountName + "Stories' class='table'>";
 		for (var i=0; i < list.length; i ++) {
 			if (i % 2 == 0) {
 				var liold = "\
-						<div class='twoPairs table'><item class='pairdiv'>\
+						<div class='twoPairs'><item class='pairdiv'>\
 						<figure><img class=pair src=images/person/{0}.jpg />\
 						<figcaption>{1}</figcaption></figure><figure>\
 						<img class=pair src=images/scene/{2}.jpg />\
@@ -390,7 +390,7 @@ var accountPage = (function() {
 						data-position=fixed><a href=#accounts \
 						data-icon='back'>Back</a><h1>"+ accountName + 
 						"</h1></div><div data-role='content' \
-						class=images>"+ pageHtml + " </div></div>");
+						class='images horizontal'>"+ pageHtml +" </div></div>");
 				
 				if ( updateListBool || 
 					(changePageBool && i==accounts.length-1) ) {
