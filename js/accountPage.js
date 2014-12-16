@@ -312,7 +312,7 @@ var accountPage = (function() {
 		//check duplicates?
 		var prependString;
 		//create html for each page
-		var html = "<div id='" + accountName + "Stories' class='table'>";
+		var html = "<div class='horizontal'><div id='" + accountName + "Stories' class='table'>";
 		for (var i=0; i < list.length; i ++) {
 			if (i % 2 == 0) {
 				var liold = "\
@@ -344,7 +344,7 @@ var accountPage = (function() {
 		rulesHTML = resultList[0];
 		prependString = resultList[1];
 
-		html += "</div><br>" +  
+		html += "</div></div><br>" +  
 				 "<input type='text' autocorrect='off' name='password'\
 				 id='"+accountName+"-password' value='" + prependString + "' \
 				 placeholder='Type in your password' \
@@ -390,7 +390,7 @@ var accountPage = (function() {
 						data-position=fixed><a href=#accounts \
 						data-icon='back'>Back</a><h1>"+ accountName + 
 						"</h1></div><div data-role='content' \
-						class='images horizontal'>"+ pageHtml +" </div></div>");
+						class='images'>"+ pageHtml +" </div></div>");
 				
 				if ( updateListBool || 
 					(changePageBool && i==accounts.length-1) ) {
