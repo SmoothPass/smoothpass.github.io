@@ -415,13 +415,11 @@ var accountPage = (function() {
 
 					newPage.appendTo( $.mobile.pageContainer );
 					//add listener for each page
-					$(document).on("pageshow","#" + accountName + "Page", {extra: accountName},
+					var pageID = "#" + accountName + "Page";
+
+					$(document).on("pagebeforeshow",pageID, {name: accountName},
 						function(event){
-							var pageID = event.target.id;
-							var length = pageID.length;
-							var name = pageID.slice(0, length-'Page'.length);
-							console.log('loading page' + name);
-							console.log('printing event.extra' + event.data.extra);
+							var name = event.data.name;
 							//refocus password field 
 							var pwdAccountTextId = "#" + name + "-password";
 							var pwdAccountText = $(pwdAccountTextId);
@@ -431,18 +429,24 @@ var accountPage = (function() {
 							//clear and reset while focused
 							pwdAccountText.val(''); 
 							pwdAccountText.val(temp);
+						}
+					);
 
-							//set key up function to monitor pwd-input
-							$(document).on('keyup', pwdAccountTextId, 
-								function(event, temp) {
-									console.log('hiiiii tying in password ' + name);
-									console.log('temp is' + temp);
-									//check for current length is or not
+					//set key up function to monitor pwd-input
+					$(document).on('pagecreate', pageID, {name:accountName}, 
+						function (event) {
+							var pwdText = "#" + event.data.name + "-password";
+							var prepend = $(pwdText).val();
+							$(document).on('keyup', pwdText, {prepend:prepend},
+								function(event) {
+									console.log('temp is' + event.data.prepend);
+									//check for current typed-in word is in trie 
+									
 
 								}
 							);
-						}
-					);
+					})
+					
 				}
 			}
 			//update the account page 
