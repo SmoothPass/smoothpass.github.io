@@ -6,8 +6,8 @@ var accountPage = (function() {
 
 	function calculateMaxUnlockedStoryIndex() {
 		var generalRecord = programVariables.generalRecord;
-		var groupSaltList = generalRecord.get("groupSaltList");
-		var groupList = generalRecord.get("groupList");
+		var groupSaltList = generalRecord.get("groupSaltList").toArray();
+		var groupList = generalRecord.get("groupList").toArray();
 		var totalIndex = 0;
 		for (var i=0; i<groupList.length; i++) {
 			totalIndex += (groupSaltList[i] == '') ? 0 : groupList[i]; 
@@ -26,7 +26,7 @@ var accountPage = (function() {
 		//check if all stories are unlocked
 
 		//get the largest in the cueList
-		var maxIndex = cueList[cueList.length - 1];
+		var maxIndex = Math.ceil(cueList[cueList.length - 1]/2);
 		var maxStoryUnlocked = calculateMaxUnlockedStoryIndex();
 		if (maxIndex > maxStoryUnlocked) {
 			$("#accountSubmitFeedback").html('<p>\
