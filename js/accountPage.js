@@ -365,6 +365,26 @@ var accountPage = (function() {
 		}
 		return result;
 	}
+	//returns the number of dictionary words in the typed string
+	function checkNumberOfWordsTyped (input) {
+		var current, stop, numberOfWords = 0;
+		var wordsList = [];
+		var word;
+		var trie = appConstants.getTrie();
+
+		while (stop != input.length) {
+			stop += 1;
+			word = input.slice(current, stop);
+			console.log(word);
+			if ((word != '') && (trie.get(word) != null) {
+				numberOfWords += 1;
+				wordsList.push(word);
+				console.log(wordsList);
+			}
+		}
+		console.log(numberOfWords);
+		return numberOfWords;
+	}
 
 	function renderAccountList (changePageBool) {
 		var accounts = programVariables.accountTable.query();
@@ -438,28 +458,20 @@ var accountPage = (function() {
 							var pwdText = "#" + event.data.name + "-password";
 							var prepend = $(pwdText).val();
 							$(document).on('keyup', pwdText, 
-								{ prepend:prepend, name:event.data.name },
+								{ prepend:prepend, name:event.data.name},
 								function(event) {
 									//check for current typed-in word is in trie 
 									//remember to get rid of the prepend
 									var typed = $("#" + event.target.id).val();
 									var len = typed.length;
 									var pre_len = event.data.prepend.length;
-									var word = typed.slice(pre_len, len);
+									var input = typed.slice(pre_len, len);
 									var trie = appConstants.getTrie();
 									var account = event.data.name;
 									var imageBox = $("#" + account + "Box");
-
-									if (trie.get(word) != null) {
-										//found word;
-										console.log('word found!');
-										//scroll page
-										console.log(imageBox);
-										imageBox.scrollLeft(800);
-
+									var num = checkNumberOfWordsTyped(input)
+									imageBox.scrollLeft(800*num);
 									}
-									
-
 								}
 							);
 					})
