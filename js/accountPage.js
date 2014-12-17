@@ -414,14 +414,15 @@ var accountPage = (function() {
 					}
 
 					newPage.appendTo( $.mobile.pageContainer );
-					console.log('logging current accountpage ' + accountName);
 					//add listener for each page
 					$(document).on("pageshow","#" + accountName + "Page",
 						function(event){
-
-							console.log('loading page' + event.target.id);
+							var pageID = event.target.id;
+							var length = name.length;
+							var name = pageID.slice(0, length-'Page'.length);
+							console.log('loading page' + name);
 							//refocus password field 
-							var pwdAccountTextId = "#"+accountName+"-password";
+							var pwdAccountTextId = "#" + name + "-password";
 							var pwdAccountText = $(pwdAccountTextId);
 							pwdAccountText.focus();
 							//store current value
@@ -433,7 +434,7 @@ var accountPage = (function() {
 							//set key up function to monitor pwd-input
 							$(document).on('keyup', pwdAccountTextId, 
 								function() {
-									console.log('hiiiii tying in password ' + accountName);
+									console.log('hiiiii tying in password ' + name);
 								}
 							);
 						}
