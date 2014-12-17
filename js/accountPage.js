@@ -446,9 +446,7 @@ var accountPage = (function() {
 									var len = typed.length;
 									var pre_len = event.data.prepend.length;
 									var word = typed.slice(pre_len, len);
-									console.log(word);
 									var trie = appConstants.getTrie();
-									console.log(trie.get(word));
 									var account = event.data.name;
 									var imageBox = $("#" + account + "Box");
 
@@ -456,6 +454,7 @@ var accountPage = (function() {
 										//found word;
 										console.log('word found!');
 										//scroll page
+										console.log(imageBox);
 										imageBox.scrollLeft(800);
 
 									}
