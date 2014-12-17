@@ -311,8 +311,8 @@ var accountPage = (function() {
 		//check duplicates?
 		var prependString;
 		//create html for each page
-		var html = "<div class='horizontal'><div id='" + accountName + 
-				"Stories' class='table'>";
+		var html = "<div id='" + accountName + "Box' class='horizontal'>\
+				<div id='" + accountName + "Stories' class='table'>";
 		for (var i=0; i < list.length; i ++) {
 			if (i % 2 == 0) {
 				var liold = "\
@@ -450,7 +450,7 @@ var accountPage = (function() {
 									var trie = appConstants.getTrie();
 									console.log(trie.get(word));
 									var account = event.data.name;
-									var imageBox = $("#" + account + "Stories");
+									var imageBox = $("#" + account + "Box");
 
 									if (trie.get(word) != null) {
 										//found word;
