@@ -381,7 +381,7 @@ var accountPage = (function() {
 				numberOfWords += 1;
 				wordsList.push(word);
 				console.log(wordsList);
-				current = stop+1;
+				current = stop;
 			}
 		}
 		console.log(numberOfWords);
@@ -472,7 +472,7 @@ var accountPage = (function() {
 									var account = event.data.name;
 									var imageBox = $("#" + account + "Box");
 									var num = checkNumberOfWordsTyped(input)
-									imageBox.scrollLeft(800*num);
+									imageBox.scrollLeft(400*num);
 								}
 							);
 					})
