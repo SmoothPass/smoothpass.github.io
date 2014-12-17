@@ -439,7 +439,7 @@ var accountPage = (function() {
 		pwdAccountText.val(''); //clear the value of the element
 		pwdAccountText.val(temp);
 
-		$(document).on("pageshow","#" + accountName,
+		$(document).on("pageshow","#" + accountName + "Page",
 			function(){
 				console.log('loading page' + accountName);
 
