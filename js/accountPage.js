@@ -413,10 +413,22 @@ var accountPage = (function() {
 						$('#list').trigger('create');
 					}
 
-					if (updateListBool || 
-						(changePageBool && i==accounts.length-1)) {
-						newPage.appendTo( $.mobile.pageContainer );
-					}
+					newPage.appendTo( $.mobile.pageContainer );
+					//add listener for each page
+					$(document).on("pageshow","#" + accountName + "Page",
+						function(){
+							console.log('loading page' + accountName);
+							//refocus password field 
+							var pwdAccountTextId = "#"+accountName+"-password";
+							var pwdAccountText = $(pwdAccountTextId);
+							pwdAccountText.focus();
+							//store current value
+							var temp = pwdAccountText.val();
+							//clear and reset while focused
+							pwdAccountText.val(''); 
+							pwdAccountText.val(temp);
+						}
+					);
 				}
 			}
 			//update the account page 
@@ -431,19 +443,7 @@ var accountPage = (function() {
 			$.mobile.changePage(newPage);
 		}
 		updateListBool = false;
-		//refocus password field 
-		var pwdAccountTextId = "#" + accountName+"-password";
-		var pwdAccountText = $(pwdAccountTextId);
-		pwdAccountText.focus();
-		var temp = pwdAccountText.val(); //store the value of the element
-		pwdAccountText.val(''); //clear the value of the element
-		pwdAccountText.val(temp);
 
-		$(document).on("pageshow","#" + accountName + "Page",
-			function(){
-				console.log('loading page' + accountName);
-
-			});
 		//set key up function to monitor input into rehearse
 		$(document).on('keyup', pwdAccountTextId, function() {
 			console.log('hiiiii tying in password ' + accountName);
