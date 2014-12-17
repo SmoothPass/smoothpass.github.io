@@ -381,6 +381,7 @@ var accountPage = (function() {
 				numberOfWords += 1;
 				wordsList.push(word);
 				console.log(wordsList);
+				current = stop+1;
 			}
 		}
 		console.log(numberOfWords);
