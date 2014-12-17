@@ -367,12 +367,12 @@ var accountPage = (function() {
 	}
 	//returns the number of dictionary words in the typed string
 	function checkNumberOfWordsTyped (input) {
-		var current, stop, numberOfWords = 0;
+		var current = 0;
+		var stop = 0;
+		var numberOfWords = 0;
 		var wordsList = [];
 		var word;
 		var trie = appConstants.getTrie();
-		console.log(stop);
-		console.log(input.length);
 		while (stop < input.length) {
 			stop += 1;
 			word = input.slice(current, stop);
