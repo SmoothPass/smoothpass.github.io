@@ -438,7 +438,7 @@ var accountPage = (function() {
 							var pwdText = "#" + event.data.name + "-password";
 							var prepend = $(pwdText).val();
 							$(document).on('keyup', pwdText, 
-								{ prepend:prepend, name:accountName },
+								{ prepend:prepend, name:event.data.name },
 								function(event) {
 									//check for current typed-in word is in trie 
 									//remember to get rid of the prepend
