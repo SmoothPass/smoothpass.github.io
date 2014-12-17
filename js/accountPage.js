@@ -427,6 +427,13 @@ var accountPage = (function() {
 							//clear and reset while focused
 							pwdAccountText.val(''); 
 							pwdAccountText.val(temp);
+
+							//set key up function to monitor pwd-input
+							$(document).on('keyup', pwdAccountTextId, 
+								function() {
+									console.log('hiiiii tying in password ' + accountName);
+								}
+							);
 						}
 					);
 				}
@@ -443,12 +450,6 @@ var accountPage = (function() {
 			$.mobile.changePage(newPage);
 		}
 		updateListBool = false;
-
-		//set key up function to monitor input into rehearse
-		$(document).on('keyup', pwdAccountTextId, function() {
-			console.log('hiiiii tying in password ' + accountName);
-
-		})
 	}
 	return module;
 }());
