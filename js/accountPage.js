@@ -371,7 +371,8 @@ var accountPage = (function() {
 		var wordsList = [];
 		var word;
 		var trie = appConstants.getTrie();
-
+		console.log(stop);
+		console.log(input.length);
 		while (stop < input.length) {
 			stop += 1;
 			word = input.slice(current, stop);
