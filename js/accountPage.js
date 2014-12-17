@@ -439,8 +439,11 @@ var accountPage = (function() {
 							var prepend = $(pwdText).val();
 							$(document).on('keyup', pwdText, {prepend:prepend},
 								function(event) {
-									console.log('temp is' + event.data.prepend);
 									//check for current typed-in word is in trie 
+									//remember to get rid of the prepend
+									console.log($("#" + event.id).val());
+									
+
 									
 
 								}
