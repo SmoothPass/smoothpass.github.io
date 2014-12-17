@@ -417,7 +417,7 @@ var accountPage = (function() {
 					console.log('logging current accountpage ' + accountName);
 					//add listener for each page
 					$(document).on("pageshow","#" + accountName + "Page",
-						function(){
+						function(accountName){
 							console.log('loading page' + accountName);
 							//refocus password field 
 							var pwdAccountTextId = "#"+accountName+"-password";
