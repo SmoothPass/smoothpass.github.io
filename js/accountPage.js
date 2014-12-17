@@ -415,12 +415,13 @@ var accountPage = (function() {
 
 					newPage.appendTo( $.mobile.pageContainer );
 					//add listener for each page
-					$(document).on("pageshow","#" + accountName + "Page",
+					$(document).on("pageshow","#" + accountName + "Page", {extra: accountName},
 						function(event){
 							var pageID = event.target.id;
 							var length = pageID.length;
 							var name = pageID.slice(0, length-'Page'.length);
 							console.log('loading page' + name);
+							console.log('printing event.extra' + extra);
 							//refocus password field 
 							var pwdAccountTextId = "#" + name + "-password";
 							var pwdAccountText = $(pwdAccountTextId);
