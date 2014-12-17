@@ -433,8 +433,11 @@ var accountPage = (function() {
 
 							//set key up function to monitor pwd-input
 							$(document).on('keyup', pwdAccountTextId, 
-								function() {
+								function(event, temp) {
 									console.log('hiiiii tying in password ' + name);
+									console.log('temp is' + temp);
+									//check for current length is or not
+
 								}
 							);
 						}
