@@ -27,5 +27,5 @@ Trie.prototype.get = function (name) {
 		if (!(node = node[name[i]])) break;
 	}
 
-	return (i === nameLength) ? node.value : 'not found';
+	return (i === nameLength) ? node.value : null;
 };

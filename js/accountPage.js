@@ -437,13 +437,26 @@ var accountPage = (function() {
 						function (event) {
 							var pwdText = "#" + event.data.name + "-password";
 							var prepend = $(pwdText).val();
-							$(document).on('keyup', pwdText, {prepend:prepend},
+							$(document).on('keyup', pwdText, 
+								{ prepend:prepend, name:accountName },
 								function(event) {
 									//check for current typed-in word is in trie 
 									//remember to get rid of the prepend
-									console.log($("#" + event.target.id).val());
+									var typed = $("#" + event.target.id).val();
+									var len - typed.length;
+									var pre_len = event.data.prepend.length;
+									var word = typed.slice(len-pre_len, len);
+									var trie = appConstants.getTrie();
+									var account = event.data.name;
+									var imageBox = $("#" + account + "Stories");
 
+									if (trie.get(word) != null) {
+										//found word;
+										console.log('word found!');
+										//scroll page
+										imageBox.scrollLeft(800);
 
+									}
 									
 
 								}
