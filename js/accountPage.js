@@ -419,7 +419,7 @@ var accountPage = (function() {
 					$(document).on("pageshow","#" + accountName + "Page",
 						function(event){
 
-							console.log('loading page' + event.target);
+							console.log('loading page' + event.target.id);
 							//refocus password field 
 							var pwdAccountTextId = "#"+accountName+"-password";
 							var pwdAccountText = $(pwdAccountTextId);
