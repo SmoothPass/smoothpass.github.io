@@ -432,11 +432,18 @@ var accountPage = (function() {
 		}
 		updateListBool = false;
 		//refocus password field 
-		var pwdAccountText = $("#" + accountName+"-password");
+		var pwdAccountTextId = "#" + accountName+"-password";
+		var pwdAccountText = $(pwdAccountTextId);
 		pwdAccountText.focus();
 		var temp = pwdAccountText.val(); //store the value of the element
 		pwdAccountText.val(''); //clear the value of the element
 		pwdAccountText.val(temp);
+
+		//set key up function to monitor input into rehearse
+		$(document).on('keyup', pwdAccountTextId, function() {
+			console.log('hiiiii tying in password ' + accountName);
+
+		})
 	}
 	return module;
 }());
