@@ -441,8 +441,8 @@ var accountPage = (function() {
 								function(event) {
 									//check for current typed-in word is in trie 
 									//remember to get rid of the prepend
-									console.log($("#" + event.id).val());
-									
+									console.log($("#" + event.target.id).val());
+
 
 									
 
