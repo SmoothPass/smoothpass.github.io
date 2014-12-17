@@ -446,7 +446,9 @@ var accountPage = (function() {
 									var len = typed.length;
 									var pre_len = event.data.prepend.length;
 									var word = typed.slice(len-pre_len, len);
+									console.log(word);
 									var trie = appConstants.getTrie();
+									console.log(trie.get(word));
 									var account = event.data.name;
 									var imageBox = $("#" + account + "Stories");
 
