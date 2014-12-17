@@ -418,7 +418,7 @@ var accountPage = (function() {
 					$(document).on("pageshow","#" + accountName + "Page",
 						function(event){
 							var pageID = event.target.id;
-							var length = name.length;
+							var length = pageID.length;
 							var name = pageID.slice(0, length-'Page'.length);
 							console.log('loading page' + name);
 							//refocus password field 
