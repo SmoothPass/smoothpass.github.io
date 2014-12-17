@@ -439,6 +439,11 @@ var accountPage = (function() {
 		pwdAccountText.val(''); //clear the value of the element
 		pwdAccountText.val(temp);
 
+		$(document).on("pageshow","#" + accountName,
+			function(){
+				console.log('loading page' + accountName);
+
+			});
 		//set key up function to monitor input into rehearse
 		$(document).on('keyup', pwdAccountTextId, function() {
 			console.log('hiiiii tying in password ' + accountName);
