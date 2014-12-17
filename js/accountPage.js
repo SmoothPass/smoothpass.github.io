@@ -471,7 +471,6 @@ var accountPage = (function() {
 									var imageBox = $("#" + account + "Box");
 									var num = checkNumberOfWordsTyped(input)
 									imageBox.scrollLeft(800*num);
-									}
 								}
 							);
 					})
