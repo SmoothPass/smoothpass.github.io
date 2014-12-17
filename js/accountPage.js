@@ -443,7 +443,7 @@ var accountPage = (function() {
 									//check for current typed-in word is in trie 
 									//remember to get rid of the prepend
 									var typed = $("#" + event.target.id).val();
-									var len - typed.length;
+									var len = typed.length;
 									var pre_len = event.data.prepend.length;
 									var word = typed.slice(len-pre_len, len);
 									var trie = appConstants.getTrie();
