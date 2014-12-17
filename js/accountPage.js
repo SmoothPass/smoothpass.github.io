@@ -376,7 +376,7 @@ var accountPage = (function() {
 			stop += 1;
 			word = input.slice(current, stop);
 			console.log(word);
-			if ((word != '') && (trie.get(word) != null) {
+			if ((word != '') && (trie.get(word) != null)) {
 				numberOfWords += 1;
 				wordsList.push(word);
 				console.log(wordsList);
