@@ -421,7 +421,7 @@ var accountPage = (function() {
 							var length = pageID.length;
 							var name = pageID.slice(0, length-'Page'.length);
 							console.log('loading page' + name);
-							console.log('printing event.extra' + extra);
+							console.log('printing event.extra' + event.data);
 							//refocus password field 
 							var pwdAccountTextId = "#" + name + "-password";
 							var pwdAccountText = $(pwdAccountTextId);
