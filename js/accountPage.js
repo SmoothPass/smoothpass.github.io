@@ -372,7 +372,7 @@ var accountPage = (function() {
 		var word;
 		var trie = appConstants.getTrie();
 
-		while (stop != input.length) {
+		while (stop < input.length) {
 			stop += 1;
 			word = input.slice(current, stop);
 			console.log(word);
