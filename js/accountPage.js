@@ -146,7 +146,6 @@ var accountPage = (function() {
 	}
 
 	function updateAccountListWrapper () {
-		var records = programVariables.accountTable.query();
 		//by rehearsal date?
 		renderAccountList(false);
 		return;
@@ -312,7 +311,8 @@ var accountPage = (function() {
 		//check duplicates?
 		var prependString;
 		//create html for each page
-		var html = "<div class='horizontal'><div id='" + accountName + "Stories' class='table'>";
+		var html = "<div class='horizontal'><div id='" + accountName + 
+				"Stories' class='table'>";
 		for (var i=0; i < list.length; i ++) {
 			if (i % 2 == 0) {
 				var liold = "\
@@ -414,6 +414,7 @@ var accountPage = (function() {
 					}
 
 					newPage.appendTo( $.mobile.pageContainer );
+					console.log('logging current accountpage ' + accountName);
 					//add listener for each page
 					$(document).on("pageshow","#" + accountName + "Page",
 						function(){
