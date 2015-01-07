@@ -100,7 +100,7 @@ var memoryGame = (function () {
 				story = fullGameList[sequenceIndex];
 				displayCheckPage(story[PERSON_INDEX], story[SCENE_INDEX]);
 				checkIndex += 1;
-				gameScore = 0;
+				gameScore = -1;
 				fixStyle();
 
 			} else if ( (checkIndex === INITIAL_STORY_INDEX) &&
