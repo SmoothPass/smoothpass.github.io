@@ -16,8 +16,8 @@ var memoryGame = (function () {
 	var currentGroupIndex; //used when storing
 	var numStories;
 	//TEMP!!
-	var actionList = ['tickling', 'fighting', 'rubbing', 'biting', 'hugging', 'enlarging', 'tying', 'repairing', 'hiding' , 'signing'];
-	var objectList = ['hammer', 'moose', 'snowflake', 'lock', 'igloo', 'leaf', 'dice', 'moon', 'heel', 'boot'];
+	var actionList; //= ['tickling', 'fighting', 'rubbing', 'biting', 'hugging', 'enlarging', 'tying', 'repairing', 'hiding' , 'signing'];
+	var objectList; //= ['hammer', 'moose', 'snowflake', 'lock', 'igloo', 'leaf', 'dice', 'moon', 'heel', 'boot'];
 
 
 	//utility function : string formatting for Javascript
@@ -37,7 +37,11 @@ var memoryGame = (function () {
 
 	function generateFullGameList (partialGameList) {
 		//partialGameList contains gamePplList and gameScenesList
-		//TEMP: for now generate randomly
+		
+		var randomInput = $("#randomnessTextBox").val();
+		var tuple = Sha256.generate(randomInput, partialGameList.length);
+		actionList = tuple[0];
+		objectList = tuple[1];
 		var result = [];
 		for (var i=0; i<partialGameList.length; i++) {
 			var person = partialGameList[i][PERSON_INDEX];

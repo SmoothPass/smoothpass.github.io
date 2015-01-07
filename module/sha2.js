@@ -1,4 +1,4 @@
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+ - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 /*  SHA-256 implementation in JavaScript | (c) Chris Veness 2002-2010 | www.movable-type.co.uk    */
 /*   - see http://csrc.nist.gov/groups/ST/toolkit/secure_hashing.html                             */
 /*         http://csrc.nist.gov/groups/ST/toolkit/examples.html                                   */
@@ -6,34 +6,6 @@
 
 var Sha256 = {};  // Sha256 namespace
 
-      
-var personList = ['Angelina_Jolie','Bill_Gates','Einstein','Michelle_Obama',
-                  'Morgan_Freeman','Mozart', 'Adolf_Hitler', 'Barack_Obama',
-                   "Bart_Simpson", "Ben_Affleck", "Beyonce", "Bill_Clinton",
-                   "Brad_Pitt","Darth_Vader", "Frodo", "George_W_Bush", 
-                   "Hillary_Clinton", "Homer_Simpson", "Indiana_Jones", 
-                   "Marilyn_Monroe", "Superman", "Steve_Jobs", "Michael_Jordan"];
-
-var actionList = ['balancing', 'bending', 'biting', 'bouncing', 'building', 
-                  'burning' , 'chasing', 'clapping', 'climbing' ,'cooking',
-                  'digging','drinking', 'enlarging', 'exploding', 'feeding',
-                  'fighting', 'flipping', 'hanging', 'hiding', 'hugging',
-                  'juggling', 'kissing', 'licking', 'painting', 'piloting',
-                  'pushing', 'repairing', 'rubbing', 'scratching', 'shooting',
-                  'smelling', 'swinging','throwing', 'tickling', 'tying',
-                  'washing', 'wrapping', 'zooming'];
-
-var objectList = ['dome','hammer','heel','hen','igloo','leaf', 'lock', 'moose',
-                  'seal','smore','snowflake','suit','daisy','dice','safe',
-                  'toilet','moon', 'map','lollipop','peach', 'bus'];
-
-var sceneList = [ 'airport', 'baseball_field', 'basketball_court', 'bakery', 
-                  'bridge', 'Capitol_Building', 'castle', 'court', 'Eiffel_Tower',
-                  'fancy_house', 'fitness_center', 'forest', 'garden', 'glacier',
-                  'Grand_Canyon', 'Great_Wall', 'hanging_bridge', 'island', 
-                  'lake', 'library', 'lighthouse', 'mountain', 'Niagara_Falls', 
-                  'ocean', 'pool_bar', 'pyramids', 'restaurant', 'swimming_pool',
-                  'Taj_Mahal','tropical_beach'];
 
 /**
 * Generates SHA-256 hash of string
@@ -44,69 +16,58 @@ var sceneList = [ 'airport', 'baseball_field', 'basketball_court', 'bakery',
 */
 
 Sha256.generate = function (input, num) {
+      var actionIndex, action, objectIndex, object;
       var sha = Sha256.hash(input);
       var lengthOfString = sha.length;
-      var persons = new Array(num);
-      var scenes = new Array(num);
-      var finalList = new Array(num);
+      var actions = [];
+      var objects = [];
       var theIndex = 0;
       var itemCounter = 0;
-
-      var newPersonList = existingPersonList.toArray();
-      var newSceneList = existingSceneList.toArray();
-      console.log(newPersonList);
-      console.log(newPersonList.length);   
-      console.log(newSceneList);
-      console.log(newSceneList.length);                
+          
       for (var i=0; i<num; i++) {
             itemCounter = 0;
             while (itemCounter < 4) {
-                  theIndex = (Math.round(Math.random() * scenes.length) + 
+                  theIndex = (Math.round(Math.random() * num) + 
                               Sha256.fromCharacter(sha.charAt(4 * i)) + 
                               16 * Sha256.fromCharacter(sha.charAt(4 * i + 1)) + 
                               256 * Sha256.fromCharacter(sha.charAt(4 * i + 2)) + 
                               256 * 16 * Sha256.fromCharacter(sha.charAt(4 * i + 3)));
                   if (itemCounter == 0) {
-                        var person = personList[theIndex % personList.length];
-                        while (newPersonList.indexOf(person) != -1) {
-
-                              theIndex = (Math.round(Math.random() * persons.length) + 
-                                          Sha256.fromCharacter(sha.charAt(4 * i)) + 
-                                          16 * Sha256.fromCharacter(sha.charAt(4 * i + 1)) + 
-                                          256 * Sha256.fromCharacter(sha.charAt(4 * i + 2)) + 
-                                          256 * 16 * Sha256.fromCharacter(sha.charAt(4 * i + 3)));
-                              person = personList[theIndex % personList.length]; 
+                    //adding action
+                        actionIndex = theIndex % appConstants.getActionListLength();
+                        action = appConstants.getActionAtIndex(actionIndex);
+                        while (actions.indexOf(action) != -1) {
+                          theIndex = (Math.round(Math.random() * num) + 
+                                      Sha256.fromCharacter(sha.charAt(4 * i)) + 
+                                      16 * Sha256.fromCharacter(sha.charAt(4 * i + 1)) + 
+                                      256 * Sha256.fromCharacter(sha.charAt(4 * i + 2)) + 
+                                      256 * 16 * Sha256.fromCharacter(sha.charAt(4 * i + 3)));
+                          actionIndex = theIndex % appConstants.getActionListLength();
+                          action = appConstants.getActionAtIndex(actionIndex);
                         }
-                        persons[i] = person;
-                        newPersonList.push(person);
+                        actions.push(action);
                   } else if (itemCounter == 1) {
-                        var action = actionList[theIndex % actionList.length];
-                  } else if (itemCounter == 2) {
-                        var object = objectList[theIndex % objectList.length];
-                  } else if (itemCounter == 3) {
-                        var scene = sceneList[theIndex % sceneList.length];
-
-                        while (newSceneList.indexOf(scene) != -1) {
-                              theIndex = (Math.round(Math.random() * scenes.length) + 
-                                          Sha256.fromCharacter(sha.charAt(4 * i)) + 
-                                          16 * Sha256.fromCharacter(sha.charAt(4 * i + 1)) + 
-                                          256 * Sha256.fromCharacter(sha.charAt(4 * i + 2)) + 
-                                          256 * 16 * Sha256.fromCharacter(sha.charAt(4 * i + 3)));
-                              scene = sceneList[theIndex % sceneList.length];
+                    //adding object
+                        objectIndex = theIndex % appConstants.getObjectListLength();
+                        object = appConstants.getObjectAtIndex(objectIndex);
+                        while (objects.indexOf(object) != -1) {
+                          theIndex = (Math.round(Math.random() * num) + 
+                                      Sha256.fromCharacter(sha.charAt(4 * i)) + 
+                                      16 * Sha256.fromCharacter(sha.charAt(4 * i + 1)) + 
+                                      256 * Sha256.fromCharacter(sha.charAt(4 * i + 2)) + 
+                                      256 * 16 * Sha256.fromCharacter(sha.charAt(4 * i + 3)));
+                          objectIndex = theIndex % appConstants.getObjectListLength();
+                          object = appConstants.getObjectAtIndex(objectIndex);
                         }
-
-                        scene[i] = scene;
-                        newSceneList.push(scene);
+                        objects.push(object);
                   } else {
                         //should never get here
                         alert('something is wrong!');
                   }
                   itemCounter +=1;      
             }
-
-            finalList[i] = [person, action, object, scene];
       }
-      return finalList;
+      return [actions, objects];
 }
 
 // Sha256.generate = function (input, num) {
@@ -319,4 +280,4 @@ Utf8.decode = function (strUtf) {
     return strUni;
 }
 
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  

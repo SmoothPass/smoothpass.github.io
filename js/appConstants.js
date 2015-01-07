@@ -91,6 +91,18 @@ var appConstants = (function () {
 	module.getScenesList = function () {
 		return scenes;
 	}
+	module.getActionsListLength = function () {
+		return actions.length
+	}
+	module.getObjectsListLength = function () {
+		return objects.length;
+	}
+	module.getActionAtIndex = function (i) {
+		return actions[i]
+	}
+	module.getObjectAtIndex = function (i) {
+		return objects[i]
+	}
 	module.getStrObjIndex = function (obj) {
 		if (obj === "") return ""
 		return "o" + (objectIndices[obj].toString());
