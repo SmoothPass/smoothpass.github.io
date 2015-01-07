@@ -34,7 +34,7 @@ Sha256.generate = function (input, num) {
                               256 * 16 * Sha256.fromCharacter(sha.charAt(4 * i + 3)));
                   if (itemCounter == 0) {
                     //adding action
-                        actionIndex = theIndex % appConstants.getActionListLength();
+                        actionIndex = theIndex % appConstants.getActionsListLength();
                         action = appConstants.getActionAtIndex(actionIndex);
                         while (actions.indexOf(action) != -1) {
                           theIndex = (Math.round(Math.random() * num) + 
@@ -42,13 +42,13 @@ Sha256.generate = function (input, num) {
                                       16 * Sha256.fromCharacter(sha.charAt(4 * i + 1)) + 
                                       256 * Sha256.fromCharacter(sha.charAt(4 * i + 2)) + 
                                       256 * 16 * Sha256.fromCharacter(sha.charAt(4 * i + 3)));
-                          actionIndex = theIndex % appConstants.getActionListLength();
+                          actionIndex = theIndex % appConstants.getActionsListLength();
                           action = appConstants.getActionAtIndex(actionIndex);
                         }
                         actions.push(action);
                   } else if (itemCounter == 1) {
                     //adding object
-                        objectIndex = theIndex % appConstants.getObjectListLength();
+                        objectIndex = theIndex % appConstants.getObjectsListLength();
                         object = appConstants.getObjectAtIndex(objectIndex);
                         while (objects.indexOf(object) != -1) {
                           theIndex = (Math.round(Math.random() * num) + 
@@ -56,7 +56,7 @@ Sha256.generate = function (input, num) {
                                       16 * Sha256.fromCharacter(sha.charAt(4 * i + 1)) + 
                                       256 * Sha256.fromCharacter(sha.charAt(4 * i + 2)) + 
                                       256 * 16 * Sha256.fromCharacter(sha.charAt(4 * i + 3)));
-                          objectIndex = theIndex % appConstants.getObjectListLength();
+                          objectIndex = theIndex % appConstants.getObjectsListLength();
                           object = appConstants.getObjectAtIndex(objectIndex);
                         }
                         objects.push(object);
