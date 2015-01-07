@@ -60,6 +60,10 @@ var accountPage = (function() {
 		var numberBool = $("#" + prefix + "PwdNumber").is(":checked");
 		var otherBool = $("#" + prefix + "PwdOther").is(":checked");
 		var ruleText = $("#" + prefix + "PwdOtherText").val();
+		if (!ruleText) {
+			ruleText = ''
+		}
+		
 		return [length, upperBool, lowerBool, 
 				speCharBool, numberBool, otherBool, ruleText];
 	}
