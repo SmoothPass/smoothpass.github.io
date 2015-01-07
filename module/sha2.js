@@ -26,7 +26,7 @@ Sha256.generate = function (input, num) {
           
       for (var i=0; i<num; i++) {
             itemCounter = 0;
-            while (itemCounter < 4) {
+            while (itemCounter < 2) {
                   theIndex = (Math.round(Math.random() * num) + 
                               Sha256.fromCharacter(sha.charAt(4 * i)) + 
                               16 * Sha256.fromCharacter(sha.charAt(4 * i + 1)) + 
