@@ -234,7 +234,7 @@ var accountPage = (function() {
 		//individual field names end in ..I
 		var checkBox;
 		var checkBoxes = ['upperI', 'lowerI' , 'specialI', 'numberI', 'otherI'];
-		for (var i=0; i<checkBoxes.length(); i++) {
+		for (var i=0; i<checkBoxes.length; i++) {
 			checkBox = checkBoxes[i]
 			$('input[type=checkbox][name=' + checkBox + ']').change(
 				function(){
