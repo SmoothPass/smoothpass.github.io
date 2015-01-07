@@ -15,16 +15,27 @@ var accountPage = (function() {
 		return totalIndex;
 	}
 
+	function checkForDuplicateAccountNames(newAccountName) {
+		var account;
+		var accounts = programVariables.accountTable.query();
+		for (var i=0; i<accounts.length; i++) {
+			account = accounts[i]
+			if (account.get("account") == newAccountName) return false
+		}
+		return true
+	}
+
 	function isWebsite (web, cueList) {
-	//check empty/same account entered
+		//check empty/same account entered
 		if (web == '') {
 			//display cannot be empty message
 			$("#accountSubmitFeedback").html("<p>Account Cannot Be Empty!</p>");
 			return false;
 		}
 		$("#accountSubmitFeedback").html('');
+		//check for duplicate accounts 
+		if (checkForDuplicateAccountNames(web)) return false
 		//check if all stories are unlocked
-
 		//get the largest in the cueList
 		var maxIndex = Math.ceil(cueList[cueList.length - 1]/2);
 		var maxStoryUnlocked = calculateMaxUnlockedStoryIndex();
@@ -292,6 +303,37 @@ var accountPage = (function() {
 	 	return [finalString.join(''), prependStringList.join('')];
 	}
 
+	function parseStringToNestedArrays (stringOfArray) {
+		var result = [];
+		for (var i=0; i < stringOfArray.length(); i++) {
+			var li = stringOfArray.get(i).split('|||'); 
+			result.push(li);
+		}
+		return result;
+	}
+	//returns the number of dictionary words in the typed string
+	function checkNumberOfWordsTyped (input) {
+		var current = 0;
+		var stop = 0;
+		var numberOfWords = 0;
+		var wordsList = [];
+		var word;
+		var trie = appConstants.getTrie();
+		while (stop < input.length) {
+			stop += 1;
+			word = input.slice(current, stop);
+			console.log(word);
+			if ((word != '') && (trie.get(word) != null)) {
+				numberOfWords += 1;
+				wordsList.push(word);
+				console.log(wordsList);
+				current = stop;
+			}
+		}
+		console.log(numberOfWords);
+		return numberOfWords;
+	}
+	
 	//CONTROLLER
 	module.submit = function (e) {
 		submitFunction(e);
@@ -355,37 +397,6 @@ var accountPage = (function() {
 				 rulesHTML;
 
 		return html;
-	}
-
-	function parseStringToNestedArrays (stringOfArray) {
-		var result = [];
-		for (var i=0; i < stringOfArray.length(); i++) {
-			var li = stringOfArray.get(i).split('|||'); 
-			result.push(li);
-		}
-		return result;
-	}
-	//returns the number of dictionary words in the typed string
-	function checkNumberOfWordsTyped (input) {
-		var current = 0;
-		var stop = 0;
-		var numberOfWords = 0;
-		var wordsList = [];
-		var word;
-		var trie = appConstants.getTrie();
-		while (stop < input.length) {
-			stop += 1;
-			word = input.slice(current, stop);
-			console.log(word);
-			if ((word != '') && (trie.get(word) != null)) {
-				numberOfWords += 1;
-				wordsList.push(word);
-				console.log(wordsList);
-				current = stop;
-			}
-		}
-		console.log(numberOfWords);
-		return numberOfWords;
 	}
 
 	function renderAccountList (changePageBool) {
