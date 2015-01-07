@@ -235,7 +235,7 @@ var accountPage = (function() {
 		var checkBox;
 		var checkBoxes = ['upperI', 'lowerI' , 'specialI', 'numberI', 'otherI'];
 		for (var i=0; i<checkBoxes.length(); i++) {
-			checkBox = checkBox[i]
+			checkBox = checkBoxes[i]
 			$('input[type=checkbox][name=' + checkBox + ']').change(
 				function(){
 					window.confirm("Are you sure?")
