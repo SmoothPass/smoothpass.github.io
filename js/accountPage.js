@@ -20,7 +20,7 @@ var accountPage = (function() {
 		var accounts = programVariables.accountTable.query();
 		for (var i=0; i<accounts.length; i++) {
 			account = accounts[i]
-			if (account.get("account") == newAccountName) return true
+			if (account.get("account").toLowerCase() == newAccountName) return true
 		}
 		return false
 	}
