@@ -279,5 +279,3 @@ Utf8.decode = function (strUtf) {
     );
     return strUni;
 }
-
-/* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  
