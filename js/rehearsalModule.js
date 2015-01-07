@@ -162,8 +162,11 @@ var rehearsalModule = ( function () {
 	//VIEW
 
 	function renderRehearsalPage (person, scene) {
-		person = person.replace(' ', '_');
-		scene = scene.replace(' ', '_');
+		var person_space = person
+		var scene_space = scene
+		var person = person.replaceAll(' ', '_');
+		var scene = scene.replaceAll(' ', '_');
+
 		var pageID = '#rehearsalPage';
 		//initialize page
 		if ( !($(pageID).length) ) {
@@ -199,8 +202,8 @@ var rehearsalModule = ( function () {
 				<figcaption>{1}</figcaption></figure><figure><img class=clue \
 				src=images/scene/{2}.jpg /><figcaption>{3}</figcaption>\
 				</figure>";
-		var newHTML = String.format( html, person, person.replace('_', ' '), 
-				scene.toLowerCase(), scene.replace('_', ' ') );
+		var newHTML = String.format( html, person, person_space, 
+				scene.toLowerCase(), scene_space );
 		$('#personSceneDiv').html(newHTML);
 		//update box css 
 		$('.boxWidget div').removeClass();
