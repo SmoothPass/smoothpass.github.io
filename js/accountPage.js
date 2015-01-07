@@ -63,7 +63,7 @@ var accountPage = (function() {
 		if (!ruleText) {
 			ruleText = ''
 		}
-		
+
 		return [length, upperBool, lowerBool, 
 				speCharBool, numberBool, otherBool, ruleText];
 	}
@@ -229,6 +229,20 @@ var accountPage = (function() {
 		}
 		$.mobile.changePage($("#accounts"));
 	}
+
+	function alertOnUpdate(account) {
+		//individual field names end in ..I
+		var checkBox;
+		var checkBoxes = ['upperI', 'lowerI' , 'specialI', 'numberI', 'otherI']
+		for (var i=0; i<checkBoxes.length; i++) {
+			checkBox = checkBox[i]
+			$('input[type=checkbox][name=' + checkBox + ']').change(
+				function(){
+					window.confirm("Are you sure?")
+				}
+			)
+		}
+	}
 	function generateRuleHTML(ruleList, account) {
 		var endString;
 		var prependStringList = [];
@@ -242,7 +256,7 @@ var accountPage = (function() {
 				"<fieldset class='accountField' data-type='horizontal' \
 				data-role='controlgroup'><label class='pwdUpperLabel' \
 				data-type='horizontal'><input type='checkbox' \
-				class='pwdUpperInput' name='upper' \
+				class='pwdUpperInput' name='upperI' \
 				id='", account, "PwdUpper' value='Uppercase' "]
 
 		//ruleList[1] -> upperCaseBool
@@ -253,7 +267,7 @@ var accountPage = (function() {
 		var fieldLowerList = [
 				"/>Uppercase</label><label class='pwdLowerLabel' \
 				data-type='horizontal'><input type='checkbox' \
-				class='pwdLowerInput' name='lower' \
+				class='pwdLowerInput' name='lowerI' \
 	 			id='", account, "PwdLower' value='Lowercase' "];
 
 	 	//ruleList[2] -> lowerCaseBool
@@ -264,7 +278,7 @@ var accountPage = (function() {
 	 	var fieldSpecialCharList = [
 	 			"/>Lowercase</label><label class='pwdSpecialLabel' \
 	 			 data-type='horizontal'><input type='checkbox' \
-	 			 class='pwdSpecialInput' name='special' \
+	 			 class='pwdSpecialInput' name='specialI' \
 	 			 id='", account, "PwdSpecialChar' value='Special Character'"];
 
 	 	//ruleList[3] -> specialChar
@@ -276,7 +290,7 @@ var accountPage = (function() {
 	 	var fieldNumberList = [
 	 			"/>Special Chars</label><label class='pwdNumberLabel' \
 	 			 data-type='horizontal'><input type='checkbox' \
-	 			 class='pwdNumberInput name='number' \
+	 			 class='pwdNumberInput name='numberI' \
 	 			 id='", account, "PwdNumber' value='Number' "];
 
 	 	if (ruleList[4]) {
@@ -287,7 +301,7 @@ var accountPage = (function() {
 
 	 	var fieldOtherList = ["/>Number</label><label class='pwdOtherLabel' \
 	 			data-type='horizontal'><input type='checkbox' \
-	 			class='pwdOtherInput' name='other' \
+	 			class='pwdOtherInput' name='otherI' \
 	 			id='", account, "pwdOther' value='Other'"];
 
 	 	endString = "/>Other</label><fieldset>";
@@ -295,7 +309,7 @@ var accountPage = (function() {
 	 	if (ruleList[5]) {
 	 		var otherRules = ruleList[6];
 	 		fieldOtherList.push("checked='checked' />Other</label>");
-	 		fieldOtherList.push("<input type='text' name='otherText' \
+	 		fieldOtherList.push("<input type='text' name='otherTextI' \
 	 			id='pwdOtherText'" + account + " class='pwdOtherTextInput' \
 	 			value='" + otherRules + "' placeholder='Enter Additional Rules'\
 	 			 />");
@@ -455,6 +469,7 @@ var accountPage = (function() {
 					}
 
 					newPage.appendTo( $.mobile.pageContainer );
+					alertOnUpdate();
 					//add listener for each page
 					var pageID = "#" + accountName + "Page";
 
