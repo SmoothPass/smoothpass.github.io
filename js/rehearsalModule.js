@@ -160,12 +160,15 @@ var rehearsalModule = ( function () {
 		calculateScoreForStory(story);
 	}
 	//VIEW
+	function replaceAll(find, replace, str) {
+		return str.replace(new RegExp(find, 'g'), replace);
+	}
 
 	function renderRehearsalPage (person, scene) {
 		var person_space = person
 		var scene_space = scene
-		var person = person.replaceAll(' ', '_');
-		var scene = scene.replaceAll(' ', '_');
+		var person = replaceAll(' ', '_', person);
+		var scene = replaceAll(' ', '_', scene);
 
 		var pageID = '#rehearsalPage';
 		//initialize page
