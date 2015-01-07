@@ -1,4 +1,4 @@
- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
+/*- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -  */
 /*  SHA-256 implementation in JavaScript | (c) Chris Veness 2002-2010 | www.movable-type.co.uk    */
 /*   - see http://csrc.nist.gov/groups/ST/toolkit/secure_hashing.html                             */
 /*         http://csrc.nist.gov/groups/ST/toolkit/examples.html                                   */
