@@ -290,7 +290,7 @@ var accountPage = (function() {
 	 	var fieldNumberList = [
 	 			"/>Special Chars</label><label class='pwdNumberLabel' \
 	 			 data-type='horizontal'><input type='checkbox' \
-	 			 class='pwdNumberInput name='numberI' \
+	 			 class='pwdNumberInput' name='numberI' \
 	 			 id='", account, "PwdNumber' value='Number' "];
 
 	 	if (ruleList[4]) {
