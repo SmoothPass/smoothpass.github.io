@@ -21,7 +21,6 @@ var accountPage = (function() {
 		for (var i=0; i<accounts.length; i++) {
 			account = accounts[i]
 			if (account.get("account") == newAccountName) return false
-		}
 		return true
 	}
 
@@ -34,7 +33,10 @@ var accountPage = (function() {
 		}
 		$("#accountSubmitFeedback").html('');
 		//check for duplicate accounts 
-		if (checkForDuplicateAccountNames(web)) return false
+		if (checkForDuplicateAccountNames(web)) {
+			$("#accountSubmitFeedback").html('<p>Duplicate Account Names!</p>');
+			return false
+		}
 		//check if all stories are unlocked
 		//get the largest in the cueList
 		var maxIndex = Math.ceil(cueList[cueList.length - 1]/2);
