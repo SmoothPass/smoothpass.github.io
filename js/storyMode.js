@@ -164,9 +164,9 @@ var storyMode = ( function () {
 		var storyBankLocal = [];
 		var numOfStories = storyNumber;
 		var groupListLocal = groupList;
-		var temp = $("#randomnessTextBoxStoryMode").val();
+		//var temp = $("#randomnessTextBoxStoryMode").val();
 
-		//should use sha256 but needs to be modified.  currently uses random 
+		//currently uses javascript random 
 		//var storyBankList = Sha256.generate(temp, 43);
 		for (var i=0; i<numOfStories; i++) {
 			personIndex = Math.floor(Math.random() * copyPeopleList.length);
@@ -234,7 +234,7 @@ var storyMode = ( function () {
 				storyNumber = 50;
 			}
 		}
-		$.mobile.changePage('#mode43');
+		//$.mobile.changePage('#bank');
 		console.log(storyNumber);
 		limitListLength = calculateListLength(storyNumber);
 		groupList = generateStoryGroup(storyNumber);
@@ -242,6 +242,7 @@ var storyMode = ( function () {
 				createGroupHashesList(), createSaltList() );
 		programVariables.generalRecord = 
 				programVariables.storyModeGeneralTable.query()[0];
+		populateBank()
 	}
 	
 	//CONTROLLER 

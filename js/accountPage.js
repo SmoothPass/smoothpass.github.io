@@ -34,7 +34,7 @@ var accountPage = (function() {
 		}
 		$("#accountSubmitFeedback").html('');
 		//check for duplicate accounts 
-		if (checkForDuplicateAccountNames(web)) {
+		if (checkForDuplicateAccountNames(web.toLowerCase())) {
 			$("#accountSubmitFeedback").html('<p>Duplicate Account Names!</p>');
 			return false
 		}
