@@ -142,7 +142,6 @@ var rehearsalModule = ( function () {
 	}
 	module.rehearseStory = function (person, scene) {
 		rehearseStory(person, scene)
-
 	}
 	module.renderRehearsalBoard = function () {
 		renderRehearsalBoard();
@@ -188,8 +187,8 @@ var rehearsalModule = ( function () {
 					placeholder='doing what'/></span><br><br><div \
 					class=halfbuttonDiv><a data-role='button' \
 					id='gameCheckNextButton' tabindex='3' class=right \
-					onclick='rehearsalModule.rehearseStory('" + person + "', '" 
-							+ scene + "')' >Rehearse</a>\
+					onclick='rehearsalModule.rehearseStory(\"" + person + "\", \"" 
+							+ scene + "\")\" >Rehearse</a>\
 					<a href='#' class=left data-role='button' tabindex='4' \
 					onclick='recoveryMechanism.recoverStory()'>I Forget</a>\
 					</div></span></form></span></div></div>");
