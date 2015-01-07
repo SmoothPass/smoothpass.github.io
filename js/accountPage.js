@@ -53,13 +53,13 @@ var accountPage = (function() {
 	function getAccountPwdRule(prefix) {
 		//Each Account has a rule list 
 		//[maxLength, upper, lower, specialChar, number]
-		var length = parseInt($("#" + prefix + "pwdLength").val());
-		var speCharBool = $("#" + prefix + "pwdSpecialChar").is(":checked");
-		var upperBool = $("#" + prefix + "pwdUpper").is(":checked");
-		var lowerBool = $("#" + prefix + "pwdLower").is(":checked");
-		var numberBool = $("#" + prefix + "pwdNumber").is(":checked");
-		var otherBool = $("#" + prefix + "pwdOther").is(":checked");
-		var ruleText = $("#" + prefix + "pwdOtherText").val();
+		var length = parseInt($("#" + prefix + "PwdLength").val());
+		var speCharBool = $("#" + prefix + "PwdSpecialChar").is(":checked");
+		var upperBool = $("#" + prefix + "PwdUpper").is(":checked");
+		var lowerBool = $("#" + prefix + "PwdLower").is(":checked");
+		var numberBool = $("#" + prefix + "PwdNumber").is(":checked");
+		var otherBool = $("#" + prefix + "PwdOther").is(":checked");
+		var ruleText = $("#" + prefix + "PwdOtherText").val();
 		return [length, upperBool, lowerBool, 
 				speCharBool, numberBool, otherBool, ruleText];
 	}
