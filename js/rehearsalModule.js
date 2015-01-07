@@ -56,22 +56,22 @@ var rehearsalModule = ( function () {
 		var stories = programVariables.storyBankTable.query();
 		for (var i=0; i<stories.length; i++) {
 			story = stories[i];
-			if ( record.get('person') == person && 
-					record.get('scene') == scene ) {
+			if ( story.get('person') == person && 
+					story.get('scene') == scene ) {
 				//update story rehearse time
 				date = new Date();
 				//calculateElapsedTime(record.get('lastRehearsed'), date);
-				record.set('lastRehearsed', date);
-				record.set('totalRehearsal', record.get('totalRehearsal')+1);
-				record.set('correctRehearsal', record.get('correctRehearsal')+1);
+				story.set('lastRehearsed', date);
+				story.set('totalRehearsal', story.get('totalRehearsal')+1);
+				story.set('correctRehearsal', story.get('correctRehearsal')+1);
 
 				// if that interval not satisfied
 				//aka length of satisfactory less than that intervalNum
-				if (record.get('rehearsalList').length() <= 
-						record.get('intervalNum')) {
+				if (story.get('rehearsalList').length() <= 
+						story.get('intervalNum')) {
 					//why a list?
-					record.get('rehearsalList').push(true);
-					record.set('intervalNum', record.get('intervalNum')+1);
+					story.get('rehearsalList').push(true);
+					story.set('intervalNum', story.get('intervalNum')+1);
 				}
 			}
 		}
