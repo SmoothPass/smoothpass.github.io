@@ -21,6 +21,7 @@ var accountPage = (function() {
 		for (var i=0; i<accounts.length; i++) {
 			account = accounts[i]
 			if (account.get("account") == newAccountName) return false
+		}
 		return true
 	}
 
