@@ -20,9 +20,9 @@ var accountPage = (function() {
 		var accounts = programVariables.accountTable.query();
 		for (var i=0; i<accounts.length; i++) {
 			account = accounts[i]
-			if (account.get("account") == newAccountName) return false
+			if (account.get("account") == newAccountName) return true
 		}
-		return true
+		return false
 	}
 
 	function isWebsite (web, cueList) {
