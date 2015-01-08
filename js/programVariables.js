@@ -38,13 +38,16 @@ var programVariables = (function () {
 					generalRecord = generalRecord[0];
 
 					// load values to storyMode module
-					storyMode.setSecurityLevel(record.get('securityLevel'));
-					storyMode.setAccountIndex(record.get('accountIndex'));
-					storyMode.setGroupList(record.get('groupList').toArray());
+					storyMode.setSecurityLevel(
+							generalRecord.get('securityLevel'));
+					storyMode.setAccountIndex(
+							generalRecord.get('accountIndex'));
+					storyMode.setGroupList(
+							generalRecord.get('groupList').toArray());
 					storyMode.setGroupHashesList(
-							record.get('groupHashesList').toArray());
+							generalRecord.get('groupHashesList').toArray());
 					storyMode.setGroupSaltList(
-							record.get('groupSaltList').toArray());
+							generalRecord.get('groupSaltList').toArray());
 
 					//change to storyBank page
 					if (!$.mobile.activePage.is("#board")) {
