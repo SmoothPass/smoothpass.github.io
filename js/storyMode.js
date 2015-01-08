@@ -114,7 +114,7 @@ var storyMode = ( function () {
 		var curLimit = 0;
 		var limitsList = groupList;
 		var index = selectedStoryIndex;
-		var records = programVariables.storyBankTable.query();
+		var records = programVariables.getStories();
 
 
 		for ( var i=0; i<limitsList.length; i++ ) {
@@ -238,11 +238,9 @@ var storyMode = ( function () {
 		console.log(storyNumber);
 		limitListLength = calculateListLength(storyNumber);
 		groupList = generateStoryGroup(storyNumber);
-		programVariables.insertRecord(securityLevel, groupList,
+		programVariables.insertGeneralRecord(securityLevel, groupList,
 				createGroupHashesList(), createSaltList() );
-		programVariables.generalRecord = 
-				programVariables.storyModeGeneralTable.query()[0];
-		populateBank()
+		populateBank();
 	}
 	
 	//CONTROLLER 
@@ -342,7 +340,7 @@ var storyMode = ( function () {
 		$('#bank').bind("pageshow", function() {
 			var record, date, person, scene, used, score;
 			var className, button, pair, newli, listHTML;
-			var records = programVariables.storyBankTable.query();
+			var records = programVariables.getStories();
 
 			if (records.length > 0) {
 				listHTML = '<div id="bankStories"><ul data-role="listview" \
@@ -423,12 +421,12 @@ $(document).ready( function() {
 		storyMode.limits($(this), 'StoryMode');
 	});
 	$('#accountsList').submit(accountPage.submit);
-	programVariables.client.authenticate();
+	programVariables.authenticateClient();
 
 	$('#randomnessTextBox').keyup(function() {
     	storyMode.limits($(this), '');
     });
-	if (programVariables.client.isAuthenticated()) {
+	if (programVariables.isClientAuthenticated()) {
 		programVariables.initialize();
 	}
 	//$( "input[type=checkbox]" ).on( "click", countChecked );

@@ -4,27 +4,6 @@ var accountPage = (function() {
 	var SCENE_INDEX = 1;
 	var updateListBool = true;
 
-	function calculateMaxUnlockedStoryIndex() {
-		var generalRecord = programVariables.generalRecord;
-		var groupSaltList = generalRecord.get("groupSaltList").toArray();
-		var groupList = generalRecord.get("groupList").toArray();
-		var totalIndex = 0;
-		for (var i=0; i<groupList.length; i++) {
-			totalIndex += (groupSaltList[i] == '') ? 0 : groupList[i]; 
-		}
-		return totalIndex;
-	}
-
-	function checkForDuplicateAccountNames(newAccountName) {
-		var account;
-		var accounts = programVariables.accountTable.query();
-		for (var i=0; i<accounts.length; i++) {
-			account = accounts[i]
-			if (account.get("account").toLowerCase() == newAccountName) return true
-		}
-		return false
-	}
-
 	function isWebsite (web, cueList) {
 		//check empty/same account entered
 		if (web == '') {
@@ -34,14 +13,15 @@ var accountPage = (function() {
 		}
 		$("#accountSubmitFeedback").html('');
 		//check for duplicate accounts 
-		if (checkForDuplicateAccountNames(web.toLowerCase())) {
+		if (programVariables.checkForDuplicateAccountNames(web.toLowerCase())) {
 			$("#accountSubmitFeedback").html('<p>Duplicate Account Names!</p>');
 			return false
 		}
 		//check if all stories are unlocked
 		//get the largest in the cueList
 		var maxIndex = Math.ceil(cueList[cueList.length - 1]/2);
-		var maxStoryUnlocked = calculateMaxUnlockedStoryIndex();
+		var maxStoryUnlocked = 
+				programVariables.calculateMaxUnlockedStoryIndex();
 		if (maxIndex > maxStoryUnlocked) {
 			$("#accountSubmitFeedback").html('<p>\
 					Need to Unlock More Stories!</p>');
@@ -127,10 +107,9 @@ var accountPage = (function() {
 
 				$('.images').css('text-align','center');
 
-				//Put in Dropbox! Need Another Module!!!! FIX LATER
 				//calculate cue (person-scene pairs from the story list)
-
-				var storyList = calculateCuePairsFromIndices(newCueList);
+				var storyList = 
+						programVariables.calculateCuePairsFromList(newCueList);
 				var ruleList = getAccountPwdRule('');
 				programVariables.insertAccount(account, 
 						storyList, storyMode.getAccountIndex(), ruleList);
@@ -145,22 +124,6 @@ var accountPage = (function() {
 		//reset Password Rules for later accounts added
 		resetPwdRule();
 		return false
-	}
-
-	function calculateCuePairsFromIndices (cueList) {	
-		var record;
-		var person;
-		var scene;
-		var stories = programVariables.storyBankTable.query();
-		var result = [];
-		for (var i=0; i<cueList.length; i++) {
-			record = stories[cueList[i]-1];
-			person = record.get('person');
-			scene = record.get('scene');
-			result.push(person + '|||' + scene);
-		}
-		return result;
-
 	}
 
 	function updateAccountListWrapper () {
@@ -179,7 +142,7 @@ var accountPage = (function() {
 		var answer = $('#' + web + 'Page').find('#' + web+'-password').val(); 
 		if (answer != '') {
 			//update reherasal time of each story as well as the account
-			var records = programVariables.accountTable.query();
+			var records = programVariables.getAccounts();
 			for (var i=0; i<records.length; i++) {
 				record = records[i];
 				if (record.get('account') == web) {
@@ -191,9 +154,8 @@ var accountPage = (function() {
 					record.set("rules", newRuleList);
 				}
 			}
-			console.log()
 			storyList = parseStringToNestedArrays(storyList);
-			var records = programVariables.storyBankTable.query();
+			var records = programVariables.getStories();
 			for (var i=0; i<records.length; i++) {
 				//check each story and update it
 				record = records[i];
@@ -422,8 +384,8 @@ var accountPage = (function() {
 	}
 
 	function renderAccountList (changePageBool) {
-		var accounts = programVariables.accountTable.query();
-		var accountIndex = programVariables.accountIndex;
+		var accounts = programVariables.getAccounts();
+		var accountIndex = programVariables.getAccountIndex();
 		var stories = storyMode.getStoryBank();
 		var accountName = '';
 
@@ -519,9 +481,7 @@ var accountPage = (function() {
 		}
 		if (changePageBool) {
 			storyMode.incrementAccountIndex();
-			programVariables.generalRecord.set("accountIndex", 
-					storyMode.getAccountIndex());
-			//programRecord.set('accountIndex', accountIndex);
+			programVariables.setAccountIndex(storyMode.getAccountIndex());
 			$.mobile.changePage(newPage);
 		}
 		updateListBool = false;

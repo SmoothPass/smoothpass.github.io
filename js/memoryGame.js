@@ -170,12 +170,12 @@ var memoryGame = (function () {
 				//score hashes for this group into generalRecord
 				//only storing if not gameRestartBool
 				if (!gameRestart) {
-					var programRecord = programVariables.generalRecord;
 					var flattened = flattenGroupHashList(
 							recoveryMechanism.getHashResults());
-					storyMode.getGroupHashesList()[currentGroupIndex] = flattened;
-					programRecord.get('groupHashesList').set(currentGroupIndex, 
-							flattened);
+					storyMode.getGroupHashesList()[currentGroupIndex] = 
+							flattened;
+					programVariables.setGeneralRecordFlattenedListAtIndex(
+							currentGroupIndex, flattened);
 					//?hashes result clear
 				}
 			} else {

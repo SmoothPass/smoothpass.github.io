@@ -1,193 +1,274 @@
-var programVariables = programVariables || {};
+var programVariables = (function () {
+	var module = {};
+	var DROPBOX_APP_KEY = '8qw6cevpayp0vyd';
+	var client = new Dropbox.Client({key: DROPBOX_APP_KEY});
+	var dropBoxDatastore;
+	var storyModeGeneralTable;
+	var storyBank, accounts, stories, accountIndex, securitySetting;
+	var storyBankTable, accountTable, generalTable, generalRecord;
+	var tempStartingInterval = 1000 * 60;
 
-programVariables.DROPBOX_APP_KEY = '8qw6cevpayp0vyd';
-programVariables.client = new Dropbox.Client({key: programVariables.DROPBOX_APP_KEY});
-programVariables.datastore = null;
-
-programVariables.storyBank;
-programVariables.accounts;
-programVariables.stories;
-programVariables.accountIndex;
-programVariables.securitySetting;
-
-var tempStartingInterval = 1000 * 60;
-
-programVariables.initialize = function (){
-	programVariables.client.getDatastoreManager().openDefaultDatastore(function (error, datastore) {
-		if (error) {
-			alert('Error opening default datastore: ' + error);
-		} 
-		programVariables.datastore = datastore;
-		programVariables.storyBankTable = datastore.getTable('stories');
-		programVariables.accountTable = datastore.getTable('accounts');
-		programVariables.generalTable = datastore.getTable('general');
-		programVariables.storyModeGeneralTable = datastore.getTable('storyModeGeneral');
-
-		programVariables.generalRecord = programVariables.storyModeGeneralTable.query();
-		programVariables.stories = programVariables.storyBankTable.query();
-		programVariables.accounts = programVariables.accountTable.query();
-
-		//programVariables.storyBank = programVariables.stripStoryFromRecords();
-		programVariables.programRecord = programVariables.generalTable.query();
+	function initialize() {
+		client.getDatastoreManager().openDefaultDatastore(
+			function (error, datastore) {
+				if (error) {
+					alert("Error opening default datastore: " + error);
+				}
+				dropBoxDatastore = datastore;
+				storyBankTable = dropBoxDatastore.getTable('stories');
+				accountTable = dropBoxDatastore.getTable('accounts');
+				generalTable = dropBoxDatastore.getTable('general');
+				storyModeGeneralTable = 
+						dropBoxDatastore.getTable('storyModeGeneral');
+				generalRecord = storyModeGeneralTable.query();
+				stories = storyBankTable.query();
+				accounts = accountTable.query();
 
 
-		if (programVariables.generalRecord.length === 0) {
-			//if security Level has not been set go to that page and store information generated 
-			//change to usability-security scale page
-			$.mobile.changePage($("#userSelect"))
-			//initialize account index to be 0
-			storyMode.setAccountIndex(0);
-			//window.location = "https://smoothpass.github.io/index.html#userSelect";
+				if (generalRecord.length === 0) {
+					// if security level has not been set 
+					// go to that page and store information generated
+					
+					// change to usability-security scale page
+					$.mobile.changePage($("#userSelect"));
+					//initialize account index to be 0
+					storyMode.setAccountIndex(0);
 
-		} else if (programVariables.generalRecord.length === 1) {
-			programVariables.generalRecord = programVariables.generalRecord[0];
-			var record = programVariables.generalRecord;
-			// load values to storyMode module
-			storyMode.setSecurityLevel(record.get('securityLevel'));
-			storyMode.setAccountIndex(record.get('accountIndex'));
-			storyMode.setGroupList(record.get('groupList').toArray());
-			storyMode.setGroupHashesList(
-					record.get('groupHashesList').toArray());
-			storyMode.setGroupSaltList(record.get('groupSaltList').toArray());
-			//change to storyBank page
-			if (!$.mobile.activePage.is("#board")){
-				$.mobile.changePage($("#board"));
+				} else if (generalRecord.length === 1) {
+					generalRecord = generalRecord[0];
+
+					// load values to storyMode module
+					storyMode.setSecurityLevel(record.get('securityLevel'));
+					storyMode.setAccountIndex(record.get('accountIndex'));
+					storyMode.setGroupList(record.get('groupList').toArray());
+					storyMode.setGroupHashesList(
+							record.get('groupHashesList').toArray());
+					storyMode.setGroupSaltList(
+							record.get('groupSaltList').toArray());
+
+					//change to storyBank page
+					if (!$.mobile.activePage.is("#board")) {
+						$.mobile.changePage($("#board"));
+					}
+				} else {
+					//should never get here since generalTable only one entry
+					alert("GeneralTable should only have one record!");
+				}
+
+				if (stories.length === 0) {
+					storyMode.emptyStoryBank();
+				} else {
+					var tempBank = [];
+					var story;
+					for (var i=0; i<stories.length; i++) {
+						story = stories[i];
+						tempBank.push([story.get('person'), 
+								story.get('scene')]);
+					}
+					storyMode.setStoryBank(tempBank);
+				}
+
+				storyMode.updateStoryBankList();
+				accountPage.updateAccountList();
+
+				//Ensure future changes update the list
+				dropBoxDatastore.recordsChanged.addListener(
+						storyMode.updateStoryBankList);
+				dropBoxDatastore.recordsChanged.addListener(
+						accountPage.updateAccountList);
+
+				rehearsalModule.checkEachStory();
+				rehearsalModule.renderRehearsalBoard();
+
+				$('ul.rehearsalList li').on('click',
+					function (e) {
+						e.preventDefault();
+						var textList = $(this).find(".storyText");
+						var person = textList[0].innerHTML;
+						var scene = textList[1].innerHTML;
+						rehearsalModule.renderRehearsalPage(person, scene);
+					}
+				);
 			}
-			//window.location = "https://smoothpass.github.io/index.html#board";
-		} else {
-			//should never get here since generalTable should only have one entry
-			alert('something is wrong please contact our developer');
-		}
+		);
+		return true;
+	}
 
-		if (programVariables.stories.length === 0) {
-			storyMode.emptyStoryBank();
-		} else {
-			var tempBank = [];
-			for (var i=0; i<programVariables.stories.length; i++) {
-				var story = programVariables.stories[i];
-				tempBank.push([story.get('person'), story.get('scene')]);
+	function getGroupFromRecordIndices(start, end) {
+		var group = [];
+		var record;
+		for (var i=start; i<end; i++) {
+			record = stories[i];
+			group.push([record.get('person'), 
+					record.get('scene'), record.get('used')]);
+		}
+		return group;
+	}
+
+	function insertGeneralRecord(level, groupList, groupHashflten, grpSaltList) {
+		storyModeGeneralTable.insert({
+			securityLevel: level,
+			accountIndex: 0,
+			groupList: groupList,
+			groupHashesList: groupHashflten,
+			groupSaltList: grpSaltList
+		});
+	}
+
+	function insertStory(personName, sceneName, usedBool, groupNum) {
+		storyBankTable.insert({
+			person: personName,
+			scene: sceneName,
+			used: usedBool,
+			created: new Date(),
+			initialized: new Date(),
+			lastRehearsed: new Date(),
+			groupNumber: groupNum,
+			refCount: 0,
+			refList: [],
+			intervalNum: 0,
+			rehearsalList: [],
+			correctRehearsal: 1,
+			totalRehearsal: 1,
+			interval: tempStartingLevel
+		});
+	}
+
+	function insertAccount(accountName, storyList, index, ruleList) {
+		accountTable.insert({
+			account: accountName,
+			created: new Date(),
+			lastRehearsal: new Date(),
+			storyList: storyList,
+			accountIndex: index,
+			rules: ruleList
+		});
+
+	}
+
+	function updateStoryRefCount(accountName, accountNestedList) {
+		// fill later
+	}
+
+	function stripStoryFromRecords() {
+		var record;
+		var records = storyBankTable.query();
+		storyList = [];
+		for (var i=0; i<records.length; i++) {
+			record = records[i];
+			storyList.push([record.get('person'), record.get('scene')]);
+		}
+		return storyList;
+	}
+
+	function parseStringToNestedArrays(stringOfArray) {
+		var result = [];
+		for (var i=0; i<stringOfArray.length(); i++) {
+			var li = stringOfArray.get(i).split('|||');
+			result.push(li);
+		}
+		return result;
+	}
+
+	function calculateMaxUnlockedStoryIndex() {
+		var groupSaltList = generalRecord.get("groupSaltList").toArray();
+		var groupList = generalRecord.get("groupList").toArray();
+		var totalIndex = 0;
+		for (var i=0; i<groupList.length; i++) {
+			totalIndex += (groupSaltList[i] == '') ? 0 : groupList[i];
+		}
+		return totalIndex;
+	}
+
+	//CONTROLLERS
+	//used by AccountPage
+	module.calculateMaxUnlockedStoryIndex = function()
+		return calculateMaxUnlockedStoryIndex()
+	}
+	return module;
+
+	module.checkForDuplicateAccountNames = function(newAccountName) {
+		var account;
+		for (var i=0; i<accounts.length; i++) {
+			account = accounts[i];
+			if (account.get("account").toLowerCase() == newAccountName) {
+				return true;
 			}
-			storyMode.setStoryBank(tempBank);
 		}
-		// if (programVariables.programRecord.length == 0) {
-		// 	//initialize values
-		// 	programVariables.insertProgramRecord(programVariables.generalTable);
-		// } else if (programVariables.programRecord.length == 1) {
-		// 	programVariables.programRecord = programVariables.programRecord[0];
-		// 	var tempRecord = programVariables.programRecord;
-		// 	//load stored values
-		// 	programVariables.accountIndex = tempRecord.get('accountIndex');
-		// 	programVariables.existingAccountIndex = tempRecord.get('existingAccountIndex');
-		// 	programVariables.existingAccounts = tempRecord.get('existingAccounts');
-		// 	programVariables.existingPersonList = tempRecord.get('existingPersonList');
-		// 	programVariables.existingSceneList = tempRecord.get('existingSceneList');
- 		// Populate Initial Bank & Account List
-
- 		storyMode.updateStoryBankList();
- 		accountPage.updateAccountList();
-
- 		//Ensure future changes update the list 
- 		programVariables.datastore.recordsChanged.addListener(
- 				storyMode.updateStoryBankList);
-		programVariables.datastore.recordsChanged.addListener(
-				accountPage.updateAccountList);	
-		console.log('accountLoaded Successfully');
-		rehearsalModule.checkEachStory();
-		rehearsalModule.renderRehearsalBoard();
-		$('ul.rehearsalList li').on('click',
-			function (e) {
-				e.preventDefault();
-				var textList = $(this).find(".storyText");
-				var person = textList[0].innerHTML;
-				var scene = textList[1].innerHTML;
-				rehearsalModule.renderRehearsalPage(person, scene);
-			});
-		//UI Change after logging in REFER TO pm.js
-	});
-	return true;
-}
-
-programVariables.getGroupFromRecordIndices = function(start, end) {
-	var records = programVariables.storyBankTable.query();
-	var group = [];
-	for (var i = start; i < end; i++ ){
-		var record = records[i];
-		group.push([record.get('person'), record.get('scene'), record.get('used')]);
+		return false;
 	}
-	return group;
-}
 
-programVariables.insertRecord = function (level, groupList, groupHashFlattened, groupSaltList) {
-	programVariables.storyModeGeneralTable.insert({
-		securityLevel: level,
-		accountIndex: 0,
-		groupList: groupList,
-		groupHashesList: groupHashFlattened,
-		groupSaltList: groupSaltList
-	});
-}
-
-programVariables.insertStory = function (personName, sceneName, usedBool, groupNum) {
-	programVariables.storyBankTable.insert({
-		person: personName,
-		scene: sceneName,
-		used: usedBool,
-		created: new Date(),
-		initialized: new Date(),
-		lastRehearsed: new Date(),
-		groupNumber: groupNum,
-		refCount: 0,
-		refList: [],
-		intervalNum: 0,
-		rehearsalList: [],
-		correctRehearsal: 1,
-		totalRehearsal: 1,
-		interval: tempStartingInterval
-	});
-}
-
-programVariables.insertAccount = function (accountName, storyList, index, ruleList) {	
-	//do nothing currently should do the following
-	programVariables.accountTable.insert({
-		account:accountName,
-		created: new Date(),
-		lastRehearsal: new Date(),
-		storyList: storyList,
-		accountIndex: index,
-		rules: ruleList
-	});
-}
-
-programVariables.insertProgramRecord = function (generalTable) {
-	generalTable.insert({
-		accountIndex : 0,
-		existingAccountIndex : 0,
-		existingAccounts : [],
-		existingSceneList : [],
-		existingPersonList : []
-	});
-}
-
-programVariables.updateStoryRefCount = function (accountName, accountNestedList) {
- 	// fill later
-}
-
-
-programVariables.stripStoryFromRecords = function() {
-	var records = programVariables.storyBankTable.query();
-	var storyList = [];
-	for (var i = 0; i < records.length; i++ ){
-		var record = records[i];
-		storyList.push([record.get('person'), record.get('scene')]);
+	module.calculateCuePairsFromList = function(cueList) {
+		var record, person, scene;
+		var result = [];
+		for (var i=0; i<cueList.length; i++) {
+			record = stories[cueList[i]-1];
+			person = record.get('person');
+			scene = record.get('scene');
+			result.push(person + '|||' + scene);
+		}
+		return result;
 	}
-	return storyList;
-}
 
-programVariables.parseStringToNestedArrays = function (stringOfArray) {
-	var result = [];
-	for (var i=0; i < stringOfArray.length(); i++) {
-		var li = stringOfArray.get(i).split('|||'); 
-		result.push(li);
+	module.insertAccount = function(account, storyList, index, ruleList) {
+		insertAccount(account, storyList, index, ruleList);
+		return;
 	}
-	return result;
-}
+
+	module.insertStory = function(person, scene, used, floor) {
+		insertStory(person, scene, used, floor);
+	}
+
+	module.insertGeneralRecord = function(level, groupList, grpHash, grpSalt) {
+		insertGeneralRecord(level, groupList, grpHash, grpSalt);
+		//after insert the record update reference to the general record
+		generalRecord = storyModeGeneralTable.query()[0];
+	}
+
+	module.getAccounts = function() {
+		return accounts;
+	}
+
+	module.getStories = function() {
+		return stories;
+	}
+
+	module.getAccountIndex = function() {
+		return accountIndex;
+	}
+
+	module.setAccountIndex = function(index) {
+		generalRecord.set("accountIndex", index);
+		return;
+	}
+
+	module.setGeneralRecordGroupSaltList = function(groupSaltList) {
+		generalRecord.set("groupSaltList", groupSaltList);
+		return;
+	}
+
+	module.setGeneralRecordFlattenedListAtIndex = function(index, flattened) {
+		generalRecord.get("groupHashesList").set(index, flattened);
+		return;
+	}
+
+	//used in StoryMode
+	module.getGroupFromRecordIndices = function(startFrom, curLimit) {
+		return getGroupFromRecordIndices(startFrom, curLimit);
+	}
+
+	module.initialize = function() {
+		initialize();
+	}
+
+	module.isClientAuthenticated = function() {
+		return client.isAuthenticated();
+	}
+
+	module.authenticateClient = function() {
+		client.authenticated();
+		return;
+	}
+
+	module.
+}());

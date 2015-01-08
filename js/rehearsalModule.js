@@ -53,7 +53,7 @@ var rehearsalModule = ( function () {
 	function rehearseStory (person, scene) {
 		//update rehearsal time for story bank
 		var story, date;
-		var stories = programVariables.storyBankTable.query();
+		var stories = programVariables.getStories();
 		for (var i=0; i<stories.length; i++) {
 			story = stories[i];
 			if ( story.get('person') == person && 
@@ -105,7 +105,7 @@ var rehearsalModule = ( function () {
 		var story, originalDate, currentDate, check;
 		urgentRehearsalList = [];
 		rehearsalSoonList = [];
-		var records = programVariables.storyBankTable.query();
+		var records = programVariables.getStories();
 		for (var i=0; i<records.length; i++) {
 			story = records[i];
 			originalDate = story.get('created');
