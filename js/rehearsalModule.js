@@ -75,6 +75,8 @@ var rehearsalModule = ( function () {
 				}
 			}
 		}
+		$("#rehearsal-password").val('');
+		$("#rehearsal-password-b").val('');
 		$.mobile.changePage('#board');
 	}
 
