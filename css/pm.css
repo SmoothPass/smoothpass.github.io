@@ -553,3 +553,14 @@ div.horizontal {
 .ui-header {
 	border-width:0;
 }
+
+.ui-header .ui-navbar a {
+	font-size: 20px;
+}
+
+a.logo.ui-link.ui-btn {
+	position: absolute;
+	width: 20%;
+	left: 0;
+	top: -120%;
+}
