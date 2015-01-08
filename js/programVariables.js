@@ -182,10 +182,9 @@ var programVariables = (function () {
 
 	//CONTROLLERS
 	//used by AccountPage
-	module.calculateMaxUnlockedStoryIndex = function()
+	module.calculateMaxUnlockedStoryIndex = function() {
 		return calculateMaxUnlockedStoryIndex()
 	}
-	return module;
 
 	module.checkForDuplicateAccountNames = function(newAccountName) {
 		var account;
@@ -270,5 +269,5 @@ var programVariables = (function () {
 		return;
 	}
 
-	module.
+	return module;
 }());
