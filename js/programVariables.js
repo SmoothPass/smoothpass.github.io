@@ -265,7 +265,7 @@ var programVariables = (function () {
 	}
 
 	module.authenticateClient = function() {
-		client.authenticated();
+		client.authenticate();
 		return;
 	}
 
