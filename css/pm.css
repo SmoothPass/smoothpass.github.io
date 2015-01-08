@@ -550,3 +550,6 @@ div.horizontal {
     table-layout: fixed;
     width: 100%;
 }
+.ui-header {
+	border-width:0;
+}
