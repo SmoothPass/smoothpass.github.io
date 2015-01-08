@@ -550,3 +550,26 @@ div.horizontal {
     table-layout: fixed;
     width: 100%;
 }
+
+/*style the sub menu*/
+.menu li ul {
+	position:absolute;
+	visibility:hidden;
+	border-top:1px solid #fff;
+	margin:0;
+	padding:0;
+}
+
+.menu li ul li {
+	display:inline;
+	float:none;
+}
+
+.menu li ul li a:link, .menu li ul li a:visited {
+	background-color:#09F;
+	width:auto;
+}
+
+.menu li ul li a:hover {
+	background-color:#0CF;	
+}
