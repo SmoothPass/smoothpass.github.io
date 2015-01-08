@@ -573,3 +573,29 @@ div.horizontal {
 .menu li ul li a:hover {
 	background-color:#0CF;	
 }
+
+/*style the main menu*/
+.menu {
+	margin:0;
+	padding:0;
+}
+
+.menu li {
+	list-style:none;
+	float:left;
+	font:12px Arial, Helvetica, sans-serif #111;
+}
+
+.menu li a:link, .menu li a:visited {
+	display:block;
+	text-decoration:none;
+	background-color:#09F;
+	padding: 0.5em 2em;
+	margin:0;
+	border-right: 1px solid #fff;
+	color:#111;
+}
+
+.menu li a:hover {
+	background-color:#0CF;	
+}
