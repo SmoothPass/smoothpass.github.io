@@ -454,5 +454,12 @@ $(document).ready( function() {
         ticks += '<div class="sliderTickmarks "><span>90</span></div>';
         ticks += '<div class="sliderTickmarks "><span>100</span></div>';
     	$("#mainSliderBar .ui-slider-track").prepend(ticks);
-	})
+	});
+
+	function openSubMenu() {
+		$(this).find('ul').css('visibility', 'visible');	
+	};
+
+	$('.menu > li').bind('mouseover', openSubMenu);
+
 });
