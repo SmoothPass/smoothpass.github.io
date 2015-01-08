@@ -272,5 +272,42 @@ var programVariables = (function () {
 		return;
 	}
 
+	module.signOff = function() {
+		client.signOff();
+		//DISABLE UI
+		//$('#home-game').addClass("ui-disabled");
+		//$('#home-bank').addClass("ui-disabled");
+		//$('#home-accounts').addClass("ui-disabled");
+		location.reload();
+	}
+
+	module.deleteAllRecords = function() {
+		var record;
+		var records = storyBankTable.query();
+		for (var i = 0; i < records.length; i++) {
+			record = records[i];
+			storyBankTable.get(record.getId()).deleteRecord();
+		}
+
+		records = accountTable.query();
+		for (var i = 0; i < records.length; i++) {
+			record = records[i];
+			accountTable.get(record.getId()).deleteRecord();
+		}
+
+		records = generalTable.query();
+		for (var i = 0; i < records.length; i++) {
+			record = records[i];
+			generalTable.get(record.getId()).deleteRecord();
+		}
+
+		records = storyModeTable.query();
+		for (var i = 0; i < records.length; i++) {
+			record = records[i];
+			storyModeTable.get(record.getId()).deleteRecord();
+		}
+		return;
+	}
+	
 	return module;
 }());
