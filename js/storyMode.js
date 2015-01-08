@@ -456,10 +456,15 @@ $(document).ready( function() {
     	$("#mainSliderBar .ui-slider-track").prepend(ticks);
 	});
 
+	$('.menu > li').bind('mouseover', openSubMenu);
+	$('.menu > li').bind('mouseout', closeSubMenu);
+		
 	function openSubMenu() {
 		$(this).find('ul').css('visibility', 'visible');	
 	};
-
-	$('.menu > li').bind('mouseover', openSubMenu);
+		
+	function closeSubMenu() {
+		$(this).find('ul').css('visibility', 'hidden');	
+	};
 
 });
