@@ -226,7 +226,7 @@ var rehearsalModule = ( function () {
 					var targetJQ = $("#" + e.target.id);
 					//if enter key pressed and input not empty
 					//select the first option 
-					console.log(targetJQ.closet($('.ui-btn:first a')));
+					targetJQ.parent().next($('ul')).children().first('li').children().click();
 
 				}
 			}
