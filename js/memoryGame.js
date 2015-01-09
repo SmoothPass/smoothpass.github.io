@@ -408,7 +408,7 @@ var memoryGame = (function () {
 		$('#' + id).autocomplete({
 			target: $("#action-suggestions"),
 			forceFirstChoiceOnEnterKey : true,
-	        data: appConstants.getActionsList()
+	        source: appConstants.getActionsList()
 	        	// { value: "balancing", label: "balancing" },
 		        // { value: "bending", label: "bending" },
 		        // { value: "biting", label: "biting"},
