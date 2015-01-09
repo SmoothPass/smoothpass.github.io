@@ -389,12 +389,14 @@ var memoryGame = (function () {
 	}
 
 	function generateActionSource() {
-		var action;
+		var action, html;
 		var actions = appConstants.getActionsList();
 		var source = [];
 		for (var i=0; i<actions.length; i++) {
 			action = actions[i];
-			var html = "<p>" + action + "</p>";
+			html = "<div style='padding: 0px; margin: 0px; height: 95px; \
+					float: left;'>" + "<div>" + action + "</div></div>";
+                    source[i] = { html: html, title: title };
 			source.push({html:action, title:action});
 		}
 		return source;
