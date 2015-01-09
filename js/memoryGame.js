@@ -324,7 +324,7 @@ var memoryGame = (function () {
 				scene.split('_').join(' ')));
 		
 		//load combo box
-		getVerbComboBox('game-password', 'game-action-suggestions');
+		getActionComboBox('game-password', 'game-action-suggestions');
 		getObjectComboBox('game-password-b', 'game-object-suggestions');
 	}
 
