@@ -174,6 +174,26 @@ var rehearsalModule = ( function () {
 		var pageID = '#rehearsalPage';
 		//initialize page
 		if ( !($(pageID).length) ) {
+			// var newPage = $("\
+			// 		<div data-role='page' data-title='rehearsalPage' \
+			// 		id='rehearsalPage'><div data-role='header' \
+			// 		data-position=fixed><a href=#board data-icon='back'>Back\
+			// 		</a><h1>Rehearsal</h1></div><div data-role='content' \
+			// 		class=images><span id='personSceneDiv'></span><span \
+			// 		data-role='fieldcontain'><form action='#'><span \
+			// 		class='boxWidget'><input autocorrect='off' name='password'\
+			// 		id='rehearsal-password' value='' placeholder='doing what' \
+			// 		autofocus='autofocus' tabindex='1'/><input \
+			// 		autocorrect='off' name='password2' \
+			// 		id='rehearsal-password-b' value='' tabindex='2' \
+			// 		placeholder='doing what'/></span><br><br><div \
+			// 		class=halfbuttonDiv><a data-role='button' \
+			// 		id='gameCheckNextButton' tabindex='3' class=right \
+			// 		onclick='rehearsalModule.rehearseStory(\"" + person + "\", \"" 
+			// 				+ scene + "\")' >Rehearse</a>\
+			// 		<a href='#' class=left data-role='button' tabindex='4' \
+			// 		onclick='recoveryMechanism.recoverStory()'>I Forget</a>\
+			// 		</div></span></form></span></div></div>");
 			var newPage = $("\
 					<div data-role='page' data-title='rehearsalPage' \
 					id='rehearsalPage'><div data-role='header' \
@@ -181,9 +201,8 @@ var rehearsalModule = ( function () {
 					</a><h1>Rehearsal</h1></div><div data-role='content' \
 					class=images><span id='personSceneDiv'></span><span \
 					data-role='fieldcontain'><form action='#'><span \
-					class='boxWidget'><input autocorrect='off' name='password'\
-					id='rehearsal-password' value='' placeholder='doing what' \
-					autofocus='autofocus' tabindex='1'/><input \
+					class='boxWidget'><div id='rehearsal-password'> \
+					</div><input \
 					autocorrect='off' name='password2' \
 					id='rehearsal-password-b' value='' tabindex='2' \
 					placeholder='doing what'/></span><br><br><div \
