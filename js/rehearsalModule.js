@@ -221,8 +221,12 @@ var rehearsalModule = ( function () {
 			memoryGame.getVerbComboBoxWrapper('rehearsal-password');
 			memoryGame.getObjectComboBoxWrapper('rehearsal-password-b');
 			$(pageID).page().page("destroy").page();
-			function bindEnterKey() {
-				alert('hi!');
+			function bindEnterKey(e) {
+				if (e && e.keyCode == 13 ) {
+					console.log(e.target);
+					//if enter key pressed
+
+				}
 			}
 			$('#rehearsal-password').bind('focus', function() {
 				document.getElementById('rehearsal-password').addEventListener("keypress", bindEnterKey);
