@@ -200,39 +200,32 @@ var rehearsalModule = ( function () {
 					data-position=fixed><a href=#board data-icon='back'>Back\
 					</a><h1>Rehearsal</h1></div><div data-role='content' \
 					class=images><span id='personSceneDiv'></span><div \
-					data-role='fieldcontain'><form action='#'><span class='boxWidget'>\
-					<p class='actionCombo'><input id='rehearsal-password' \
-					placeholder='Doing' tabindex='1' data-role='none' class='action-input' />\
-					<ul id='action-suggestion' class='action-suggestions' data-role='listview' \
-					data-inset='true'></ul></p>\
-					<p class='objectCombo'><input id='rehearsal-password-b' tabindex='2' data-role='none'\
-					placeholder='What?' class='object-input' /><ul id='object-suggestion' class='object-suggestions' \
-					data-role='listview' data-inset='true'></ul></p></span>\
-					<br><br><div class=halfbuttonDiv>\
-					<a data-role='button' id='gameCheckNextButton' \
-					tabindex='3' class=right \
-					onclick='rehearsalModule.rehearseStory(\"" + person + "\", \"" 
-							+ scene + "\")' >Rehearse</a>\
+					data-role='fieldcontain'><form action='#'>\
+					<span class='boxWidget'><p class='actionCombo'><input \
+					id='rehearsal-password' placeholder='Doing' tabindex='1' \
+					data-role='none' class='action-input' /><ul \
+					id='rehearsal-action-suggestions' \
+					class='action-suggestions' data-role='listview' \
+					data-inset='true'></ul></p><p class='objectCombo'><input \
+					id='rehearsal-password-b' tabindex='2' data-role='none'\
+					placeholder='What?' class='object-input' /><ul \
+					id='rehearsal-object-suggestions' \
+					class='object-suggestions' data-role='listview' \
+					data-inset='true'></ul></p></span><br><br>\
+					<div class=halfbuttonDiv><a data-role='button' \
+					id='gameCheckNextButton' tabindex='3' class=right \
+					onclick='rehearsalModule.rehearseStory(\"" + person + "\", \
+							\"" + scene + "\")' >Rehearse</a>\
 					<a href='#' class=left data-role='button' tabindex='4' \
 					onclick='recoveryMechanism.recoverStory()'>I Forget</a>\
 					</div></form></div></div></div>");
 					//recoverStory(i);// rehearseStory
 			newPage.appendTo( $.mobile.pageContainer );
-			memoryGame.getVerbComboBoxWrapper('rehearsal-password');
-			memoryGame.getObjectComboBoxWrapper('rehearsal-password-b');
+			memoryGame.getVerbComboBoxWrapper('rehearsal-password', 
+					'rehearsal-action-suggestions');
+			memoryGame.getObjectComboBoxWrapper('rehearsal-password-b', 
+					'ehearsal-object-suggestions');
 			$(pageID).page().page("destroy").page();
-			function bindEnterKey(e) {
-				if (e && e.keyCode == 13 && e.target.value != '') {
-					var targetJQ = $("#" + e.target.id);
-					//if enter key pressed and input not empty
-					//select the first option 
-					targetJQ.parent().next($('ul')).children().first('li').children().click();
-
-				}
-			}
-			$('#rehearsal-password').bind('focus', function() {
-				document.getElementById('rehearsal-password').addEventListener("keypress", bindEnterKey);
-			})
 		}
 		//put person and scene in the picture
 		var html = "\

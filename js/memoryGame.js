@@ -262,11 +262,11 @@ var memoryGame = (function () {
 		$.mobile.changePage("#bank");
 	}
 
-	module.getVerbComboBoxWrapper = function (id) {
+	module.getVerbComboBoxWrapper = function (id, targetId) {
 		getActionComboBox(id);
 	}
 
-	module.getObjectComboBoxWrapper = function (id) {
+	module.getObjectComboBoxWrapper = function (id, targetId) {
 		getObjectComboBox(id);
 	}
 	//VIEW FUNCTIONS
@@ -400,9 +400,9 @@ var memoryGame = (function () {
 		})
 
 	}
-	function getActionComboBox(id) {
+	function getActionComboBox(id, targetId) {
 		$('#' + id).autocomplete({
-			target: $("#action-suggestion"),
+			target: $("#" + targetId),
 			forceFirstChoiceOnEnterKey : true,
 	        source: appConstants.getActionsList(),
 	        callback: function(e) {
@@ -417,9 +417,9 @@ var memoryGame = (function () {
 	    settingUpEnterKeyBinding(id);
 	}
 
-	function getObjectComboBox(id) {
+	function getObjectComboBox(id, targetId) {
 		$('#' + id).autocomplete({
-			target: $("#object-suggestion"),
+			target: $("#" + targetId),
 			forceFirstChoiceOnEnterKey: true,
 	    	source: appConstants.getObjectsList(),
 	    	callback: function(e) {
