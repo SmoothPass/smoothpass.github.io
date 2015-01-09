@@ -199,23 +199,22 @@ var rehearsalModule = ( function () {
 					id='rehearsalPage'><div data-role='header' \
 					data-position=fixed><a href=#board data-icon='back'>Back\
 					</a><h1>Rehearsal</h1></div><div data-role='content' \
-					class=images><span id='personSceneDiv'></span><span \
-					data-role='fieldcontain'><form action='#'><span \
-					class='boxWidget'><input id='rehearsal-password' \
+					class=images><span id='personSceneDiv'></span><div \
+					data-role='fieldcontain'><form action='#'><span class='boxWidget'><div><input id='rehearsal-password' \
 					placeholder='Doing' tabindex='1'>\
 					<ul id='action-suggestions' data-role='listview' \
-					data-inset='true'></ul>\
-					<input id='rehearsal-password-b' tabindex='2' \
+					data-inset='true'></ul></div>\
+					<div><input id='rehearsal-password-b' tabindex='2' \
 					placeholder='What?'/><ul id='object-suggestions' \
-					data-role='listview' data-inset='true'></ul>\
-					</span><br><br><div class=halfbuttonDiv>\
+					data-role='listview' data-inset='true'></ul></div></span>\
+					<br><br><div class=halfbuttonDiv>\
 					<a data-role='button' id='gameCheckNextButton' \
 					tabindex='3' class=right \
 					onclick='rehearsalModule.rehearseStory(\"" + person + "\", \"" 
 							+ scene + "\")' >Rehearse</a>\
 					<a href='#' class=left data-role='button' tabindex='4' \
 					onclick='recoveryMechanism.recoverStory()'>I Forget</a>\
-					</div></span></form></span></div></div>");
+					</div></form></div></div></div>");
 					//recoverStory(i);// rehearseStory
 			newPage.appendTo( $.mobile.pageContainer );
 			memoryGame.getVerbComboBoxWrapper('rehearsal-password');
