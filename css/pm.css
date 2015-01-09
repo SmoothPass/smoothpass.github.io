@@ -568,22 +568,39 @@ a.logo.ui-link.ui-btn {
 	padding-top: 10%;
 }
 
-.actionCombo {
-	width: 30%;
+p.actionCombo {
+	width: 49%;
 	float: left;
+	padding: 0;
+	margin: 0;
+	border: 0;
 }
 
-.objectCombo {
-	width:30%;
+p.objectCombo {
+	width: 50.5%;
+	float: right;
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+
+ul.object-suggestions {
+	position:absolute;
+	z-index: 100;
+	padding-left: 80%;
+}
+
+ul.action-suggestions {
+	position:absolute;
+	z-index: 100;
+}
+
+input.object-input {
+	width: 50%;
+	float: left;
+}
+input.action-input {
+	width: 50%;
 	float: right;
 }
 
-ul#object-suggestions {
-	position:absolute;
-	z-index: 100;
-}
-
-ul#action-suggestions {
-	position:absolute;
-	z-index: 100;
-}
