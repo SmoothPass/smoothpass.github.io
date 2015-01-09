@@ -458,7 +458,6 @@ var memoryGame = (function () {
 		        { name: "wrapping", id: "wrapping" },
 		        { name: "zooming", id: "zooming"},
 		        ],
-	        filter: "startswith",
 	        suggest: true,
 	        placeholder: "Doing?",
 	        maxSelection: 1,
