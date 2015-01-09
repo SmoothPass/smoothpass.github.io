@@ -303,6 +303,7 @@ var programVariables = (function () {
 			record = records[i];
 			storyModeGeneralTable.get(record.getId()).deleteRecord();
 		}
+		alert('DropBox Storage Cleared!');
 		return;
 	}
 	
