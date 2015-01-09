@@ -387,7 +387,7 @@ var memoryGame = (function () {
 
 	function getActionComboBox(id) {
 		$('#' + id).autocomplete({
-			target: $("#action-suggestions"),
+			target: $("#action-suggestion"),
 			forceFirstChoiceOnEnterKey : true,
 	        source: appConstants.getActionsList(),
 	        callback: function(e) {
@@ -403,7 +403,7 @@ var memoryGame = (function () {
 
 	function getObjectComboBox(id) {
 		$('#' + id).autocomplete({
-			target: $("#object-suggestions"),
+			target: $("#object-suggestion"),
 			forceFirstChoiceOnEnterKey: true,
 	    	source: appConstants.getObjectsList(),
 	    	callback: function(e) {
