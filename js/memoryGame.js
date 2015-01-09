@@ -302,14 +302,18 @@ var memoryGame = (function () {
 				<figcaption>{1}</figcaption></figure><figure><img class=clue \
 				src=images/scene/{2}.jpg /><figcaption>{3}</figcaption>\
 				</figure><span data-role='fieldcontain'><form action='#'>\
-				<span class='boxWidget'><input type='text' autocorrect='off' \
-				name='password' id='game-password' value='' \
-				placeholder='doing what' autofocus='autofocus' tabindex='1'/>\
-				<input type='text' autocorrect='off' name='password2' \
-				id='game-password-b' value='' placeholder='doing what' \
-				tabindex='2'/></span><br><br><div class=halfbuttonDiv>\
-				<a data-role='button' id='gameCheckNextButton' \
-				type='submit' class=right name='submit' value='submit' \
+				<span class='boxWidget'><p class='actionCombo'><input \
+				id='game-password' class='action-input' data-role:'none' \
+				placeholder='Doing' autofocus='autofocus' tabindex='1'/><ul \
+				id='game-action-suggestions' data-role='listview' \
+				data-inset='true' class='action-suggestions'></ul></p>\
+				<p class='objectCombo'><input id='game-password-b' tabindex='2'\
+				 data-role='none' placeholder='What?' class='object-input' />\
+				<ul id='game-object-suggestions' class='object-suggestions' \
+				data-role='listview' data-inset='true'></ul></p></span><br><br>\
+				<div class=halfbuttonDiv><a data-role='button' \
+				id='gameCheckNextButton' type='submit' class='right' \
+				name='submit' value='submit' \
 				onclick='memoryGame.displayNextSequence()'tabindex='3'>\
 				Check and Next</a><a href='#' class=left data-role='button' \
 				tabindex='4' onclick='memoryGame.forgetStory()'>I Forget</a>\
@@ -320,8 +324,8 @@ var memoryGame = (function () {
 				scene.split('_').join(' ')));
 		
 		//load combo box
-		getVerbComboBox('game-password');
-		getObjectComboBox('game-password-b');
+		getVerbComboBox('game-password', 'game-action-suggestions');
+		getObjectComboBox('game-password-b', 'game-object-suggestions');
 	}
 
 	//generate the forgetStorypage 
