@@ -133,7 +133,7 @@ var programVariables = (function () {
 			rehearsalList: [],
 			correctRehearsal: 1,
 			totalRehearsal: 1,
-			interval: tempStartingLevel
+			interval: tempStartingInterval
 		});
 		//insert then reset references
 		stories = storyBankTable.query();
