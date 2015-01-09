@@ -311,9 +311,9 @@ var rehearsalModule = ( function () {
 					class='storyText'>{3}</p><p class='scoreText'>Score:{5}</p>\
 					</figcaption></figure></span></li>";
 			newli = String.format(pair, story.get('person'), 
-					story.get('person').replace('_', ' '), 
+					story.get('person').replaceAll('_', ' '), 
 					story.get('scene').toLowerCase(),
-					story.get('scene').replace('_', ' '), date, 
+					story.get('scene').replaceAll('_', ' '), date, 
 					score.toString());
 			html += newli;
 		}
