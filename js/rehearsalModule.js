@@ -201,7 +201,7 @@ var rehearsalModule = ( function () {
 					</a><h1>Rehearsal</h1></div><div data-role='content' \
 					class=images><span id='personSceneDiv'></span><span \
 					data-role='fieldcontain'><form action='#'><span \
-					class='boxWidget'><div id='rehearsal-password'></div>\
+					class='boxWidget'><div class='form-group'> <input id='rehearsal-password' class='form-control'></div>\
 					<input autocorrect='off' name='password2' \
 					id='rehearsal-password-b' value='' tabindex='2' \
 					placeholder='doing what'/></span><br><br><div \
