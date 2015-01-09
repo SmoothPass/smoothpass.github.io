@@ -461,7 +461,7 @@ var memoryGame = (function () {
 	        placeholder: "Doing?",
 	        maxSelection: 1,
 	        autoSelect: true,
-	        allowFreeEntriesBoolean: false
+	        allowFreeEntries: false
 
 	    });
 	}
