@@ -263,12 +263,11 @@ var memoryGame = (function () {
 	}
 
 	module.getVerbComboBoxWrapper = function (id) {
-		
 		getActionComboBox(id);
 	}
 
 	module.getObjectComboBoxWrapper = function (id) {
-		getObjectComboBox(id);
+		//getObjectComboBox(id);
 	}
 	//VIEW FUNCTIONS
 	function displayStoryPage (person, action, object, scene) {
