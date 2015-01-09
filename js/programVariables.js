@@ -3,9 +3,8 @@ var programVariables = (function () {
 	var DROPBOX_APP_KEY = '8qw6cevpayp0vyd';
 	var client = new Dropbox.Client({key: DROPBOX_APP_KEY});
 	var dropBoxDatastore;
-	var storyModeGeneralTable;
 	var storyBank, accounts, stories, accountIndex, securitySetting;
-	var storyBankTable, accountTable, generalTable, generalRecord;
+	var storyBankTable, accountTable, storyModeGeneralTable, generalRecord;
 	var tempStartingInterval = 1000 * 60;
 
 	function initialize() {
@@ -17,7 +16,6 @@ var programVariables = (function () {
 				dropBoxDatastore = datastore;
 				storyBankTable = dropBoxDatastore.getTable('stories');
 				accountTable = dropBoxDatastore.getTable('accounts');
-				generalTable = dropBoxDatastore.getTable('general');
 				storyModeGeneralTable = 
 						dropBoxDatastore.getTable('storyModeGeneral');
 				generalRecord = storyModeGeneralTable.query();
@@ -298,12 +296,6 @@ var programVariables = (function () {
 		for (var i = 0; i < records.length; i++) {
 			record = records[i];
 			accountTable.get(record.getId()).deleteRecord();
-		}
-
-		records = generalTable.query();
-		for (var i = 0; i < records.length; i++) {
-			record = records[i];
-			generalTable.get(record.getId()).deleteRecord();
 		}
 
 		records = storyModeTable.query();
