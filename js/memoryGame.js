@@ -267,7 +267,7 @@ var memoryGame = (function () {
 	}
 
 	module.getObjectComboBoxWrapper = function (id) {
-		//getObjectComboBox(id);
+		getObjectComboBox(id);
 	}
 	//VIEW FUNCTIONS
 	function displayStoryPage (person, action, object, scene) {
@@ -385,160 +385,32 @@ var memoryGame = (function () {
 		);
 	}
 
-	function generateActionSource() {
-		var action, html;
-		var actions = appConstants.getActionsList();
-		var source = [];
-		for (var i=0; i<actions.length; i++) {
-			action = actions[i];
-			html = "<div style='padding: 0px; margin: 0px; height: 95px; \
-					float: left;'>" + "<div>" + action + "</div></div>";
-                    source[i] = { html: html, title: title };
-			source.push({html:action, title:action});
-		}
-		return source;
-	}
-
-	function getJqWidgetsComboBox(id, source) {
-		$("#" + id).jqxComboBox( { source:source, selectedIndex: 0, 
-				width: '250', height: '25px'});
-	}
-
 	function getActionComboBox(id) {
 		$('#' + id).autocomplete({
 			target: $("#action-suggestions"),
 			forceFirstChoiceOnEnterKey : true,
 	        source: appConstants.getActionsList(),
 	        callback: function(e) {
-	        	var $a = $(e.currentTarget); // access the selected item
-        		$('#' + id).val($a.text()); // place the value of the selection into the search box
-        		$("#" + id).autocomplete('clear'); // clear the listview
+	        	// access the selected item
+	        	var $a = $(e.currentTarget); 
+	        	// place the value of the selection into the search box
+        		$('#' + id).val($a.text()); 
+        		// clear the listview
+        		$("#" + id).autocomplete('clear'); 
         	}
 	    });
 	}
 
 	function getObjectComboBox(id) {
-		$('#' + id).kendoComboBox({
-	    	dataTextField: "text",
-	    	dataValueField: "value",
-	        dataSource: [
-	        	{ text: "ant", value: "ant"},
-	        	{ text: "boot", value: "boot"},
-	        	{ text: "bunny", value: "bunny"},
-		        { text: "bus", value: "bus" },
-	        	{ text: "calf", value: "calf"},
-	        	{ text: "chandelier", value: "chandelier"},
-	        	{ text: "cow", value: "cow" },
-		        { text: "cupcake", value: "cupcake" },
-		        { text: "daisy", value: "daisy" },
-		        { text: "dandelion", value: "dandelion" },
-		        { text: "dice", value: "dice"},
-		        { text: "dome", value: "dome" },
-		        { text: "dove", value: "dove" },
-		        { text: "hammer", value: "hammer" },
-		        { text: "heel", value: "heel" },
-		        { text: "hen", value: "hen"},
-		        { text: "hourglass", value: "hourglass" },
-		        { text: "hydrant", value: "hydrant" },
-		        { text: "igloo", value: "igloo" },
-		        { text: "ladder", value: "ladder" },
-		        { text: "ladybug", value: "ladybug" },
-		        { text: "leaf", value: "leaf"},
-		        { text: "lemon", value: "lemon" },
-		        { text: "lime", value: "lime" },
-		        { text: "lipstick", value: "lipstick" },
-		        { text: "lock", value: "lock"},
-		        { text: "lollipop", value: "lollipop" },
-		        { text: "map", value: "map" },
-		        { text: "moon", value: "moon"},
-		        { text: "moose", value: "moose" },
-		        { text: "owl", value: "owl" },
-		        { text: "peach", value: "peach" },
-		        { text: "piano", value: "piano" },
-		        { text: "pizza", value: "pizza" },
-		        { text: "safe", value: "safe" },
-		        { text: "saw", value: "saw" },
-		        { text: "seal", value: "seal"},
-		        { text: "shark", value: "shark" },
-		        { text: "shoe", value: "shoe" },
-		        { text: "smore", value: "smore" },
-		        { text: "snowflake", value: "snowflake"},
-		        { text: "stapler", value: "stapler" },
-		        { text: "suit", value: "suit"},
-		        { text: "sumo", value: "sumo" },
-		        { text: "teacup", value: "teacup" },
-		        { text: "teepee", value: "teepee" },
-		        { text: "tiger", value: "tiger" },
-		        { text: "toaster", value: "toaster" },
-		        { text: "toilet", value: "toilet" },
-		        { text: "tricycle", value: "tricycle" },
-		        { text: "violin", value: "violin" },
-	        ],
-	        filter: "startswith",
-	        suggest: true,
-	        placeholder: "What?"
-	    });
-	}
-
-	function getVerbComboBox(id) {
-		$('#' + id).kendoComboBox({
-	    	dataTextField: "text",
-	    	dataValueField: "value",
-	        dataSource: [
-		        { text: "balancing", value: "balancing" },
-		        { text: "bending", value: "bending" },
-		        { text: "biting", value: "biting"},
-		        { text: "bouncing", value: "bouncing" },
-		        { text: "building", value: "building" },
-		        { text: "burning", value: "burning"},
-		        { text: "chasing", value: "chasing" },
-		        { text: "clapping", value: "clapping"},
-		        { text: "climbing", value: "climbing" },
-		        { text: "cooking", value: "cooking"},
-		        { text: "digging", value: "digging"},
-		        { text: "drinking", value: "drinking" },
-		        { text: "enlarging", value: "enlarging" },
-		        { text: "exploding", value: "exploding"},
-		        { text: "feeding", value: "feeding" },
-		        { text: "fighting", value: "fighting" },
-		        { text: "flipping", value: "flipping" },
-		        { text: "gnawing", value: "gnawing" },
-		        { text: "hanging", value: "hanging"},
-		        { text: "hiding", value: "hiding" },
-		        { text: "hugging", value: "hugging"},
-		        { text: "juggling", value: "juggling"},
-		        { text: "kissing", value: "kissing" },
-		        { text: "lassoing", value: "lassoing" },
-		        { text: "licking", value: "licking" },
-		        { text: "oiling", value: "oiling" },
-		        { text: "painting", value: "painting"},
-		        { text: "piloting", value: "piloting" },
-		        { text: "pushing", value: "pushing" },
-		        { text: "repairing", value: "repairing" },
-		        { text: "rowing", value: "rowing" },
-		        { text: "rubbing", value: "rubbing"},
-		        { text: "saving", value: "saving" },
-		        { text: "scratching", value: "scratching" },
-		        { text: "signing", value: "signing" },
-		        { text: "sipping", value: "sipping" },
-		        { text: "shooting", value: "shooting"},
-		        { text: "smelling", value: "smelling"},
-		        { text: "stewing", value: "stewing" },
-		        { text: "swallowing", value: "swallowing" },
-		        { text: "swinging", value: "swinging" },
-		        { text: "taping", value: "taping" },
-		        { text: "tattooing", value: "tattooing" },
-		        { text: "throwing", value: "throwing" },
-		        { text: "tickling", value: "tickling"},
-		        { text: "tugging", value: "tugging" },
-		        { text: "tying", value: "tying" },
-		        { text: "washing", value: "washing" },
-		        { text: "wrapping", value: "wrapping" },
-		        { text: "zooming", value: "zooming"},
-		        ],
-	        filter: "startswith",
-	        suggest: true,
-	        placeholder: "Doing?"
+		$('#' + id).autocomplete({
+			target: $("#object-suggestions"),
+			forceFirstChoiceOnEnterKey: true,
+	    	source: appConstants.getObjectsList(),
+	    	callback: function(e) {
+	    		var $a = $(e.currentTarget);
+	    		$("#" + id).val($a.text());
+	    		$("#" + id).autocomplete('clear');
+	    	}
 	    });
 	}
 	return module;

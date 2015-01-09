@@ -201,12 +201,16 @@ var rehearsalModule = ( function () {
 					</a><h1>Rehearsal</h1></div><div data-role='content' \
 					class=images><span id='personSceneDiv'></span><span \
 					data-role='fieldcontain'><form action='#'><span \
-					class='boxWidget'><p><input id='rehearsal-password' placeholder='Doing'><ul id='action-suggestions' data-role='listview' data-inset='true'></ul></p>\
-					<input autocorrect='off' name='password2' \
-					id='rehearsal-password-b' value='' tabindex='2' \
-					placeholder='doing what'/></span><br><br><div \
-					class=halfbuttonDiv><a data-role='button' \
-					id='gameCheckNextButton' tabindex='3' class=right \
+					class='boxWidget'><p><input id='rehearsal-password' \
+					placeholder='Doing' tabindex='1'>\
+					<ul id='action-suggestions' data-role='listview' \
+					data-inset='true'></ul></p>\
+					<p><input id='rehearsal-password-b' tabindex='2' \
+					placeholder='What?'/><ul id='object-suggestions' \
+					data-role='listview' data-inset='true'></ul></p>\
+					</span><br><br><div class=halfbuttonDiv>\
+					<a data-role='button' id='gameCheckNextButton' \
+					tabindex='3' class=right \
 					onclick='rehearsalModule.rehearseStory(\"" + person + "\", \"" 
 							+ scene + "\")' >Rehearse</a>\
 					<a href='#' class=left data-role='button' tabindex='4' \
