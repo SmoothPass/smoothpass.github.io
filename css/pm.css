@@ -568,6 +568,22 @@ a.logo.ui-link.ui-btn {
 	padding-top: 10%;
 }
 
-.containerRe {
-	width: 50%;
+.actionCombo {
+	width: 40%;
+	float: left;
+}
+
+.objectCombo {
+	width:40%;
+	float: right;
+}
+
+ul#object-suggestions {
+	position:absolute;
+	z-index: 100;
+}
+
+ul#action-suggestions {
+	position:absolute;
+	z-index: 100;
 }

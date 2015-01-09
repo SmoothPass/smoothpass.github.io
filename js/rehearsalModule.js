@@ -201,13 +201,13 @@ var rehearsalModule = ( function () {
 					</a><h1>Rehearsal</h1></div><div data-role='content' \
 					class=images><span id='personSceneDiv'></span><div \
 					data-role='fieldcontain'><form action='#'><span class='boxWidget'>\
-					<div class='containerRe'><input id='rehearsal-password' \
+					<p class='actionCombo'><input id='rehearsal-password' \
 					placeholder='Doing' tabindex='1' data-role='none' />\
 					<ul id='action-suggestions' data-role='listview' \
-					data-inset='true'></ul></div>\
-					<div class='containerRe'><input id='rehearsal-password-b' tabindex='2' data-role='none'\
+					data-inset='true'></ul></p>\
+					<p class='objectCombo'><input id='rehearsal-password-b' tabindex='2' data-role='none'\
 					placeholder='What?'/><ul id='object-suggestions' \
-					data-role='listview' data-inset='true'></ul></div></span>\
+					data-role='listview' data-inset='true'></ul></p></span>\
 					<br><br><div class=halfbuttonDiv>\
 					<a data-role='button' id='gameCheckNextButton' \
 					tabindex='3' class=right \
