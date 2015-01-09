@@ -225,7 +225,7 @@ var rehearsalModule = ( function () {
 				alert('hi!');
 			}
 			$('#rehearsal-password').bind('focus', function() {
-				$('#rehearsal-password').addEventListener("keypress", bindEnterKey);
+				document.getElementById('rehearsal-password').addEventListener("keypress", bindEnterKey);
 			})
 		}
 		//put person and scene in the picture
