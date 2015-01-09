@@ -222,9 +222,11 @@ var rehearsalModule = ( function () {
 			memoryGame.getObjectComboBoxWrapper('rehearsal-password-b');
 			$(pageID).page().page("destroy").page();
 			function bindEnterKey(e) {
-				if (e && e.keyCode == 13 ) {
-					console.log(e.target);
-					//if enter key pressed
+				if (e && e.keyCode == 13 && e.target.value != '') {
+					var targetJQ = $("#" + e.target.id);
+					//if enter key pressed and input not empty
+					//select the first option 
+					console.log(targetJQ.('.ui-btn:first a'));
 
 				}
 			}
