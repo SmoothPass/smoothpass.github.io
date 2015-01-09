@@ -593,6 +593,7 @@ ul.object-suggestions {
 ul.action-suggestions {
 	position:absolute;
 	z-index: 100;
+	padding-left: 5%;
 }
 
 input.object-input {
