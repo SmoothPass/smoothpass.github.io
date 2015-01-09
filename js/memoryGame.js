@@ -411,8 +411,8 @@ var memoryGame = (function () {
 	        source: appConstants.getActionsList(),
 	        callback: function(e) {
 	        	var $a = $(e.currentTarget); // access the selected item
-        		$('#searchField').val($a.text()); // place the value of the selection into the search box
-        		$("#searchField").autocomplete('clear'); // clear the listview
+        		$('#' + id).val($a.text()); // place the value of the selection into the search box
+        		$("#" + id).autocomplete('clear'); // clear the listview
         	}
 	    });
 	}
