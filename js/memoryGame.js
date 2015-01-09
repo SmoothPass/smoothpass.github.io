@@ -263,7 +263,10 @@ var memoryGame = (function () {
 	}
 
 	module.getVerbComboBoxWrapper = function (id) {
-		getVerbComboBox(id);
+		//
+		var source = generateActionSource();
+		getJqWidgetsComboBox(id, source);
+		//getVerbComboBox(id);
 	}
 
 	module.getObjectComboBoxWrapper = function (id) {
@@ -383,6 +386,23 @@ var memoryGame = (function () {
 					$("#gamestories").css('visibility', 'visible')
 				}, 1000 
 		);
+	}
+
+	function generateActionSource() {
+		var action;
+		var actions = appConstants.getActionsList();
+		var source = [];
+		for (var i=0; i<actions.length; i++) {
+			action = actions[i];
+			var html = "<p>" + action + "</p>";
+			source.push({html:action, title:action});
+		}
+		return source;
+	}
+
+	function getJqWidgetsComboBox(id, source) {
+		$("#" + id).jqxComboBox( { source:source, selectedIndex: 0, 
+				width: '250', height: '25px'});
 	}
 
 	function getObjectComboBox(id) {
