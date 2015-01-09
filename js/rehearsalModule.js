@@ -224,7 +224,7 @@ var rehearsalModule = ( function () {
 			memoryGame.getVerbComboBoxWrapper('rehearsal-password', 
 					'rehearsal-action-suggestions');
 			memoryGame.getObjectComboBoxWrapper('rehearsal-password-b', 
-					'ehearsal-object-suggestions');
+					'rehearsal-object-suggestions');
 			$(pageID).page().page("destroy").page();
 		}
 		//put person and scene in the picture
