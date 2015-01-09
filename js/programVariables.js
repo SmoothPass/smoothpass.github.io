@@ -116,6 +116,8 @@ var programVariables = (function () {
 			groupHashesList: groupHashflten,
 			groupSaltList: grpSaltList
 		});
+		//everytime insert reset references
+		generalRecord = storyModeGeneralTable[0];
 	}
 
 	function insertStory(personName, sceneName, usedBool, groupNum) {
@@ -135,6 +137,8 @@ var programVariables = (function () {
 			totalRehearsal: 1,
 			interval: tempStartingLevel
 		});
+		//insert then reset references
+		stories = storyBankTable.query();
 	}
 
 	function insertAccount(accountName, storyList, index, ruleList) {
@@ -146,7 +150,8 @@ var programVariables = (function () {
 			accountIndex: index,
 			rules: ruleList
 		});
-
+		//insert then reset references
+		accounts = accountTable.query();
 	}
 
 	function updateStoryRefCount(accountName, accountNestedList) {
