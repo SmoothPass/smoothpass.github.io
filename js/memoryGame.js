@@ -384,7 +384,22 @@ var memoryGame = (function () {
 				}, 1000 
 		);
 	}
+	function settingUpEnterKeyBinding(id) {
+		function bindEnterKey(e) {
+			if (e && e.keyCode == 13 && e.target.value != '') {
+				var targetJqItem = $("#" + e.target.id);
+				//if enter key pressed and input not empty
+				//select the first option 
+				var ListJqItem = targetJqItem.parent().next($('ul'));
+				ListJqItem.children().first('li').children().click();
+			}
+		}
+		$('#' + id).bind('focus', function() {
+				document.getElementById(id).addEventListener("keypress", 
+						bindEnterKey);
+		})
 
+	}
 	function getActionComboBox(id) {
 		$('#' + id).autocomplete({
 			target: $("#action-suggestion"),
@@ -399,6 +414,7 @@ var memoryGame = (function () {
         		$("#" + id).autocomplete('clear'); 
         	}
 	    });
+	    settingUpEnterKeyBinding(id);
 	}
 
 	function getObjectComboBox(id) {
@@ -412,6 +428,7 @@ var memoryGame = (function () {
 	    		$("#" + id).autocomplete('clear');
 	    	}
 	    });
+	    settingUpEnterKeyBinding(id);
 	}
 	return module;
 }());
