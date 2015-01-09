@@ -263,10 +263,8 @@ var memoryGame = (function () {
 	}
 
 	module.getVerbComboBoxWrapper = function (id) {
-		//
-		var source = generateActionSource();
-		getJqWidgetsComboBox(id, source);
-		//getVerbComboBox(id);
+		
+		getActionComboBox(id);
 	}
 
 	module.getObjectComboBoxWrapper = function (id) {
@@ -405,6 +403,70 @@ var memoryGame = (function () {
 	function getJqWidgetsComboBox(id, source) {
 		$("#" + id).jqxComboBox( { source:source, selectedIndex: 0, 
 				width: '250', height: '25px'});
+	}
+
+	function getActionComboBox(id) {
+		$('#' + id).magicSuggest({
+	        data: [
+	        	{ name: "balancing", id: "balancing" },
+		        { name: "bending", id: "bending" },
+		        { name: "biting", id: "biting"},
+		        { name: "bouncing", id: "bouncing" },
+		        { name: "building", id: "building" },
+		        { name: "burning", id: "burning"},
+		        { name: "chasing", id: "chasing" },
+		        { name: "clapping", id: "clapping"},
+		        { name: "climbing", id: "climbing" },
+		        { name: "cooking", id: "cooking"},
+		        { name: "digging", id: "digging"},
+		        { name: "drinking", id: "drinking" },
+		        { name: "enlarging", id: "enlarging" },
+		        { name: "exploding", id: "exploding"},
+		        { name: "feeding", id: "feeding" },
+		        { name: "fighting", id: "fighting" },
+		        { name: "flipping", id: "flipping" },
+		        { name: "gnawing", id: "gnawing" },
+		        { name: "hanging", id: "hanging"},
+		        { name: "hiding", id: "hiding" },
+		        { name: "hugging", id: "hugging"},
+		        { name: "juggling", id: "juggling"},
+		        { name: "kissing", id: "kissing" },
+		        { name: "lassoing", id: "lassoing" },
+		        { name: "licking", id: "licking" },
+		        { name: "oiling", id: "oiling" },
+		        { name: "painting", id: "painting"},
+		        { name: "piloting", id: "piloting" },
+		        { name: "pushing", id: "pushing" },
+		        { name: "repairing", id: "repairing" },
+		        { name: "rowing", id: "rowing" },
+		        { name: "rubbing", id: "rubbing"},
+		        { name: "saving", id: "saving" },
+		        { name: "scratching", id: "scratching" },
+		        { name: "signing", id: "signing" },
+		        { name: "sipping", id: "sipping" },
+		        { name: "shooting", id: "shooting"},
+		        { name: "smelling", id: "smelling"},
+		        { name: "stewing", id: "stewing" },
+		        { name: "swallowing", id: "swallowing" },
+		        { name: "swinging", id: "swinging" },
+		        { name: "taping", id: "taping" },
+		        { name: "tattooing", id: "tattooing" },
+		        { name: "throwing", id: "throwing" },
+		        { name: "tickling", id: "tickling"},
+		        { name: "tugging", id: "tugging" },
+		        { name: "tying", id: "tying" },
+		        { name: "washing", id: "washing" },
+		        { name: "wrapping", id: "wrapping" },
+		        { name: "zooming", id: "zooming"},
+		        ],
+	        filter: "startswith",
+	        suggest: true,
+	        placeholder: "Doing?",
+	        maxSelection: 1,
+	        autoSelect: true,
+	        allowFreeEntriesBoolean: false
+
+	    });
 	}
 
 	function getObjectComboBox(id) {
