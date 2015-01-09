@@ -221,6 +221,12 @@ var rehearsalModule = ( function () {
 			memoryGame.getVerbComboBoxWrapper('rehearsal-password');
 			memoryGame.getObjectComboBoxWrapper('rehearsal-password-b');
 			$(pageID).page().page("destroy").page();
+			function bindEnterKey() {
+				alert('hi!');
+			}
+			$('#rehearsal-password').bind('focus', function() {
+				$('#rehearsal-password').addEventListener("keypress", bindEnterKey);
+			})
 		}
 		//put person and scene in the picture
 		var html = "\
