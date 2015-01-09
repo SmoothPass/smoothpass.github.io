@@ -200,11 +200,12 @@ var rehearsalModule = ( function () {
 					data-position=fixed><a href=#board data-icon='back'>Back\
 					</a><h1>Rehearsal</h1></div><div data-role='content' \
 					class=images><span id='personSceneDiv'></span><div \
-					data-role='fieldcontain'><form action='#'><span class='boxWidget'><div><input id='rehearsal-password' \
+					data-role='fieldcontain'><form action='#'><span class='boxWidget'>\
+					<div class='containerRe'><input id='rehearsal-password' \
 					placeholder='Doing' tabindex='1' data-role='none' />\
 					<ul id='action-suggestions' data-role='listview' \
 					data-inset='true'></ul></div>\
-					<div><input id='rehearsal-password-b' tabindex='2' data-role='none'\
+					<div class='containerRe'><input id='rehearsal-password-b' tabindex='2' data-role='none'\
 					placeholder='What?'/><ul id='object-suggestions' \
 					data-role='listview' data-inset='true'></ul></div></span>\
 					<br><br><div class=halfbuttonDiv>\
