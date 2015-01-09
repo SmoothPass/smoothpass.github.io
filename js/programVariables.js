@@ -298,10 +298,10 @@ var programVariables = (function () {
 			accountTable.get(record.getId()).deleteRecord();
 		}
 
-		records = storyModeTable.query();
+		records = storyModeGeneralTable.query();
 		for (var i = 0; i < records.length; i++) {
 			record = records[i];
-			storyModeTable.get(record.getId()).deleteRecord();
+			storyModeGeneralTable.get(record.getId()).deleteRecord();
 		}
 		return;
 	}
