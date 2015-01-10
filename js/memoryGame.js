@@ -303,7 +303,7 @@ var memoryGame = (function () {
 				src=images/scene/{2}.jpg /><figcaption>{3}</figcaption>\
 				</figure><span data-role='fieldcontain'><form action='#'>\
 				<span class='boxWidget'><p class='actionCombo'><input \
-				id='game-password' class='action-input' data-role:'none' \
+				id='game-password' class='action-input' data-role='none' \
 				placeholder='Doing' tabindex='1'/><ul \
 				id='game-action-suggestions' data-role='listview' \
 				data-inset='true' class='action-suggestions'></ul></p>\
