@@ -304,7 +304,7 @@ var programVariables = (function () {
 			storyModeGeneralTable.get(record.getId()).deleteRecord();
 		}
 		alert('DropBox Storage Cleared!');
-		window.location = "https://smoothpass.github.io";
+		window.location.reload();
 		return;
 	}
 	
