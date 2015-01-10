@@ -304,7 +304,7 @@ var memoryGame = (function () {
 				</figure><span data-role='fieldcontain'><form action='#'>\
 				<span class='boxWidget'><p class='actionCombo'><input \
 				id='game-password' class='action-input' data-role:'none' \
-				placeholder='Doing' autofocus='autofocus' tabindex='1'/><ul \
+				placeholder='Doing' tabindex='1'/><ul \
 				id='game-action-suggestions' data-role='listview' \
 				data-inset='true' class='action-suggestions'></ul></p>\
 				<p class='objectCombo'><input id='game-password-b' tabindex='2'\
