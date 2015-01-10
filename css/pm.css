@@ -385,7 +385,7 @@ input:-moz-placeholder { font-family: Lato; }
 
 
 /* story bank list view */
-#groupStories li, .rehearsalBoard li {
+#groupStories>ul>li, .rehearsalBoard li {
 	display: inline-block;
 	list-style-type: none;
     border: 5px solid white;
