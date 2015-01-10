@@ -301,23 +301,28 @@ var recoveryMechanism = (function() {
 					<p class='storyText'>" + scene.split('_').join(' ') + "\
 					</p></figcaption></figure></span>\
 					<span data-role='fieldcontain'><form action='#'>\
-					<span class='boxWidget'><input type='text' \
-					autocorrect='off' name='password' \
-					id='action-password" + i + "' value='' \
-					placeholder='doing' autofocus='autofocus' \
-					tabindex='" + (2*i+1) + "'/><input type='text' \
-					autocorrect='off' name='password' \
-					id='object-password" + i + "' value='' \
-					placeholder='what' autofocus='autofocus' \
-					tabindex='" + (2*i+2) + "'/></span></form></span></li>"
+					<span class='boxWidget'><p class='actionCombo'><input \
+					id='action-password" + i + "' placeholder='Doing' \
+					tabindex='" + (2*i+1) + "' data-role='none' \
+					class='action-input' /><ul id='recovery-action-suggestions"
+					+ i + "' class='action-suggestions' data-role='listview' \
+					data-inset='true'></ul></p><p class='objectCombo'><input \
+					id='object-password" + i + "' placeholder='What?' \
+					class='object-input' data-role='none' \
+					tabindex='" + (2*i+2) + "'/><ul \
+					id='recovery-object-suggestions" + i + "' \
+					class='object-suggestions' data-role='listview' \
+					data-inset='true'></ul></p></span></form></span></li>"
 			head += listHtml;
 		}
 		head += '</ul>';
 		$('#groupStories').html(head);
 		document.getElementById('submitRecovery').tabIndex=(2*i+1).toString();
 		for (i=0; i<storyList.length; i++) {
-			memoryGame.getVerbComboBoxWrapper('action-password'+i.toString());
-			memoryGame.getObjectComboBoxWrapper('object-password'+i.toString());
+			memoryGame.getVerbComboBoxWrapper('action-password'+i.toString(),
+					'recovery-action-suggestions'+i.toString());
+			memoryGame.getObjectComboBoxWrapper('object-password'+i.toString(),
+					'recovery-object-suggestions'+i.toString());
 		}
 		document.getElementById('currentItem').style.opacity = 0.5;
 		$('#action-password0').focus();
