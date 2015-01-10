@@ -396,7 +396,6 @@ var memoryGame = (function () {
 				//select the first option 
 				var ListJqItem = targetJqItem.parent().next($('ul'));
 				ListJqItem.children().first('li').children().click();
-				console.log(ListJqItem.children().first('li').children());
 			}
 		}
 		$('#' + id).bind('focus', function() {
