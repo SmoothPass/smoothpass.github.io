@@ -326,7 +326,7 @@ var recoveryMechanism = (function() {
 		}
 		document.getElementById('currentItem').style.opacity = 0.5;
 		$('#action-password0').focus();
-		$("#recover").page("destroy").page();
+		$("#recover").page().page("destroy").page();
 		return;
 	}
 
