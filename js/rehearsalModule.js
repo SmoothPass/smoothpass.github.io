@@ -208,60 +208,35 @@ var rehearsalModule = ( function () {
 
 		var pageID = '#rehearsalPage';
 		//initialize page
-		//if ( !($(pageID).length) ) {
-			// var newPage = $("\
-			// 		<div data-role='page' data-title='rehearsalPage' \
-			// 		id='rehearsalPage'><div data-role='header' \
-			// 		data-position=fixed><a href=#board data-icon='back'>Back\
-			// 		</a><h1>Rehearsal</h1></div><div data-role='content' \
-			// 		class=images><span id='personSceneDiv'></span><span \
-			// 		data-role='fieldcontain'><form action='#'><span \
-			// 		class='boxWidget'><input autocorrect='off' name='password'\
-			// 		id='rehearsal-password' value='' placeholder='doing what' \
-			// 		autofocus='autofocus' tabindex='1'/><input \
-			// 		autocorrect='off' name='password2' \
-			// 		id='rehearsal-password-b' value='' tabindex='2' \
-			// 		placeholder='doing what'/></span><br><br><div \
-			// 		class=halfbuttonDiv><a data-role='button' \
-			// 		id='gameCheckNextButton' tabindex='3' class=right \
-			// 		onclick='rehearsalModule.rehearseStory(\"" + person + "\", \"" 
-			// 				+ scene + "\")' >Rehearse</a>\
-			// 		<a href='#' class=left data-role='button' tabindex='4' \
-			// 		onclick='recoveryMechanism.recoverStory()'>I Forget</a>\
-			// 		</div></span></form></span></div></div>");
-		var newPage = $("\
-				<div data-role='page' data-title='rehearsalPage' \
-				id='rehearsalPage'><div data-role='header' \
-				data-position=fixed><a href=#board data-icon='back'>Back\
-				</a><h1>Rehearsal</h1></div><div data-role='content' \
-				class=images><span id='personSceneDiv'></span><div \
-				data-role='fieldcontain'><form action='#'>\
-				<span class='boxWidget'><p class='actionCombo'><input \
-				id='rehearsal-password' placeholder='Doing' tabindex='1' \
-				data-role='none' class='action-input' /><ul \
-				id='rehearsal-action-suggestions' \
-				class='action-suggestions' data-role='listview' \
-				data-inset='true'></ul></p><p class='objectCombo'><input \
-				id='rehearsal-password-b' tabindex='2' data-role='none'\
-				placeholder='What?' class='object-input' /><ul \
-				id='rehearsal-object-suggestions' \
-				class='object-suggestions' data-role='listview' \
-				data-inset='true'></ul></p></span><br><br>\
-				<div class=halfbuttonDiv><a data-role='button' \
-				id='gameCheckNextButton' tabindex='3' class=right \
-				onclick='rehearsalModule.rehearseStory('" + person + "', \
-				'" + scene + "')' >Rehearse</a>\
-				<a href='#' class=left data-role='button' tabindex='4' \
-				onclick='recoveryMechanism.recoverStory()'>I Forget</a>\
-				</div></form></div></div></div>");
-				//recoverStory(i);// rehearseStory
-		newPage.appendTo( $.mobile.pageContainer );
-		memoryGame.getVerbComboBoxWrapper('rehearsal-password', 
-				'rehearsal-action-suggestions');
-		memoryGame.getObjectComboBoxWrapper('rehearsal-password-b', 
-				'rehearsal-object-suggestions');
-		$(pageID).page().page("destroy").page();
-		//}
+		if ( !($(pageID).length) ) {
+			var newPage = $("\
+					<div data-role='page' data-title='rehearsalPage' \
+					id='rehearsalPage'><div data-role='header' \
+					data-position=fixed><a href=#board data-icon='back'>Back\
+					</a><h1>Rehearsal</h1></div><div data-role='content' \
+					class=images><span id='personSceneDiv'></span><div \
+					data-role='fieldcontain'><form action='#'>\
+					<span class='boxWidget'><p class='actionCombo'><input \
+					id='rehearsal-password' placeholder='Doing' tabindex='1' \
+					data-role='none' class='action-input' /><ul \
+					id='rehearsal-action-suggestions' \
+					class='action-suggestions' data-role='listview' \
+					data-inset='true'></ul></p><p class='objectCombo'><input \
+					id='rehearsal-password-b' tabindex='2' data-role='none'\
+					placeholder='What?' class='object-input' /><ul \
+					id='rehearsal-object-suggestions' \
+					class='object-suggestions' data-role='listview' \
+					data-inset='true'></ul></p></span><br><br>\
+					<div class=halfbuttonDiv id='rehearsalButtonDiv'>\
+					</div></form></div></div></div>");
+
+			newPage.appendTo( $.mobile.pageContainer );
+			memoryGame.getVerbComboBoxWrapper('rehearsal-password', 
+					'rehearsal-action-suggestions');
+			memoryGame.getObjectComboBoxWrapper('rehearsal-password-b', 
+					'rehearsal-object-suggestions');
+			$(pageID).page().page("destroy").page();
+			}
 		//put person and scene in the picture
 		var html = "\
 				<figure><img class=clue src=images/person/{0}.jpg />\
@@ -270,7 +245,14 @@ var rehearsalModule = ( function () {
 				</figure>";
 		var newHTML = String.format( html, person, person_space, 
 				scene.toLowerCase(), scene_space );
+		var bDiv = "<a data-role='button' id='gameCheckNextButton' \
+					tabindex='3' class=right \
+					onclick='rehearsalModule.rehearseStory('" + person + "', \
+					'" + scene + "')' >Rehearse</a>\
+					<a href='#' class=left data-role='button' tabindex='4' \
+					onclick='recoveryMechanism.recoverStory()'>I Forget</a>";
 		$('#personSceneDiv').html(newHTML);
+		$('#rehearsalButtonDiv').html(bDiv);
 		//update box css 
 		$('.boxWidget div').removeClass();
 		$.mobile.changePage(pageID);
