@@ -259,6 +259,7 @@ var programVariables = (function () {
 	module.getGroupNumWithLeastStories = function() {
 		var groups = generalRecord.get('groupList').toArray();
 		if (groups[groups.length-1] <= 5) {
+			console.log(groups.length-1);
 			return groups.length-1;
 		}
 		return -1;
