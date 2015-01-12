@@ -74,7 +74,6 @@ var rehearsalModule = ( function () {
 					story.get('rehearsalList').push(true);
 					story.set('intervalNum', story.get('intervalNum')+1);
 				}
-				return
 			}
 		}
 		$("#rehearsal-password").val('');
