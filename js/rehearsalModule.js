@@ -200,10 +200,10 @@ var rehearsalModule = ( function () {
 	}
 
 	function renderRehearsalPage (person, scene) {
-		var person_space = person
-		var scene_space = scene
-		var person = replaceAll(' ', '_', person);
-		var scene = replaceAll(' ', '_', scene);
+		var person_space = person;
+		var scene_space = scene;
+		var person = person_space.split('_').join(' ');
+		var scene = scene_space.split('_').join(' ');
 
 		var pageID = '#rehearsalPage';
 		//initialize page
@@ -248,8 +248,8 @@ var rehearsalModule = ( function () {
 					data-inset='true'></ul></p></span><br><br>\
 					<div class=halfbuttonDiv><a data-role='button' \
 					id='gameCheckNextButton' tabindex='3' class=right \
-					onclick='rehearsalModule.rehearseStory(\"" + person + "\", \
-							\"" + scene + "\")' >Rehearse</a>\
+					onclick='rehearsalModule.rehearseStory('" + person + "', \
+					'" + scene + "')' >Rehearse</a>\
 					<a href='#' class=left data-role='button' tabindex='4' \
 					onclick='recoveryMechanism.recoverStory()'>I Forget</a>\
 					</div></form></div></div></div>");
