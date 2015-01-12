@@ -256,7 +256,7 @@ var rehearsalModule = ( function () {
 		//update box css 
 		$('.boxWidget div').removeClass();
 		$.mobile.changePage(pageID);
-		$( "#recover" ).page( "destroy" ).page();
+		$( "#recover" ).page().page( "destroy" ).page();
 
 		$('#rehearsal-password').focus();
 	}
