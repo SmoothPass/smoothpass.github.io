@@ -80,6 +80,15 @@ var rehearsalModule = ( function () {
 		//update board
 		checkEachStory();
 		renderRehearsalBoard();
+		$('ul.rehearsalList li').on('click',
+			function (e) {
+				e.preventDefault();
+				var textList = $(this).find(".storyText");
+				var person = textList[0].innerHTML;
+				var scene = textList[1].innerHTML;
+				rehearsalModule.renderRehearsalPage(person, scene);
+			}
+		);
 		$.mobile.changePage('#board');
 	}
 
@@ -182,7 +191,7 @@ var rehearsalModule = ( function () {
 			}
 		}
 	}
-	
+
 	//VIEW
 	function replaceAll(find, replace, str) {
 		return str.replace(new RegExp(find, 'g'), replace);
