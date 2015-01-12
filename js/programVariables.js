@@ -261,6 +261,7 @@ var programVariables = (function () {
 		if (groups[groups.length-1] <= 5) {
 			return groups.length-1;
 		}
+		return -1;
 
 	}
 	//used in StoryMode

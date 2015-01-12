@@ -360,6 +360,8 @@ var storyMode = ( function () {
 					groupNum = record.get('groupNum');
 					if (used) {
 						className = "initializedStory";
+						console.log(groupNum);
+						console.log(smallGroupNum);
 						if (groupNum == smallGroupNum) {
 							console.log('in here');
 							//this group is less than 4 disable recoverButton

@@ -92,7 +92,7 @@ var rehearsalModule = ( function () {
 			}
 		);
 		window.location = "https://smoothpass.github.io#board"
-		$.mobile.changePage('#board');
+		//$.mobile.changePage('#board');
 	}
 
 	function needRehearsal (originalDate, currentDate, record) {
@@ -246,12 +246,12 @@ var rehearsalModule = ( function () {
 				</figure>";
 		var newHTML = String.format( html, person, person_space, 
 				scene.toLowerCase(), scene_space );
-		var bDiv = "<button data-role='button' id='gameCheckNextButton' \
+		var bDiv = "<a data-role='button' id='gameCheckNextButton' \
 					tabindex='3' class=right \
 					onclick=\"rehearsalModule.rehearseStory('" + person + 
-					"','" + scene + "')\" >Rehearse</button>\
-					<button href='#' class=left data-role='button' tabindex='4' \
-					onclick='recoveryMechanism.recoverStory()'>I Forget</button>";
+					"','" + scene + "')\" >Rehearse</a>\
+					<a href='#' class=left data-role='button' tabindex='4' \
+					onclick='recoveryMechanism.recoverStory()'>I Forget</a>";
 		$('#personSceneDiv').html(newHTML);
 		$('#rehearsalButtonDiv').html(bDiv);
 		//update box css 
