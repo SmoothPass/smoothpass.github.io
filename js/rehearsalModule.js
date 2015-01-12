@@ -245,12 +245,12 @@ var rehearsalModule = ( function () {
 				</figure>";
 		var newHTML = String.format( html, person, person_space, 
 				scene.toLowerCase(), scene_space );
-		var bDiv = "<a data-role='button' id='gameCheckNextButton' \
+		var bDiv = "<button data-role='button' id='gameCheckNextButton' \
 					tabindex='3' class=right \
 					onclick=\"rehearsalModule.rehearseStory('" + person + 
-					"','" + scene + "')\" >Rehearse</a>\
-					<a href='#' class=left data-role='button' tabindex='4' \
-					onclick='recoveryMechanism.recoverStory()'>I Forget</a>";
+					"','" + scene + "')\" >Rehearse</button>\
+					<button href='#' class=left data-role='button' tabindex='4' \
+					onclick='recoveryMechanism.recoverStory()'>I Forget</button>";
 		$('#personSceneDiv').html(newHTML);
 		$('#rehearsalButtonDiv').html(bDiv);
 		//update box css 
