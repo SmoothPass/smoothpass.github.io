@@ -256,7 +256,11 @@ var programVariables = (function () {
 		generalRecord.get("groupHashesList").set(index, flattened);
 		return;
 	}
+	module.getGroupNumWithLeastStories = function() {
+		var groups = generalRecord.get('groupList').toArray();
+		console.log(groups.length);
 
+	}
 	//used in StoryMode
 	module.getGroupFromRecordIndices = function(startFrom, curLimit) {
 		return getGroupFromRecordIndices(startFrom, curLimit);

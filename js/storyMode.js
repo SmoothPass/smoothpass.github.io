@@ -334,7 +334,9 @@ var storyMode = ( function () {
 		//sort? no need for storyMode
 		renderStoryBank();
 	}
-
+	function getLessThanFourGroupNumber() {
+		return programVariables.getGroupNumWithLeastStories();
+	}
 	//rendering story bank
 	function renderStoryBank () {
 		var smallGroupNum = getLessThanFourGroupNumber()
