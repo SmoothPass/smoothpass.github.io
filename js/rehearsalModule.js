@@ -59,6 +59,7 @@ var rehearsalModule = ( function () {
 			if ( story.get('person') == person && 
 					story.get('scene') == scene ) {
 				//update story rehearse time
+				console.log('rehearsing story ' + person + ' ' + scene);
 				date = new Date();
 				//calculateElapsedTime(record.get('lastRehearsed'), date);
 				story.set('lastRehearsed', date);
@@ -73,6 +74,7 @@ var rehearsalModule = ( function () {
 					story.get('rehearsalList').push(true);
 					story.set('intervalNum', story.get('intervalNum')+1);
 				}
+				return
 			}
 		}
 		$("#rehearsal-password").val('');
@@ -83,6 +85,7 @@ var rehearsalModule = ( function () {
 		$('ul.rehearsalList li').on('click',
 			function (e) {
 				e.preventDefault();
+				console.log(e.target.id);
 				var textList = $(this).find(".storyText");
 				var person = textList[0].innerHTML;
 				var scene = textList[1].innerHTML;
