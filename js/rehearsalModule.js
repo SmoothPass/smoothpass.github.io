@@ -160,6 +160,25 @@ var rehearsalModule = ( function () {
 	module.calculateScoreForStory = function (story) {
 		calculateScoreForStory(story);
 	}
+
+	module.resetForRecoveredStory = function(person, scene) {
+		var story, date;
+		var stories = programVariables.getStories();
+		for (var i=0; i<stories.length; i++) {
+			story = stories[i];
+			if ( story.get('person') == person && 
+					story.get('scene') == scene ) {
+				//found specific story
+				date = new Date();
+				story.set('lastRehearsed', date);
+				story.set('intervalNum', 0);
+				story.set('rehearsalList', []);
+				story.set('correctRehearsal', 1);
+				story.set('totalRehearsal', 1);
+				return;
+			}
+
+	}
 	//VIEW
 	function replaceAll(find, replace, str) {
 		return str.replace(new RegExp(find, 'g'), replace);

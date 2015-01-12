@@ -342,7 +342,9 @@ var recoveryMechanism = (function() {
 				<img class=clue src=images/object/{4}1.jpg /><figcaption>{5}\
 				</figcaption></figure>in/on<figure>\
 				<img class=clue src=images/scene/{6}.jpg />\
-				<figcaption>the {7}</figcaption></figure></div>";
+				<figcaption>the {7}</figcaption></figure><button \
+				onclick='rehearsalModule.resetForRecoveredStory('" + person + 
+				"', '" + scene + "')'></button></div>";
 
 		var article = (object == 'igloo' ? 'an' : 'a');
 
