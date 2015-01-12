@@ -357,7 +357,7 @@ var storyMode = ( function () {
 					person = record.get('person');
 					scene = record.get('scene');
 					used = record.get('used');
-					groupNum = record.get('groupNum');
+					groupNum = record.get('groupNumber');
 					if (used) {
 						className = "initializedStory";
 						console.log(groupNum);
