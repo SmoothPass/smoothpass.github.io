@@ -301,6 +301,7 @@ var rehearsalModule = ( function () {
 		//$('#')
 		$('#home-words').html(html);
 		$('#board-msg').html(boardText);
+		console.log(boardText);
 	}
 	//rendering rehearsal Board
 	function renderBoardFromList (list, flag) {
