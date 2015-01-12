@@ -74,6 +74,7 @@ var rehearsalModule = ( function () {
 					story.get('rehearsalList').push(true);
 					story.set('intervalNum', story.get('intervalNum')+1);
 				}
+				break;
 			}
 		}
 		$("#rehearsal-password").val('');
@@ -84,7 +85,6 @@ var rehearsalModule = ( function () {
 		$('ul.rehearsalList li').on('click',
 			function (e) {
 				e.preventDefault();
-				console.log(e.target.id);
 				var textList = $(this).find(".storyText");
 				var person = textList[0].innerHTML;
 				var scene = textList[1].innerHTML;
@@ -301,7 +301,6 @@ var rehearsalModule = ( function () {
 		//$('#')
 		$('#home-words').html(html);
 		$('#board-msg').html(boardText);
-		console.log(boardText);
 	}
 	//rendering rehearsal Board
 	function renderBoardFromList (list, flag) {
