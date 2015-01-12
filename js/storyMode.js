@@ -361,6 +361,7 @@ var storyMode = ( function () {
 					if (used) {
 						className = "initializedStory";
 						if (groupNum == smallGroupNum) {
+							console.log('in here');
 							//this group is less than 4 disable recoverButton
 							$('.bankButton').addClass("ui-disabled");
 						}
