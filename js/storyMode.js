@@ -337,8 +337,9 @@ var storyMode = ( function () {
 
 	//rendering story bank
 	function renderStoryBank () {
+		var smallGroupNum = getLessThanFourGroupNumber()
 		$('#bank').bind("pageshow", function() {
-			var record, date, person, scene, used, score;
+			var record, date, person, scene, used, score, groupNum;
 			var className, button, pair, newli, listHTML;
 			var records = programVariables.getStories();
 
@@ -354,12 +355,17 @@ var storyMode = ( function () {
 					person = record.get('person');
 					scene = record.get('scene');
 					used = record.get('used');
-
+					groupNum = record.get('groupNum');
 					if (used) {
 						className = "initializedStory";
+						if (groupNum == smallGroupNum) {
+							//this group is less than 4 disable recoverButton
+							$('.bankButton').addClass("ui-disabled");
+						}
 						button = "\
 								<p style='margin:0px; margin-top:2%'><button \
 								onclick='storyMode.recoverStory(" + i + ")' \
+								class='bankButton'\
 								style='text-align:center;font-family=Lato;'>\
 								Recover This Story</button></p>";
 						pair = "\
