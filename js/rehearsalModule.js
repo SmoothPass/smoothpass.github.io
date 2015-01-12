@@ -91,6 +91,7 @@ var rehearsalModule = ( function () {
 				rehearsalModule.renderRehearsalPage(person, scene);
 			}
 		);
+		window.location = "https://smoothpass.github.io#board"
 		$.mobile.changePage('#board');
 	}
 
@@ -236,7 +237,7 @@ var rehearsalModule = ( function () {
 			memoryGame.getObjectComboBoxWrapper('rehearsal-password-b', 
 					'rehearsal-object-suggestions');
 			$(pageID).page().page("destroy").page();
-			}
+		}
 		//put person and scene in the picture
 		var html = "\
 				<figure><img class=clue src=images/person/{0}.jpg />\
