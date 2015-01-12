@@ -247,8 +247,8 @@ var rehearsalModule = ( function () {
 				scene.toLowerCase(), scene_space );
 		var bDiv = "<a data-role='button' id='gameCheckNextButton' \
 					tabindex='3' class=right \
-					onclick=rehearsalModule.rehearseStory(\"" + person + "\",\
-					\"" + scene + "\") >Rehearse</a>\
+					onclick=\"rehearsalModule.rehearseStory(\"" + person + 
+					"\",\"" + scene + "\")\" >Rehearse</a>\
 					<a href='#' class=left data-role='button' tabindex='4' \
 					onclick='recoveryMechanism.recoverStory()'>I Forget</a>";
 		$('#personSceneDiv').html(newHTML);
