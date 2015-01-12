@@ -180,8 +180,9 @@ var rehearsalModule = ( function () {
 				story.set('totalRehearsal', 1);
 				return;
 			}
-
+		}
 	}
+	
 	//VIEW
 	function replaceAll(find, replace, str) {
 		return str.replace(new RegExp(find, 'g'), replace);
