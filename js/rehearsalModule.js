@@ -77,6 +77,9 @@ var rehearsalModule = ( function () {
 		}
 		$("#rehearsal-password").val('');
 		$("#rehearsal-password-b").val('');
+		//update board
+		checkEachStory();
+		renderRehearsalBoard();
 		$.mobile.changePage('#board');
 	}
 
