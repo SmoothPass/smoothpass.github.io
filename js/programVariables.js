@@ -258,7 +258,9 @@ var programVariables = (function () {
 	}
 	module.getGroupNumWithLeastStories = function() {
 		var groups = generalRecord.get('groupList').toArray();
-		console.log(groups.length);
+		if (groups[groups.length-1] <= 5) {
+			return groups.length-1;
+		}
 
 	}
 	//used in StoryMode
