@@ -202,8 +202,9 @@ var rehearsalModule = ( function () {
 	function renderRehearsalPage (person, scene) {
 		var person_space = person;
 		var scene_space = scene;
-		var person = person_space.split('_').join(' ');
-		var scene = scene_space.split('_').join(' ');
+		//person scene are underscore
+		var person = person_space.split(' ').join('_');
+		var scene = scene_space.split(' ').join('_');
 
 		var pageID = '#rehearsalPage';
 		//initialize page
