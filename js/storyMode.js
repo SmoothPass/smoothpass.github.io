@@ -365,8 +365,8 @@ var storyMode = ( function () {
 						if (groupNum == smallGroupNum) {
 							console.log('in here');
 							//this group is less than 4 disable recoverButton
-							var nodes = document.getElementsByClassName('.bankButton');
-							console.log(nodes);
+							//var nodes = document.getElementsByClassName('.bankButton');
+							//console.log(nodes);
 							//for (var i=0; i<nodes.length; i++) {
 							//	nodes[i].disabled = true;
 							
