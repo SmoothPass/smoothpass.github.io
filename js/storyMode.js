@@ -344,7 +344,7 @@ var storyMode = ( function () {
 			var record, date, person, scene, used, score, groupNum;
 			var className, button, pair, newli, listHTML;
 			var records = programVariables.getStories();
-
+			var buttonClass;
 			if (records.length > 0) {
 				listHTML = '<div id="bankStories"><ul data-role="listview" \
 						data-inset="true">';
@@ -362,23 +362,24 @@ var storyMode = ( function () {
 						className = "initializedStory";
 						console.log(groupNum);
 						console.log(smallGroupNum);
+						buttonClass = "";
 						if (groupNum == smallGroupNum) {
 							console.log('in here');
 							//this group is less than 4 disable recoverButton
-							//var nodes = document.getElementsByClassName('.bankButton');
+							//nodes = document.getElementsByClassName('.bankButton');
 							//console.log(nodes);
 							//for (var i=0; i<nodes.length; i++) {
 							//	nodes[i].disabled = true;
 							
-
+							buttonClass = "class='bankButton'";
 							//}
 							//$('.bankButton').addClass("ui-disabled");
 						}
 						button = "\
 								<p style='margin:0px; margin-top:2%'><button \
-								onclick='storyMode.recoverStory(" + i + ")' \
-								class='bankButton'\
-								style='text-align:center;font-family=Lato;'>\
+								onclick='storyMode.recoverStory(" + i + ")' "
+								+ buttonClass +
+								"style='text-align:center;font-family=Lato;'>\
 								Recover This Story</button></p>";
 						pair = "\
 								<li class='" + className + "'><span \
