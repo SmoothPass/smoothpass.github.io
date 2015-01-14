@@ -365,7 +365,11 @@ var storyMode = ( function () {
 						if (groupNum == smallGroupNum) {
 							console.log('in here');
 							//this group is less than 4 disable recoverButton
-							$('.bankButton').addClass("ui-disabled");
+							var nodes = document.getElementsByClassName('.bankButton');
+							for (var i=0; i<nodes.length; i++) {
+								nodes[i].disabled = true;
+							}
+							//$('.bankButton').addClass("ui-disabled");
 						}
 						button = "\
 								<p style='margin:0px; margin-top:2%'><button \
