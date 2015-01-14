@@ -360,11 +360,8 @@ var storyMode = ( function () {
 					groupNum = record.get('groupNumber');
 					if (used) {
 						className = "initializedStory";
-						console.log(groupNum);
-						console.log(smallGroupNum);
 						buttonClass = "";
 						if (groupNum == smallGroupNum) {
-							console.log('in here');
 							//this group is less than 4 disable recoverButton
 							//nodes = document.getElementsByClassName('.bankButton');
 							//console.log(nodes);
