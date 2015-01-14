@@ -419,12 +419,13 @@ var storyMode = ( function () {
 				}
 				listHTML += "</ul></div>";
 				$('#banklist').html(listHTML);
-				$("#bankStories").listview().listview("refresh");
 				var buttonNodes = document.getElementsByClassName("bankButton");
 				for (var i=0; i<buttonNodes.length; i++) {
 					buttonNodes.disabled = true;
 				}
+				$("#bankStories").listview().listview("refresh");
 			}
+
 
 		});
 	}
