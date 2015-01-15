@@ -80,8 +80,9 @@ var rehearsalModule = ( function () {
 	// }
 	function rehearseEachStory(person, scene) {
 		//update rehearsal time for story bank
-		var story, date, totalElapsed, originalDate, curInterval;
+		var story, date, totalElapsed, originalDate, curInterval. startIntvl;
 		var stories = programVariables.getStories();
+
 		for (var i=0; i<stories.length; i++) {
 			story = stories[i];
 			if ( story.get('person') == person && 
@@ -93,8 +94,9 @@ var rehearsalModule = ( function () {
 				story.set('totalRehearsal', story.get('totalRehearsal')+1);
 				story.set('correctRehearsal', story.get('correctRehearsal')+1);
 				originalDate = story.get('initialized');
-				totalElapsedTime = date - originalDate;
-				curInterval = calculateInterval(totalElapsedTime);
+				startIntvl = story.get('interval');
+				totalElapsedTime = date.getTime() - originalDate.getTime();
+				curInterval = calculateInterval(totalElapsedTime, startIntvl);
 				story.set('intervalNum', curInterval);
 				break; 
 			}
@@ -186,9 +188,9 @@ var rehearsalModule = ( function () {
 
 	function checkStoryRehearsalStatus(origDate, curDate, story) {
 		//first calculate the elapsedTime from starting position in millsecs
-		var elapsedMills = currentDate.getTime() - originalDate.getTime();
+		var elapsedMills = curDate.getTime() - origDate.getTime();
 		var completedIntervalNum = story.get('intervalNum');
-		var startingInterval = story.get('startingInterval');
+		var startingInterval = story.get('interval');
 		var curIntervalNum = calculateInterval(elapsedMills, startingInterval);
 		if (completedIntervalNum == curIntervalNum) {
 			//all rehearsal on time except last one
