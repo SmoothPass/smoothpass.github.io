@@ -23,7 +23,7 @@ var rehearsalModule = ( function () {
 		// 0 -> 0 ; 1-> startInterval * (base)^0; 
 		// 2-> startInterval * (base)^1; 3-> startInterval * (base)^2
 		var base = 1.5;
-		if intervalNum == 0 return 0;
+		if (intervalNum == 0) return 0;
 		return Math.pow(base, intervalNum-1) * startingInterval;
 	}
 
