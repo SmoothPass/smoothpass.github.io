@@ -195,7 +195,7 @@ var rehearsalModule = ( function () {
 		if (completedIntervalNum == curIntervalNum) {
 			//all rehearsal on time except last one
 			//calculate the elapsed time since last interval
-			var elapsedSinceLastTime = cueDate - 
+			var elapsedSinceLastTime = curDate.getTime() - 
 					calculateElapsedFromInterval(completedIntervalNum);
 			var nextIntervalLength = calculateOneInterval(curIntervalNum+1);
 			if (elapsedSinceLastTime < nextIntervalLength * 0.75) {
