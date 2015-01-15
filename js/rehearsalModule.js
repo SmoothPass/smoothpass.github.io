@@ -80,7 +80,7 @@ var rehearsalModule = ( function () {
 	// }
 	function rehearseEachStory(person, scene) {
 		//update rehearsal time for story bank
-		var story, date, totalElapsed, originalDate, curInterval. startIntvl;
+		var story, date, totalElapsed, originalDate, curInterval, startIntvl;
 		var stories = programVariables.getStories();
 
 		for (var i=0; i<stories.length; i++) {
