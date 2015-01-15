@@ -19,6 +19,35 @@ var rehearsalModule = ( function () {
 		}
 	}
 
+	function calculateOneInterval(intervalNum, startingInterval) {
+		// 0 -> 0 ; 1-> startInterval * (base)^0; 
+		// 2-> startInterval * (base)^1; 3-> startInterval * (base)^2
+		var base = 1.5;
+		if intervalNum == 0 return 0;
+		return Math.pow(base, intervalNum-1) * startingInterval;
+	}
+
+	function calculateElapsedFromInterval(intervalNum, starIntvl) {
+		var totalTime = 0;
+		for (var i=1; i<=intervalNum; i++) {
+			totalTime += calculateOneInterval(intervalNum, starIntvl);
+		}
+
+		return totalTime;
+	}
+	function calculateInterval(elapsed, startingInterval) {
+		var index = 0;
+		var base = 1.5;
+		var timeLeft = elapsed;
+		var nextInterval = startingInterval;
+		while (timeLeft >= nextInterval) {
+			timeLeft -= nextInterval;
+			nextInterval *= base;
+			index += 1;
+		}
+		return index;
+	}
+
 	function calculateTotalInterval (num) {
 		var totalTime = 0;
 		for (var i=0; i<num; i++) {
@@ -49,6 +78,44 @@ var rehearsalModule = ( function () {
 	// 		return Math.pow(1.5, (index-1)) * msecPerHour * 12;
 	// 	}
 	// }
+	function rehearseEachStory(person, scene) {
+		//update rehearsal time for story bank
+		var story, date, totalElapsed, originalDate, curInterval;
+		var stories = programVariables.getStories();
+		for (var i=0; i<stories.length; i++) {
+			story = stories[i];
+			if ( story.get('person') == person && 
+					story.get('scene') == scene ) {
+				//update story rehearse time
+				console.log('rehearsing story ' + person + ' ' + scene);
+				date = new Date();
+				story.set('lastRehearsed', date);
+				story.set('totalRehearsal', story.get('totalRehearsal')+1);
+				story.set('correctRehearsal', story.get('correctRehearsal')+1);
+				originalDate = story.get('initialized');
+				totalElapsedTime = date - originalDate;
+				curInterval = calculateInterval(totalElapsedTime);
+				story.set('intervalNum', curInterval);
+				break; 
+			}
+		}
+		$("#rehearsal-password").val('');
+		$("#rehearsal-password-b").val('');
+		//update board
+		//checkEachStory();
+		checkStories();
+		renderRehearsalBoard();
+		$('ul.rehearsalList li').on('click',
+			function (e) {
+				e.preventDefault();
+				var textList = $(this).find(".storyText");
+				var person = textList[0].innerHTML;
+				var scene = textList[1].innerHTML;
+				rehearsalModule.renderRehearsalPage(person, scene);
+			}
+		);
+		window.location = "https://smoothpass.github.io#board";
+	}
 
 	function rehearseStory (person, scene) {
 		//update rehearsal time for story bank
@@ -80,7 +147,8 @@ var rehearsalModule = ( function () {
 		$("#rehearsal-password").val('');
 		$("#rehearsal-password-b").val('');
 		//update board
-		checkEachStory();
+		//checkEachStory();
+		checkStories();
 		renderRehearsalBoard();
 		$('ul.rehearsalList li').on('click',
 			function (e) {
@@ -91,7 +159,7 @@ var rehearsalModule = ( function () {
 				rehearsalModule.renderRehearsalPage(person, scene);
 			}
 		);
-		window.location = "https://smoothpass.github.io#board"
+		window.location = "https://smoothpass.github.io#board";
 		//$.mobile.changePage('#board');
 	}
 
@@ -116,6 +184,60 @@ var rehearsalModule = ( function () {
 		}
 	}
 
+	function checkStoryRehearsalStatus(origDate, curDate, story) {
+		//first calculate the elapsedTime from starting position in millsecs
+		var elapsedMills = currentDate.getTime() - originalDate.getTime();
+		var completedIntervalNum = story.get('intervalNum');
+		var startingInterval = story.get('startingInterval');
+		var curIntervalNum = calculateInterval(elapsedMills, startingInterval);
+		if (completedIntervalNum == curIntervalNum) {
+			//all rehearsal on time except last one
+			//calculate the elapsed time since last interval
+			var elapsedSinceLastTime = cueDate - 
+					calculateElapsedFromInterval(completedIntervalNum);
+			var nextIntervalLength = calculateOneInterval(curIntervalNum+1);
+			if (elapsedSinceLastTime < nextIntervalLength * 0.75) {
+				return NO_NEED_TO_REHEARSE;
+			} else if ( (nextIntervalLength * 0.75 < calculateElapsedTime) &&
+					(elapsedSinceLastTime < nextIntervalLength) ) {
+				return NEED_REHEARSAL_SOON;
+			} else {
+				console.log('interesting');
+				return NEED_URGENT_REHEARSAL;
+			}
+
+		} else if (completedIntervalNum < curIntervalNum) {
+			//story long past due <=> missing at least one interval
+			return NEED_URGENT_REHEARSAL;
+		} else {
+			//case when completedIntervalNum > curIntervalNum
+			alert('something is wrong see rehearsalModule line 146\n \
+				   completedIntervalNum > curIntervalNum');
+			return NO_NEED_TO_REHEARSE;
+		}
+		
+	}
+	function checkStories() {
+		var story, originalDate, currentDate, check;
+		urgentRehearsalList = [];
+		rehearsalSoonList = [];
+		var records = programVariables.getStories();
+		for (var i=0; i<records.length; i++) {
+			story = records[i];
+			originalDate = story.get('initialized');
+			currentDate = new Date();
+			check = checkStoryRehearsalStatus(originalDate, currentDate, story);
+			if (check === NEED_URGENT_REHEARSAL) {
+				urgentRehearsalList.push(story);
+			} else if (check === NEED_REHEARSAL_SOON) {
+				rehearsalSoonList.push(story);
+			} else {
+				//story safe what to do?
+			}
+		}
+	}
+
+
 	function checkEachStory () {
 		var story, originalDate, currentDate, check;
 		urgentRehearsalList = [];
@@ -123,7 +245,7 @@ var rehearsalModule = ( function () {
 		var records = programVariables.getStories();
 		for (var i=0; i<records.length; i++) {
 			story = records[i];
-			originalDate = story.get('created');
+			originalDate = story.get('initialized');
 			currentDate = new Date();
 			//if the story needs to be rehearsed display it in home page
 			check = needRehearsal(originalDate, currentDate, story);
@@ -155,10 +277,11 @@ var rehearsalModule = ( function () {
 
 	//CONTROLLER
 	module.checkEachStory = function () {
-		checkEachStory();
+		//checkEachStory();
+		checkStories();
 	}
 	module.rehearseStory = function (person, scene) {
-		rehearseStory(person, scene)
+		rehearseEachStory(person, scene)
 	}
 	module.renderRehearsalBoard = function () {
 		renderRehearsalBoard();

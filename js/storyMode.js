@@ -110,7 +110,7 @@ var storyMode = ( function () {
 	}
 
 	function startGame() {
-		var group, startFrom;
+		var group, startFrom, curDate;
 		var curLimit = 0;
 		var limitsList = groupList;
 		var index = selectedStoryIndex;
@@ -123,8 +123,10 @@ var storyMode = ( function () {
 				//falls in the group 
 				//sets all stories in the same group to be true
 				startFrom = curLimit - limitsList[i];
+				curDate = new Date();
 				for (var j=startFrom; j<curLimit; j++) {
 					records[j].set('used', true);
+					records[j].set('initialized', curDate);
 				}
 				group = programVariables.getGroupFromRecordIndices(
 						startFrom, curLimit);
