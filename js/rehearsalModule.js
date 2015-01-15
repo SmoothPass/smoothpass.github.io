@@ -200,7 +200,7 @@ var rehearsalModule = ( function () {
 			var nextIntervalLength = calculateOneInterval(curIntervalNum+1);
 			if (elapsedSinceLastTime < nextIntervalLength * 0.75) {
 				return NO_NEED_TO_REHEARSE;
-			} else if ( (nextIntervalLength * 0.75 < calculateElapsedTime) &&
+			} else if ( (nextIntervalLength * 0.75 < elapsedSinceLastTime) &&
 					(elapsedSinceLastTime < nextIntervalLength) ) {
 				return NEED_REHEARSAL_SOON;
 			} else {
