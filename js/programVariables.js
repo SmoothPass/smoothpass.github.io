@@ -5,7 +5,7 @@ var programVariables = (function () {
 	var dropBoxDatastore;
 	var storyBank, accounts, stories, accountIndex, securitySetting;
 	var storyBankTable, accountTable, storyModeGeneralTable, generalRecord;
-	var tempStartingInterval = 1000 * 60;
+	var tempStartingInterval = 1000 * 60 * 5;
 
 	function initialize() {
 		client.getDatastoreManager().openDefaultDatastore(
