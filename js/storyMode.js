@@ -341,13 +341,13 @@ var storyMode = ( function () {
 	}
 	//rendering story bank
 	function renderStoryBank () {
-		var smallGroupNum = getLessThanFourGroupNumber()
 		$('#bank').bind("pageshow", function() {
 			var record, date, person, scene, used, score, groupNum;
 			var className, button, pair, newli, listHTML;
 			var records = programVariables.getStories();
 			var buttonClass;
 			if (records.length > 0) {
+				var smallGroupNum = getLessThanFourGroupNumber();
 				listHTML = '<div id="bankStories"><ul data-role="listview" \
 						data-inset="true">';
 				for (var i=0; i<records.length; i++) {
