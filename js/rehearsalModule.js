@@ -195,13 +195,18 @@ var rehearsalModule = ( function () {
 		if (completedIntervalNum == curIntervalNum) {
 			//all rehearsal on time except last one
 			//calculate the elapsed time since last interval
+			console.log('current date in mill is ' + curDate.getTime().toString());
 			var elapsedSinceLastTime = curDate.getTime() - 
 					(calculateElapsedFromInterval(completedIntervalNum, 
 							startingInterval) + origDate.getTime());
 			var nextIntervalLength = calculateOneInterval(curIntervalNum+1,
 					startingInterval);
-			console.log(elapsedSinceLastTime);
-			console.log(nextIntervalLength);
+			console.log('calculatedElapsedFromInterval is ' + calculateElapsedFromInterval(completedIntervalNum, 
+							startingInterval).toString());
+			console.log('origDate in mill is ' + origDate.getTime().toString());
+
+			console.log('elapsedSinceLastTime is ' + elapsedSinceLastTime.toString());
+			console.log('nextIntervalLength is ' + nextIntervalLength.toString());
 			if (elapsedSinceLastTime < nextIntervalLength * 0.75) {
 				return NO_NEED_TO_REHEARSE;
 			} else if ( (nextIntervalLength * 0.75 < elapsedSinceLastTime) &&
