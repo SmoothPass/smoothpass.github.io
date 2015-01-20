@@ -400,8 +400,10 @@ var memoryGame = (function () {
 				} else if (e.keyCode == 9) {
 					//tab key pressed
 					var targetJqItem = $("#" + e.target.id);
+
 					var ListJqItem = targetJqItem.parent().next($('ul'));
 					ListJqItem.children().first('li').children().click();
+					console.log('hiii');
 				}
 			}
 		}
