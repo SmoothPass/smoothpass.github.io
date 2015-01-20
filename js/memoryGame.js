@@ -397,20 +397,19 @@ var memoryGame = (function () {
 					//select the first option 
 					var ListJqItem = targetJqItem.parent().next($('ul'));
 					ListJqItem.children().first('li').children().click();
-				} else if (e.keyCode == 9) {
-					//tab key pressed
-					var targetJqItem = $("#" + e.target.id);
-
-					var ListJqItem = targetJqItem.parent().next($('ul'));
-					ListJqItem.children().first('li').children().click();
-					console.log('hiii');
 				}
 			}
 		}
 		$('#' + id).bind('focus', function() {
 				document.getElementById(id).addEventListener("keypress", 
 						bindEnterKey);
-		});
+				$('#' + id).bind('keydown', function(e) {
+					if (e.keyCode == 9) {
+						console.log('tab pressed');
+					}
+				});
+			
+		});	
 
 	}
 	function getActionComboBox(id, targetId) {
