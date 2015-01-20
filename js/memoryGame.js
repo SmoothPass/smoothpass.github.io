@@ -405,7 +405,12 @@ var memoryGame = (function () {
 						bindEnterKey);
 				$('#' + id).bind('keydown', function(e) {
 					if (e.keyCode == 9) {
-						console.log('tab pressed');
+						console.log('tab pressed!!!');
+						var targetJqItem = $("#" + e.target.id);
+						//if enter key pressed and input not empty
+						//select the first option 
+						var ListJqItem = targetJqItem.parent().next($('ul'));
+						ListJqItem.children().first('li').children().click();
 					}
 				});
 			
