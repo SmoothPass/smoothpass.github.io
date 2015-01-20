@@ -403,11 +403,12 @@ var memoryGame = (function () {
 					var ListJqItem = targetJqItem.parent().next($('ul'));
 					ListJqItem.children().first('li').children().click();
 				}
+			}
 		}
 		$('#' + id).bind('focus', function() {
 				document.getElementById(id).addEventListener("keypress", 
 						bindEnterKey);
-		})
+		});
 
 	}
 	function getActionComboBox(id, targetId) {
