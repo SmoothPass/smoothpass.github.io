@@ -390,13 +390,19 @@ var memoryGame = (function () {
 	}
 	function settingUpEnterKeyBinding(id) {
 		function bindEnterKey(e) {
-			if (e && e.keyCode == 13 && e.target.value != '') {
-				var targetJqItem = $("#" + e.target.id);
-				//if enter key pressed and input not empty
-				//select the first option 
-				var ListJqItem = targetJqItem.parent().next($('ul'));
-				ListJqItem.children().first('li').children().click();
-			}
+			if (e) {
+				if (e.keyCode == 13) { //&& e.target.value != '') {
+					var targetJqItem = $("#" + e.target.id);
+					//if enter key pressed and input not empty
+					//select the first option 
+					var ListJqItem = targetJqItem.parent().next($('ul'));
+					ListJqItem.children().first('li').children().click();
+				} else if (e.keyCode == 9) {
+					//tab key pressed
+					var targetJqItem = $("#" + e.target.id);
+					var ListJqItem = targetJqItem.parent().next($('ul'));
+					ListJqItem.children().first('li').children().click();
+				}
 		}
 		$('#' + id).bind('focus', function() {
 				document.getElementById(id).addEventListener("keypress", 
