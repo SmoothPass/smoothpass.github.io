@@ -414,7 +414,9 @@ var memoryGame = (function () {
 					} else if (e.keyCode == 40) {
 						//down arrow key pressed
 						console.log('up pressed!!!');
+						var targetJqItem = $("#" + e.target.id);
 						var ListJqItem = targetJqItem.parent().next($('ul')).next($('ul'));
+						ListJqItem.children().first('li').children().click();
 
 					}
 				});
