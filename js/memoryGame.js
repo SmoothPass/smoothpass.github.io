@@ -411,6 +411,11 @@ var memoryGame = (function () {
 						//select the first option 
 						var ListJqItem = targetJqItem.parent().next($('ul'));
 						ListJqItem.children().first('li').children().click();
+					} else if (e.keyCode == 40) {
+						//down arrow key pressed
+						console.log('up pressed!!!');
+						var ListJqItem = targetJqItem.parent().next($('ul')).next($('ul'));
+
 					}
 				});
 			
