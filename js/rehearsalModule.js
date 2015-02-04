@@ -101,8 +101,8 @@ var rehearsalModule = ( function () {
 				break; 
 			}
 		}
-		$("#rehearsal-password").val('');
-		$("#rehearsal-password-b").val('');
+		$("#rehearsal-action").val('');
+		$("#rehearsal-object").val('');
 		//update board
 		//checkEachStory();
 		checkStories();
@@ -146,8 +146,8 @@ var rehearsalModule = ( function () {
 				break;
 			}
 		}
-		$("#rehearsal-password").val('');
-		$("#rehearsal-password-b").val('');
+		$("#rehearsal-action").val('');
+		$("#rehearsal-object").val('');
 		//update board
 		//checkEachStory();
 		checkStories();
@@ -352,12 +352,12 @@ var rehearsalModule = ( function () {
 					class=images><span id='personSceneDiv'></span><div \
 					data-role='fieldcontain'><form action='#'>\
 					<span class='boxWidget'><p class='actionCombo'><input \
-					id='rehearsal-password' placeholder='Doing' tabindex='1' \
+					id='rehearsal-action' placeholder='Doing' tabindex='1' \
 					data-role='none' class='action-input' /><ul \
 					id='rehearsal-action-suggestions' \
 					class='action-suggestions' data-role='listview' \
 					data-inset='true'></ul></p><p class='objectCombo'><input \
-					id='rehearsal-password-b' tabindex='2' data-role='none'\
+					id='rehearsal-object' tabindex='2' data-role='none'\
 					placeholder='What?' class='object-input' /><ul \
 					id='rehearsal-object-suggestions' \
 					class='object-suggestions' data-role='listview' \
@@ -366,9 +366,9 @@ var rehearsalModule = ( function () {
 					</div></form></div></div></div>");
 
 			newPage.appendTo( $.mobile.pageContainer );
-			memoryGame.getVerbComboBoxWrapper('rehearsal-password', 
+			memoryGame.getVerbComboBoxWrapper('rehearsal-action', 
 					'rehearsal-action-suggestions');
-			memoryGame.getObjectComboBoxWrapper('rehearsal-password-b', 
+			memoryGame.getObjectComboBoxWrapper('rehearsal-object-b', 
 					'rehearsal-object-suggestions');
 			$(pageID).page().page("destroy").page();
 		}
@@ -393,7 +393,7 @@ var rehearsalModule = ( function () {
 		$.mobile.changePage(pageID);
 		$( "#recover" ).page().page( "destroy" ).page();
 
-		$('#rehearsal-password').focus();
+		$('#rehearsal-action').focus();
 	}
 	
 	function renderRehearsalBoard () {
