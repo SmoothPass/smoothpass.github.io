@@ -413,7 +413,7 @@ var memoryGame = (function () {
 						ListJqItem.children().first('li').children().click();
 					} else if (e.keyCode == 40) {
 						//down arrow key pressed
-						console.log('up pressed!!!');
+						console.log('down pressed!!!');
 						var targetJqItem = $("#" + e.target.id);
 						var ListJqItem = targetJqItem.parent().next($('ul')).next($('ul'));
 						ListJqItem.children().first('li').children().click();
