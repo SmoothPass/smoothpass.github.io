@@ -125,11 +125,11 @@ var memoryGame = (function () {
 			} else if (checkIndex > sequenceIndex) {
 				sequenceIndex += 1;
 				event.preventDefault();
-				$('#game-password').focus();
+				$('#game-action').focus();
 				var act = fullGameList[checkIndex-1][ACTION_INDEX];
 				var obj = fullGameList[checkIndex-1][OBJECT_INDEX];
-				var inputAct = $('#gamestories').find('#game-password').val();
-				var inputObj = $('#gamestories').find('#game-password-b').val();
+				var inputAct = $('#gamestories').find('#game-action').val();
+				var inputObj = $('#gamestories').find('#game-object').val();
 				if (checkStoryRight(inputAct, inputObj, act, obj)) {
 					checkIndex = -1;
 					generateNextSequence();
@@ -144,8 +144,8 @@ var memoryGame = (function () {
 
 	function generateNextCheck() {
 		event.preventDefault();
-		var inputAct = $('#gamestories').find('#game-password').val();
-		var inputObj = $('#gamestories').find('#game-password-b').val();
+		var inputAct = $('#gamestories').find('#game-action').val();
+		var inputObj = $('#gamestories').find('#game-object').val();
 		inputAct = inputAct.toLowerCase();
 		inputObj = inputObj.toLowerCase();
 
@@ -179,7 +179,7 @@ var memoryGame = (function () {
 					//?hashes result clear
 				}
 			} else {
-				$('#gamestories').find('#game-password').val('');
+				$('#gamestories').find('#game-action').val('');
 				var curPerson = fullGameList[checkIndex][PERSON_INDEX];
 				var curScene = fullGameList[checkIndex][SCENE_INDEX];
 				displayCheckPage(curPerson, curScene);
@@ -225,7 +225,7 @@ var memoryGame = (function () {
 			}
 		});
 		$('.boxWidget div').removeClass()
-		$('#game-password').focus();
+		$('#game-action').focus();
 	}
 
 	//CONTROLLER
@@ -236,7 +236,7 @@ var memoryGame = (function () {
 	module.backtoGame = function () {
 		$.mobile.changePage('#gamepage');
 		setTimeout('', 1000);
-		$('#game-password').focus();
+		$('#game-action').focus();
 	}
 
 	module.forgetStory = function () {
@@ -303,11 +303,11 @@ var memoryGame = (function () {
 				src=images/scene/{2}.jpg /><figcaption>{3}</figcaption>\
 				</figure><span data-role='fieldcontain'><form action='#'>\
 				<span class='boxWidget'><p class='actionCombo'><input \
-				id='game-password' class='action-input' data-role='none' \
+				id='game-action' class='action-input' data-role='none' \
 				placeholder='Doing' tabindex='1'/><ul \
 				id='game-action-suggestions' data-role='listview' \
 				data-inset='true' class='action-suggestions'></ul></p>\
-				<p class='objectCombo'><input id='game-password-b' tabindex='2'\
+				<p class='objectCombo'><input id='game-object' tabindex='2'\
 				 data-role='none' placeholder='What?' class='object-input' />\
 				<ul id='game-object-suggestions' class='object-suggestions' \
 				data-role='listview' data-inset='true'></ul></p></span><br><br>\
@@ -324,8 +324,8 @@ var memoryGame = (function () {
 				scene.split('_').join(' ')));
 		
 		//load combo box
-		getActionComboBox('game-password', 'game-action-suggestions');
-		getObjectComboBox('game-password-b', 'game-object-suggestions');
+		getActionComboBox('game-action', 'game-action-suggestions');
+		getObjectComboBox('game-object', 'game-object-suggestions');
 	}
 
 	//generate the forgetStorypage 
@@ -414,8 +414,8 @@ var memoryGame = (function () {
 					} else if (e.keyCode == 40) {
 						//down arrow key pressed
 						console.log('down pressed!!!');
-						console.log(e.target.id);
-						var targetJqItem = $("#" + e.target.id);
+						var targetJqItem = $("#" + e.target.id + "-suggestions");
+						console.log(targetJqItem);
 						//var ListJqItem = targetJqItem.parent().next($('ul')).next($('ul'));
 						//ListJqItem.children().first('li').children().click();
 
