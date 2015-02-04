@@ -407,16 +407,17 @@ var memoryGame = (function () {
 					if (e.keyCode == 9) {
 						console.log('tab pressed!!!');
 						var targetJqItem = $("#" + e.target.id);
-						//if enter key pressed and input not empty
+						//if tab key pressed and input not empty
 						//select the first option 
 						var ListJqItem = targetJqItem.parent().next($('ul'));
 						ListJqItem.children().first('li').children().click();
 					} else if (e.keyCode == 40) {
 						//down arrow key pressed
 						console.log('down pressed!!!');
+						console.log(e.target.id);
 						var targetJqItem = $("#" + e.target.id);
-						var ListJqItem = targetJqItem.parent().next($('ul')).next($('ul'));
-						ListJqItem.children().first('li').children().click();
+						//var ListJqItem = targetJqItem.parent().next($('ul')).next($('ul'));
+						//ListJqItem.children().first('li').children().click();
 
 					}
 				});
