@@ -368,7 +368,7 @@ var rehearsalModule = ( function () {
 			newPage.appendTo( $.mobile.pageContainer );
 			memoryGame.getVerbComboBoxWrapper('rehearsal-action', 
 					'rehearsal-action-suggestions');
-			memoryGame.getObjectComboBoxWrapper('rehearsal-object-b', 
+			memoryGame.getObjectComboBoxWrapper('rehearsal-object', 
 					'rehearsal-object-suggestions');
 			$(pageID).page().page("destroy").page();
 		}
