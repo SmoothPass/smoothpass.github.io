@@ -370,7 +370,6 @@ var rehearsalModule = ( function () {
 					'rehearsal-action-suggestions');
 			memoryGame.getObjectComboBoxWrapper('rehearsal-object', 
 					'rehearsal-object-suggestions');
-			$(pageID).page().page("destroy").page();
 		}
 		//put person and scene in the picture
 		var html = "\
@@ -380,7 +379,7 @@ var rehearsalModule = ( function () {
 				</figure>";
 		var newHTML = String.format( html, person, person_space, 
 				scene.toLowerCase(), scene_space );
-		var bDiv = "<a data-role='button' id='gameCheckNextButton' \
+		var bDiv = "<a data-role='button' id='rehearseButton' \
 					tabindex='3' class=right \
 					onclick=\"rehearsalModule.rehearseStory('" + person + 
 					"','" + scene + "')\" >Rehearse</a>\
@@ -390,8 +389,15 @@ var rehearsalModule = ( function () {
 		$('#rehearsalButtonDiv').html(bDiv);
 		//update box css 
 		$('.boxWidget div').removeClass();
+		$("#rehearseButton").on('keypress', 'input', function(args) {
+			if (args.keyCode == 13) {
+				$("#rehearseButton").click();
+				return false;
+			}
+		);
 		$.mobile.changePage(pageID);
-		$( "#recover" ).page().page( "destroy" ).page();
+		//$( "#recover" ).page().page( "destroy" ).page();
+		$(pageID).page().page("destroy").page();
 
 		$('#rehearsal-action').focus();
 	}
