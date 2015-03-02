@@ -394,7 +394,7 @@ var rehearsalModule = ( function () {
 				$("#rehearseButton").click();
 				return false;
 			}
-		);
+		});
 		$.mobile.changePage(pageID);
 		//$( "#recover" ).page().page( "destroy" ).page();
 		$(pageID).page().page("destroy").page();
