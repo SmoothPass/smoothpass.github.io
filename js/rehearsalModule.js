@@ -389,7 +389,7 @@ var rehearsalModule = ( function () {
 		$('#rehearsalButtonDiv').html(bDiv);
 		//update box css 
 		$('.boxWidget div').removeClass();
-		$(pageID).on('keypress', 'rehearseButton', function(args) {
+		$(pageID).on('keypress', '#rehearseButton', function(args) {
 			if (args.keyCode == 13) {
 				$("#rehearseButton").click();
 				return false;
