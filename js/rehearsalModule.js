@@ -115,7 +115,7 @@ var rehearsalModule = ( function () {
 				var scene = textList[1].innerHTML;
 				renderRehearsalPage(person, scene);
 				setTimeout(function() {
-					$('.input-search').focus();
+					$('#rehearsal-action').focus();
 				}, 100);
 			}
 		);
