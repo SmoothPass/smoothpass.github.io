@@ -113,7 +113,9 @@ var rehearsalModule = ( function () {
 				var textList = $(this).find(".storyText");
 				var person = textList[0].innerHTML;
 				var scene = textList[1].innerHTML;
-				rehearsalModule.renderRehearsalPage(person, scene);
+				renderRehearsalPage(person, scene);
+				$('#rehearsal-action').focus();
+
 			}
 		);
 		window.location = "https://smoothpass.github.io#board";
@@ -352,7 +354,7 @@ var rehearsalModule = ( function () {
 					class=images><span id='personSceneDiv'></span><div \
 					data-role='fieldcontain'><form action='#'>\
 					<span class='boxWidget'><p class='actionCombo'><input \
-					id='rehearsal-action' placeholder='Doing' tabindex='-1' \
+					id='rehearsal-action' placeholder='Doing' tabindex='1' \
 					data-role='none' class='action-input' /><ul \
 					id='rehearsal-action-suggestions' \
 					class='action-suggestions' data-role='listview' \
