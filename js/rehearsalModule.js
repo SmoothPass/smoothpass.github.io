@@ -352,7 +352,7 @@ var rehearsalModule = ( function () {
 					class=images><span id='personSceneDiv'></span><div \
 					data-role='fieldcontain'><form action='#'>\
 					<span class='boxWidget'><p class='actionCombo'><input \
-					id='rehearsal-action' placeholder='Doing' tabindex='1' \
+					id='rehearsal-action' placeholder='Doing' tabindex='-1' \
 					data-role='none' class='action-input' /><ul \
 					id='rehearsal-action-suggestions' \
 					class='action-suggestions' data-role='listview' \
@@ -389,7 +389,7 @@ var rehearsalModule = ( function () {
 		$('#rehearsalButtonDiv').html(bDiv);
 		//update box css 
 		$('.boxWidget div').removeClass();
-		$(pageID).on('keypress', '#rehearseButton', function(args) {
+		$('#rehearseButton').on('keypress', '#rehearseButton', function(args) {
 			if (args.keyCode == 13) {
 				$("#rehearseButton").click();
 				return false;
