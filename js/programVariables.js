@@ -292,7 +292,8 @@ var programVariables = (function () {
 				$(".menu-disabled").addClass("ui-disabled");
 				//show link to dropbox button
 				$("#linkDropBoxButton").show();
-				$("#setting").page().page("destroy").page();;
+				$("#setting").page().page("destroy").page();
+				window.location.href = "https://www.dropbox.com/logout";
 			});
 		}
 	}
