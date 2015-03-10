@@ -286,10 +286,11 @@ var programVariables = (function () {
 	module.signOff = function() {
 		client.signOff();
 		//DISABLE UI
-		$('#setting-bank').addClass("ui-disabled");
-		$('#setting-accounts').addClass("ui-disabled");
-		$('#setting-board').addClass("ui-disabled");
-		$('#deleteButton').addClass("ui-disabled");
+		// $('#setting-bank').addClass("ui-disabled");
+		// $('#setting-accounts').addClass("ui-disabled");
+		// $('#setting-board').addClass("ui-disabled");
+		// $('#deleteButton').addClass("ui-disabled");
+		$(".menu-diabled").addClass("ui-disabled");
 		$("#setting").page().page("destroy").page();;
 	}
 
