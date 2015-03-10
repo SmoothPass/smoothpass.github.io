@@ -286,9 +286,10 @@ var programVariables = (function () {
 	module.signOff = function() {
 		client.signOff();
 		//DISABLE UI
-		//$('#home-game').addClass("ui-disabled");
-		//$('#home-bank').addClass("ui-disabled");
-		//$('#home-accounts').addClass("ui-disabled");
+		$('#setting-bank').addClass("ui-disabled");
+		$('#setting-accounts').addClass("ui-disabled");
+		$('#setting-board').addClass("ui-disabled");
+		$('#deleteButton').addClass("ui-disabled");
 		location.reload();
 	}
 

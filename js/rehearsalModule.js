@@ -114,9 +114,6 @@ var rehearsalModule = ( function () {
 				var person = textList[0].innerHTML;
 				var scene = textList[1].innerHTML;
 				renderRehearsalPage(person, scene);
-				setTimeout(function() {
-					$('#rehearsal-action').focus();
-				}, 100);
 			}
 		);
 		window.location = "https://smoothpass.github.io#board";
@@ -399,7 +396,6 @@ var rehearsalModule = ( function () {
 			}
 		});
 		$.mobile.changePage(pageID);
-		//$( "#recover" ).page().page( "destroy" ).page();
 		$(pageID).page().page("destroy").page();
 
 		$('#rehearsal-action').focus();
