@@ -290,7 +290,7 @@ var programVariables = (function () {
 		$('#setting-accounts').addClass("ui-disabled");
 		$('#setting-board').addClass("ui-disabled");
 		$('#deleteButton').addClass("ui-disabled");
-		location.reload();
+		location.reload("https://smoothpass.github.io/#setting");
 	}
 
 	module.deleteAllRecords = function() {
