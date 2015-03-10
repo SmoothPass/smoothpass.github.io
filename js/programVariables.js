@@ -187,6 +187,8 @@ var programVariables = (function () {
 	}
 
 	//CONTROLLERS
+	//TEMPPPP
+	module.client = client;
 	//used by AccountPage
 	module.calculateMaxUnlockedStoryIndex = function() {
 		return calculateMaxUnlockedStoryIndex()
