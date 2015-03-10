@@ -284,12 +284,15 @@ var programVariables = (function () {
 	}
 
 	module.signOff = function() {
-		client.signOff();
-		//DISABLE UI
-		$(".menu-disabled").addClass("ui-disabled");
-		//show link to dropbox button
-		$("#linkDropBoxButton").show();
-		$("#setting").page().page("destroy").page();;
+		if (client.isAuthenticated()) {
+			client.signOut( function() {
+				//DISABLE UI
+				$(".menu-disabled").addClass("ui-disabled");
+				//show link to dropbox button
+				$("#linkDropBoxButton").show();
+				$("#setting").page().page("destroy").page();;
+			});
+		}
 	}
 
 	module.deleteAllRecords = function() {
