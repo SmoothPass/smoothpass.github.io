@@ -286,11 +286,9 @@ var programVariables = (function () {
 	module.signOff = function() {
 		client.signOff();
 		//DISABLE UI
-		// $('#setting-bank').addClass("ui-disabled");
-		// $('#setting-accounts').addClass("ui-disabled");
-		// $('#setting-board').addClass("ui-disabled");
-		// $('#deleteButton').addClass("ui-disabled");
-		$(".menu-diabled").addClass("ui-disabled");
+		$(".menu-disabled").addClass("ui-disabled");
+		//show link to dropbox button
+		$("#linkDropBoxButton").show();
 		$("#setting").page().page("destroy").page();;
 	}
 

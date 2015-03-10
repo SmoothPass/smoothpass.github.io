@@ -605,3 +605,6 @@ input.action-input {
 	float: right;
 }
 
+#linkDropBoxButton {
+	display:none;
+}
