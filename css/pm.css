@@ -622,7 +622,7 @@ input.action-input {
     width: 100vw;
     height: 100vh;
     background-color: rgba(192, 192, 192, 0.5);
-    background-image: url("http://i.stack.imgur.com/MnyxU.gif");
+    background-image: url("../images/loader.gif");
     background-repeat: no-repeat;
     background-position: center;
 }
