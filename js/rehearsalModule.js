@@ -187,6 +187,10 @@ var rehearsalModule = ( function () {
 	}
 
 	function checkStoryRehearsalStatus(origDate, curDate, story) {
+		//first make sure story is unlocked 
+		if (story.get("used") == false) {
+			return NO_NEED_TO_REHEARSE;
+		}
 		//first calculate the elapsedTime from starting position in millsecs
 		var elapsedMills = curDate.getTime() - origDate.getTime();
 		var completedIntervalNum = story.get('intervalNum');
