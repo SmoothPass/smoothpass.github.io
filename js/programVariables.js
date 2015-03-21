@@ -297,8 +297,13 @@ var programVariables = (function () {
 			});
 		}
 	}
-
 	module.deleteAllRecords = function() {
+		deleteAllRecords().done(deleteDoneFunction);
+	}
+	
+	var deleteAllRecords = function() {
+		//create a deferred object
+		var r = $.Deferred();
 		var record;
 		var records = storyBankTable.query();
 		for (var i = 0; i < records.length; i++) {
@@ -317,9 +322,17 @@ var programVariables = (function () {
 			record = records[i];
 			storyModeGeneralTable.get(record.getId()).deleteRecord();
 		}
-		alert('DropBox Storage Cleared!');
+		setTimeout(function() {
+			//call resolve on the deferred object once done deleting
+			r.resolve();
+		}, 2500);
+		//return the deferred object
+		return r;
+	}
+	//define delete's done function
+	var deleteDoneFunction = function () {
+		console.log("delete done function");
 		window.location.reload();
-		return;
 	}
 	
 	return module;
